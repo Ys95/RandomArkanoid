@@ -48,16 +48,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 039590d7bbe820d43950e4468ae07c25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _collider: {fileID: 7517093026072121229}
-  _sprite: {fileID: 8325219465064716680}
-  _audioSource: {fileID: 7336527860541364327}
-  _idleAudioSource: {fileID: 0}
-  _onCollisionParticle: {fileID: 0}
-  _onRacketHitParticle: {fileID: 249775912438429587}
-  _idleSound: {fileID: 0}
-  _onCollisionSound: {fileID: 11400000, guid: 39db207e378843046984a5b41a1ade08, type: 2}
-  _onRacketHitSound: {fileID: 11400000, guid: 661e690d2d8a84c48a6890435cd4f593, type: 2}
-  _onBorderHitSound: {fileID: 11400000, guid: 661e690d2d8a84c48a6890435cd4f593, type: 2}
+  ballCollider: {fileID: 7517093026072121229}
+  sprite: {fileID: 8325219465064716680}
+  audioSource: {fileID: 7336527860541364327}
+  idleAudioSource: {fileID: 0}
+  onCollisionParticle: {fileID: 0}
+  onRacketHitParticle: {fileID: 249775912438429587}
+  idleSound: {fileID: 0}
+  onCollisionSound: {fileID: 11400000, guid: 39db207e378843046984a5b41a1ade08, type: 2}
+  onRacketHitSound: {fileID: 11400000, guid: 661e690d2d8a84c48a6890435cd4f593, type: 2}
+  onBorderHitSound: {fileID: 11400000, guid: 661e690d2d8a84c48a6890435cd4f593, type: 2}
 --- !u!212 &8325219465064716680
 SpriteRenderer:
   m_ObjectHideFlags: 0

@@ -14617,6 +14617,18 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2100000, guid: 903af8b225e6c3a4d94d0fc4bdf3896b, type: 2}
     - target: {fileID: 8325219465064716681, guid: 02850dd7d96099d4cb5b9c4174729ff5, type: 3}
+      propertyPath: onBorderHitSound
+      value: 
+      objectReference: {fileID: 11400000, guid: 3d206f6c39a4e5c4cbe5e76cfe954e05, type: 2}
+    - target: {fileID: 8325219465064716681, guid: 02850dd7d96099d4cb5b9c4174729ff5, type: 3}
+      propertyPath: onCollisionSound
+      value: 
+      objectReference: {fileID: 11400000, guid: 8f6fad235ac5b774898cab83e570199c, type: 2}
+    - target: {fileID: 8325219465064716681, guid: 02850dd7d96099d4cb5b9c4174729ff5, type: 3}
+      propertyPath: onRacketHitSound
+      value: 
+      objectReference: {fileID: 11400000, guid: 3d206f6c39a4e5c4cbe5e76cfe954e05, type: 2}
+    - target: {fileID: 8325219465064716681, guid: 02850dd7d96099d4cb5b9c4174729ff5, type: 3}
       propertyPath: _onBorderHitSound
       value: 
       objectReference: {fileID: 11400000, guid: 3d206f6c39a4e5c4cbe5e76cfe954e05, type: 2}
@@ -14628,6 +14640,10 @@ PrefabInstance:
       propertyPath: _onRacketHitSound
       value: 
       objectReference: {fileID: 11400000, guid: 3d206f6c39a4e5c4cbe5e76cfe954e05, type: 2}
+    - target: {fileID: 8325219465064716681, guid: 02850dd7d96099d4cb5b9c4174729ff5, type: 3}
+      propertyPath: onCollisionParticle
+      value: 
+      objectReference: {fileID: 6366290911149949696}
     - target: {fileID: 8325219465064716681, guid: 02850dd7d96099d4cb5b9c4174729ff5, type: 3}
       propertyPath: _onCollisionParticle
       value: 

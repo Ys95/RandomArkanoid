@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31d7df2a3ca453643b4ca26a42908de0, type: 3}
   m_Name: Bigger_RacketType
   m_EditorClassIdentifier: 
-  _modelPrefab: {fileID: 6023496556736871252, guid: 0d2e0e6f8b547cc40b594e7f9e2e9cdd, type: 3}
+  modelPrefab: {fileID: 6023496556736871252, guid: 0d2e0e6f8b547cc40b594e7f9e2e9cdd, type: 3}

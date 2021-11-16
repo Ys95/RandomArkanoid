@@ -12,4 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9b7cc004f2f2144cb6f32a2881eecd1, type: 3}
   m_Name: Default_BallType
   m_EditorClassIdentifier: 
-  _modelPrefab: {fileID: 6188054085431707325, guid: 02850dd7d96099d4cb5b9c4174729ff5, type: 3}
+  modelPrefab: {fileID: 6188054085431707325, guid: 02850dd7d96099d4cb5b9c4174729ff5, type: 3}
+  modeSpeedModifier: 0

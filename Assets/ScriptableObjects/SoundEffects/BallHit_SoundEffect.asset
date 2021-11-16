@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9efc09e0f1b4e4d4d8a9ee6d2c9eac72, type: 3}
   m_Name: BallHit_SoundEffect
   m_EditorClassIdentifier: 
-  _clip: {fileID: 8300000, guid: aa9e770bc8216a945a0e0e4374f49d92, type: 3}
-  _volume: 0.5
-  _pitch: 2
+  clip: {fileID: 8300000, guid: aa9e770bc8216a945a0e0e4374f49d92, type: 3}
+  volume: 1
+  pitch: 1

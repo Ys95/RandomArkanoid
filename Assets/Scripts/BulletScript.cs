@@ -4,11 +4,11 @@ public class BulletScript : MonoBehaviour
 {
     [Header("Components")] 
     [SerializeField] GameObject visuals;
-    [SerializeField] Rigidbody2D rigidbody;
+    [SerializeField] Rigidbody2D rb;
     [SerializeField] AudioSource audioSource;
 
     [SerializeField] SoundEffect onHitSound;
-    public Rigidbody2D Rigidbody => rigidbody;
+    public Rigidbody2D Rb => rb;
 
     void OnEnable()
     {

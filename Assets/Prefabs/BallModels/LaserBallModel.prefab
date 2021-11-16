@@ -453,11 +453,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8241963792764504498, guid: 02850dd7d96099d4cb5b9c4174729ff5, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.334
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8241963792764504498, guid: 02850dd7d96099d4cb5b9c4174729ff5, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.363
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8241963792764504498, guid: 02850dd7d96099d4cb5b9c4174729ff5, type: 3}
       propertyPath: m_LocalPosition.z
@@ -503,6 +503,18 @@ PrefabInstance:
       propertyPath: _idleAudioSource
       value: 
       objectReference: {fileID: 6755798281999296641}
+    - target: {fileID: 8325219465064716681, guid: 02850dd7d96099d4cb5b9c4174729ff5, type: 3}
+      propertyPath: onBorderHitSound
+      value: 
+      objectReference: {fileID: 11400000, guid: ec4ff0c85fe35624ca62b8dbb2d147fc, type: 2}
+    - target: {fileID: 8325219465064716681, guid: 02850dd7d96099d4cb5b9c4174729ff5, type: 3}
+      propertyPath: onCollisionSound
+      value: 
+      objectReference: {fileID: 11400000, guid: 2b90851fc37500f458850a8cd1459a0f, type: 2}
+    - target: {fileID: 8325219465064716681, guid: 02850dd7d96099d4cb5b9c4174729ff5, type: 3}
+      propertyPath: onRacketHitSound
+      value: 
+      objectReference: {fileID: 11400000, guid: ec4ff0c85fe35624ca62b8dbb2d147fc, type: 2}
     - target: {fileID: 8325219465064716681, guid: 02850dd7d96099d4cb5b9c4174729ff5, type: 3}
       propertyPath: _onBorderHitSound
       value: 

@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9efc09e0f1b4e4d4d8a9ee6d2c9eac72, type: 3}
   m_Name: FireBallBounce_SoundEffect
   m_EditorClassIdentifier: 
-  _clip: {fileID: 8300000, guid: 227ef9cd27e977244b679b5b2fe25814, type: 3}
-  _volume: 1
-  _pitch: 1
+  clip: {fileID: 8300000, guid: 227ef9cd27e977244b679b5b2fe25814, type: 3}
+  volume: 1
+  pitch: 1

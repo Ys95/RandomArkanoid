@@ -47,9 +47,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8df10c2b9295804b9c20a8990e2fb6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _collider: {fileID: 3546022839972338769}
-  _ballBounceArea: {fileID: 9043667878079640217}
-  _sprite: {fileID: 3760947863071081041}
+  modelCollider: {fileID: 3546022839972338769}
+  ballBounceArea: {fileID: 9043667878079640217}
+  sprite: {fileID: 3760947863071081041}
 --- !u!212 &3760947863071081041
 SpriteRenderer:
   m_ObjectHideFlags: 0

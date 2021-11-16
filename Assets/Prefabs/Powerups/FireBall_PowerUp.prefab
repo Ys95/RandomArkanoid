@@ -8,6 +8,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: -7427934278512899967, guid: e20c3a8d0bee5fb4c8b2dd65d97b8fb5, type: 3}
+      propertyPath: powerupType
+      value: 
+      objectReference: {fileID: 11400000, guid: c29072216d3da094e8b97f5793c26a5e, type: 2}
+    - target: {fileID: -7427934278512899967, guid: e20c3a8d0bee5fb4c8b2dd65d97b8fb5, type: 3}
       propertyPath: _powerupMode
       value: 
       objectReference: {fileID: 11400000, guid: c29072216d3da094e8b97f5793c26a5e, type: 2}

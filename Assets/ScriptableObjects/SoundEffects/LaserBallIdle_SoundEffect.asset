@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9efc09e0f1b4e4d4d8a9ee6d2c9eac72, type: 3}
   m_Name: LaserBallIdle_SoundEffect
   m_EditorClassIdentifier: 
-  _clip: {fileID: 8300000, guid: 8c3525e66403cac4ea02232ecd1a62c0, type: 3}
-  _volume: 1
-  _pitch: -0.5
+  clip: {fileID: 8300000, guid: 8c3525e66403cac4ea02232ecd1a62c0, type: 3}
+  volume: 1
+  pitch: 1

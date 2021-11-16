@@ -10188,16 +10188,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1dc07dacb3e399a4f86e373c03e9a0a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _collider: {fileID: 5534078165120331917}
-  _ballBounceArea: {fileID: 34742626134203973}
-  _sprite: {fileID: 5317462664364617357}
-  _gunBarrel1: {fileID: 8609138044902942446}
-  _gunBarrel2: {fileID: 7116543809411474787}
-  _audioSource: {fileID: 2816379012348330627}
-  _shootEffects:
-  - {fileID: 5471609244805345181}
-  - {fileID: 6948362774220694018}
-  _shootSound: {fileID: 11400000, guid: 038ac33310336714bb604e9bc6b99c2e, type: 2}
+  modelCollider: {fileID: 5534078165120331917}
+  ballBounceArea: {fileID: 34742626134203973}
+  sprite: {fileID: 5317462664364617357}
+  gunBarrel1: {fileID: 8609138044902942446}
+  gunBarrel2: {fileID: 550213972646229270}
+  audioSource: {fileID: 2816379012348330627}
+  shootEffects: []
+  shootSound: {fileID: 0}
 --- !u!1001 &9077847519866072284
 PrefabInstance:
   m_ObjectHideFlags: 0

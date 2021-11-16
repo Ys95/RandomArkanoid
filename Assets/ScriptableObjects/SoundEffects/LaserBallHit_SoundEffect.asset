@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9efc09e0f1b4e4d4d8a9ee6d2c9eac72, type: 3}
   m_Name: LaserBallHit_SoundEffect
   m_EditorClassIdentifier: 
-  _clip: {fileID: 8300000, guid: 1c4037886efa70e459796a0b7fdb1b02, type: 3}
-  _volume: 0.3
-  _pitch: 1.5
+  clip: {fileID: 8300000, guid: 1c4037886efa70e459796a0b7fdb1b02, type: 3}
+  volume: 1
+  pitch: 1

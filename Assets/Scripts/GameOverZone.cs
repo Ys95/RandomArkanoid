@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class GameOverZone : MonoBehaviour
 {
-    [SerializeField] BallScript ball;
+    [SerializeField] BallController ball;
     
     void OnTriggerEnter2D(Collider2D other)
     {

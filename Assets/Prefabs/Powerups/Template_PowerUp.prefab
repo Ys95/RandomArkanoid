@@ -51,8 +51,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a81cc045cb113546b2d8f739e988914, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _controller: {fileID: 2838239691288325908}
-  _text: {fileID: 5778473754228113079}
+  controller: {fileID: 2838239691288325908}
+  text: {fileID: 5778473754228113079}
 --- !u!23 &5778473754228113078
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -5047,8 +5047,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6bed9a98cdd5e524f99ce986a880aaef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _controller: {fileID: 2838239691288325908}
-  _material: {fileID: 2100000, guid: d8b376eb985bd2447956096d5ccee16e, type: 2}
+  controller: {fileID: 2838239691288325908}
+  material: {fileID: 2100000, guid: d8b376eb985bd2447956096d5ccee16e, type: 2}
 --- !u!1 &5778473756222062595
 GameObject:
   m_ObjectHideFlags: 0
@@ -5098,8 +5098,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d4a095155eb3464980daf6f2ab64d73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _visual: {fileID: 5778473754298780974}
-  _powerupMode: {fileID: 0}
+  visual: {fileID: 5778473754298780974}
+  powerupType: {fileID: 0}
 --- !u!114 &-4169441742059582242
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5112,8 +5112,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af2bb067be85bff41960f0354e99e299, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _visual: {fileID: 5778473754298780974}
-  _powerupMode: {fileID: 0}
+  visual: {fileID: 5778473754298780974}
+  powerupType: {fileID: 0}
 --- !u!50 &-2395506472649890347
 Rigidbody2D:
   serializedVersion: 4
@@ -5173,9 +5173,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5db1776bb66f5d34bb6b873124e459e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _hsvColor:
-    H: 1
-    S: 0.5
-    V: 1
-  _tickFrequency: 0.02
-  _amountPerTick: 0.01
+  hsvColor:
+    h: 1
+    s: 0.7
+    v: 1
+  tickFrequency: 0.1
+  amountPerTick: 0.01

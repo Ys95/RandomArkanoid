@@ -158,8 +158,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a628bb7b3919fcd4e8bce014adaa6238, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _brickVisuals: {fileID: 1278820206592769117}
-  _destroyParticle: {fileID: 2215011301446224942}
+  brickVisuals: {fileID: 1278820206592769117}
+  destroyParticle: {fileID: 2215011301446224942}
 --- !u!50 &7986541924589330627
 Rigidbody2D:
   serializedVersion: 4

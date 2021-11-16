@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7b6454f59efa3646a02560600f77d56, type: 3}
   m_Name: Fire_BallType
   m_EditorClassIdentifier: 
-  _modelPrefab: {fileID: 9057796241650709192, guid: 86afd3facf3bc0c4b9afc8ddc0db036d, type: 3}
-  _modeSpeedModifier: 2
-  _destroyRadius: 1
-  _bricksLayer:
+  modelPrefab: {fileID: 9057796241650709192, guid: 86afd3facf3bc0c4b9afc8ddc0db036d, type: 3}
+  modeSpeedModifier: 1
+  destroyRadius: 1.2
+  bricksLayer:
     serializedVersion: 2
     m_Bits: 256

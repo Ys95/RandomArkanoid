@@ -12,7 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31d7df2a3ca453643b4ca26a42908de0, type: 3}
   m_Name: Default_RacketType
   m_EditorClassIdentifier: 
-  _racketPrefab: {fileID: 6396978367953162584, guid: ed29b7583e973504a880f6be41b1d932, type: 3}
-  _racketGameObject: {fileID: 0}
-  _racket: {fileID: 0}
-  _playerTransform: {fileID: 0}
+  modelPrefab: {fileID: 2574907799725336908, guid: d3040e87ed5a8b4439fb2cb82f882b58, type: 3}

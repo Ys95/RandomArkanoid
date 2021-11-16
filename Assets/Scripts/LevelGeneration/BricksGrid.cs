@@ -17,7 +17,7 @@ public class BricksGrid : MonoBehaviour
     [ContextMenu("Generate")]
     void Generate()
     {
-        DestroyCurrent();
+        ClearGrid();
         for (int y = 0; y < grid.y; y++)
         {
             for (int x = 0; x < grid.x; x++)
@@ -39,7 +39,7 @@ public class BricksGrid : MonoBehaviour
         List<Vector2Int> bricksPositions = generator.GenerateLevel(grid);
         if (bricksPositions == null) return;
 
-        DestroyCurrent();
+        ClearGrid();
         foreach(Vector2Int brickPosition in bricksPositions)
         {
             GameObject brick = bricksPool.GetBrick();
@@ -54,7 +54,7 @@ public class BricksGrid : MonoBehaviour
     }
 
     [ContextMenu("Wipe")]
-    public void DestroyCurrent()
+    public void ClearGrid()
     {
         Transform[] children = new Transform[transform.childCount];
         int i = 0;
@@ -68,6 +68,24 @@ public class BricksGrid : MonoBehaviour
         for (int k = 0; k < children.Length; k++)
         {
             children[k].gameObject.SetActive(false);
+        }
+    }
+    
+    [ContextMenu("Wipe")]
+    public void DestroyBricks()
+    {
+        Transform[] children = new Transform[transform.childCount];
+        int i = 0;
+
+        foreach (Transform child in transform)
+        {
+            children[i] = child;
+            i++;
+        }
+
+        for (int k = 0; k < children.Length; k++)
+        {
+            DestroyImmediate(children[k].gameObject);
         }
     }
 }

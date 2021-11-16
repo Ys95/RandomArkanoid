@@ -6,7 +6,7 @@ public class BricksRandomGeneration : MonoBehaviour
     [SerializeField] float difficulty;
     [SerializeField] int bricksInCluster;
     [SerializeField] List<Vector2Int> generatedBricks;
-    [SerializeField] List<Vector2Int[]> _emptyBrickClusters = new List<Vector2Int[]>();
+    [SerializeField] readonly List<Vector2Int[]> _emptyBrickClusters = new();
     [SerializeField] Vector2Int[] emptyBrickSpotsD;
 
     public List<Vector2Int> GenerateLevel(Vector2Int gridSize)
@@ -43,7 +43,6 @@ public class BricksRandomGeneration : MonoBehaviour
     {
         int pickRandomCluster = Random.Range(0, _emptyBrickClusters.Count);
         Vector2Int[] pickedCluster = _emptyBrickClusters[pickRandomCluster];
-        //Debug.Log(pickRandomCluster);
 
         return pickedCluster;
     }
