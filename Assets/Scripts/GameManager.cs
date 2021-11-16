@@ -9,8 +9,15 @@ public class GameManager:MonoBehaviour
     [SerializeField] GameObject player;
     [SerializeField] GameObject level;
 
+    [Space]
+    [SerializeField] LevelController levelController;
+
     public static Action OnGamePause;
     public static Action OnGameUnpause;
+    
+    public static Action OnGameStart;
+    public static Action OnGameOver;
+    
     static bool _isGamePaused;
 
     void Awake()
@@ -23,6 +30,34 @@ public class GameManager:MonoBehaviour
         else Destroy(this);
     }
 
+    public void DisableGameArea()
+    {
+        player.SetActive(false);
+        level.SetActive(false);
+    }
+
+    public void EnableGameArea()
+    {
+        player.SetActive(true);
+        level.SetActive(true);
+    }
+    
+    public void StartNewGame()
+    {
+        EnableGameArea();
+        OnGameStart?.Invoke();
+    }
+    
+    public void StopGame()
+    {
+        DisableGameArea();
+    }
+
+    public void StartNewLevel()
+    {
+        levelController.RequestLevelGeneration();
+    }
+    
     public static void PauseGame(bool pause)
     {
         _isGamePaused = pause;
@@ -35,16 +70,9 @@ public class GameManager:MonoBehaviour
         OnGameUnpause?.Invoke();
         Time.timeScale = 1f;
     }
-
-    public void StopGame()
+    
+    public static void GameOver()
     {
-        player.SetActive(false);
-        level.SetActive(false);
-    }
-
-    public void StartGame()
-    {
-        player.SetActive(true);
-        level.SetActive(true);
+        OnGameOver?.Invoke();   
     }
 }

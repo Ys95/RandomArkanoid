@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class BricksGrid : MonoBehaviour
 {
-    [SerializeField] BricksManager bricksPool;
+    [SerializeField] BricksManager manager;
     [SerializeField] BricksRandomGeneration generator;
 
     [Space]
@@ -23,7 +23,7 @@ public class BricksGrid : MonoBehaviour
             for (int x = 0; x < grid.x; x++)
             {
                 Vector2 brickPos = new Vector2((brickWidth + spacing.x) * (float)x, (brickHeight + spacing.y) * -(float)y);
-                GameObject brick = bricksPool.GetBrick();
+                GameObject brick = manager.GetBrick();
                 brick.transform.localScale = new Vector2(brickWidth, brickHeight);
                 brick.transform.parent = gameObject.transform;
                 brick.transform.localPosition = brickPos;
@@ -34,15 +34,15 @@ public class BricksGrid : MonoBehaviour
     }
 
     [ContextMenu("GenerateRandomly")]
-    void GenerateRandomly()
+    public int GenerateRandomly(LevelProperties properties, int difficultyLevel)
     {
-        List<Vector2Int> bricksPositions = generator.GenerateLevel(grid);
-        if (bricksPositions == null) return;
+        List<Vector2Int> bricksPositions = generator.GenerateLevel(grid, properties, difficultyLevel);
+        if (bricksPositions == null) return 0;
 
         ClearGrid();
         foreach(Vector2Int brickPosition in bricksPositions)
         {
-            GameObject brick = bricksPool.GetBrick();
+            GameObject brick = manager.GetBrick();
             brick.transform.localScale = new Vector2(brickWidth, brickHeight);
             brick.transform.parent = gameObject.transform;
 
@@ -51,9 +51,10 @@ public class BricksGrid : MonoBehaviour
 
             brick.SetActive(true);
         }
-    }
 
-    [ContextMenu("Wipe")]
+        return bricksPositions.Count;
+    }
+    
     public void ClearGrid()
     {
         Transform[] children = new Transform[transform.childCount];

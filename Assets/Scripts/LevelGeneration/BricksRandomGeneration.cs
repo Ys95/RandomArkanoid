@@ -3,30 +3,29 @@ using UnityEngine;
 
 public class BricksRandomGeneration : MonoBehaviour
 {
-    [SerializeField] float difficulty;
-    [SerializeField] int bricksInCluster;
     [SerializeField] List<Vector2Int> generatedBricks;
     [SerializeField] readonly List<Vector2Int[]> _emptyBrickClusters = new();
     [SerializeField] Vector2Int[] emptyBrickSpotsD;
 
-    public List<Vector2Int> GenerateLevel(Vector2Int gridSize)
+    public List<Vector2Int> GenerateLevel(Vector2Int gridSize, LevelProperties properties, int difficultyLevel)
     {
-        int brickClustersAmount = (Mathf.RoundToInt(difficulty));
-        int totalAmountOfBricks = brickClustersAmount * bricksInCluster;
+        int brickClustersAmount = Random.Range(properties.MINClustersPerDifficultyLevel, properties.MAXClustersPerDifficultyLevel + 1);
+        brickClustersAmount *= difficultyLevel;
+        int totalAmountOfBricks = brickClustersAmount * properties.BricksPerCluster;
 
         if (totalAmountOfBricks > (gridSize.x * gridSize.y))
         {
             Debug.LogError("Reached grid capacity");
-            brickClustersAmount = (gridSize.x * gridSize.y) / bricksInCluster;
-            totalAmountOfBricks = brickClustersAmount * bricksInCluster;
+            brickClustersAmount = (gridSize.x * gridSize.y) / properties.BricksPerCluster;
+            totalAmountOfBricks = brickClustersAmount * properties.BricksPerCluster;
         }
 
-        CreateEmptyClusters(bricksInCluster, gridSize);
+        CreateEmptyClusters(properties.BricksPerCluster, gridSize);
         generatedBricks = new List<Vector2Int>();
 
         for (int i = 0; i < brickClustersAmount; i++)
         {
-            Vector2Int[] cluster = PickClusterToFill(gridSize, bricksInCluster);
+            Vector2Int[] cluster = PickClusterToFill(gridSize, properties.BricksPerCluster);
 
             foreach (Vector2Int brick in cluster)
             {

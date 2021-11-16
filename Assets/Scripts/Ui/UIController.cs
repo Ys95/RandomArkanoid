@@ -6,7 +6,7 @@ public class UIController : MonoBehaviour
 {
     [SerializeField] UiState defaultState;
     Stack<UiState> _uiStates;
-    
+
     void OnEnable()
     {
         _uiStates = new Stack<UiState>();
@@ -22,12 +22,22 @@ public class UIController : MonoBehaviour
 
     public void GoToPreviousState()
     {
-        if(_uiStates.Peek() == defaultState) return;
-        
+        if (_uiStates.Peek() == defaultState) return;
+
         _uiStates.Pop().DisableState();
         _uiStates.Peek().EnableState();
     }
-    
+
     //Called from input event
-    public void PauseKeyPress(InputAction.CallbackContext context) => _uiStates.Peek().HandlePauseKeyPress(context);
+    public void PauseKeyPress(InputAction.CallbackContext context)
+    {
+        if(!context.started) return;
+        _uiStates.Peek().HandlePauseKeyPress(context);
+    }
+    
+    public void AnyKeyPress(InputAction.CallbackContext context)
+    {
+        if(!context.started) return;
+        _uiStates.Peek().HandleAnyKeyPress(context);
+    }
 }

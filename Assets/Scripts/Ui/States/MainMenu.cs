@@ -10,7 +10,7 @@ public class MainMenu : UiState
     public void OnStartGameBTNPress()
     {
         UiController.GoToNewState(inGameState);
-        GameManager.Instance.StartGame();
+        GameManager.Instance.StartNewGame();
     }
 
     protected override void OnStateEnter() => GameManager.Instance.StopGame();

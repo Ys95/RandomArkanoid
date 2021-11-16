@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.Events;
 using System.Collections.Generic;
@@ -8,14 +9,22 @@ public class BricksManager : MonoBehaviour
 
     [Space]
     [SerializeField] GameObject brickPrefab;
+    [SerializeField] BricksGrid grid;
 
     List<GameObject> _bricksPool = new List<GameObject>();
 
     void OnEnable()
     {
         BrickScript.OnBrickDestroyed += TriggerEvent;
+        GameManager.OnGameStart += grid.ClearGrid;
     }
 
+    public int GenerateNewLevel(LevelProperties leveProperties, int difficultyLevel)
+    {
+        int bricksAmount = grid.GenerateRandomly(leveProperties, difficultyLevel);
+        return bricksAmount;
+    }
+    
     void TriggerEvent(Vector2 pos)
     {
         onBrickDestroyed?.Invoke(pos);
@@ -39,6 +48,6 @@ public class BricksManager : MonoBehaviour
     void OnDisable()
     {
         BrickScript.OnBrickDestroyed -= TriggerEvent;
-
+        GameManager.OnGameStart -= grid.ClearGrid;
     }
 }

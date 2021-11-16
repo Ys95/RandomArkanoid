@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class BrickScript : MonoBehaviour
@@ -8,20 +9,26 @@ public class BrickScript : MonoBehaviour
     [SerializeField] GameObject brickVisuals;
     [SerializeField] ParticleSystem destroyParticle;
 
+    public void OnEnable()
+    {
+        CancelInvoke(nameof(DisableThis));
+        brickVisuals.SetActive(true);
+    }
+    
     public void DestroyBrick()
     {
         brickVisuals.SetActive(false);
         OnBrickDestroyed?.Invoke(transform.position);
-        
-
+        DisableThis();
         if (destroyParticle == null)
         {
             DisableThis();
             return;
         }
-
+        
         destroyParticle.Play();
-        Invoke(nameof(DisableThis), destroyParticle.main.duration+0.01f);
+        DisableThis();
+       Invoke(nameof(DisableThis), destroyParticle.main.duration+0.01f);
     }
 
     void DisableThis() => gameObject.SetActive(false);
@@ -36,5 +43,10 @@ public class BrickScript : MonoBehaviour
     {
         if (!other.CompareTag(Tags.Ball)) return;
         DestroyBrick();
+    }
+
+    void OnDisable()
+    {
+        CancelInvoke(nameof(DisableThis));
     }
 }

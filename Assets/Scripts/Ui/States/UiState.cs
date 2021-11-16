@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -15,11 +16,15 @@ public abstract class UiState : MonoBehaviour
         if (controller != null) uiController = controller;
     }
 
-    public virtual void HandlePauseKeyPress(InputAction.CallbackContext context) => uiController.GoToPreviousState();
-    
+    public virtual void HandlePauseKeyPress(InputAction.CallbackContext context)
+    {
+    }
+
+    public virtual void HandleAnyKeyPress(InputAction.CallbackContext context)
+    {
+    }
     
     public void Open() => uiController.GoToNewState(this);
-
 
     public void Close() => uiController.GoToPreviousState();
 
