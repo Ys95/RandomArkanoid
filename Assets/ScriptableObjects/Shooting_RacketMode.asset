@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bfaf68b8d2b47ef4b80667cad3356cfd, type: 3}
+  m_Name: Shooting_RacketMode
+  m_EditorClassIdentifier: 
+  _modelPrefab: {fileID: 6791735248087795088, guid: 672dc001588e5d04bbfd4562b0761206, type: 3}
+  _bulletPrefab: {fileID: 7242368073391084097, guid: 8e0d678457f6896499dedf0dedd4907e, type: 3}
+  _bulletSpeed: 9

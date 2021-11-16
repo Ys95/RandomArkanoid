@@ -1,58 +1,59 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+
 
 [System.Serializable]
 public class Racket
 {
     [Header("Components")] 
-    [SerializeField] RacketModel _model;
-    [SerializeField] Rigidbody2D _rigidbody;
-    [SerializeField] Transform _transform;
-    
+    [SerializeField] RacketModel model;
+    [SerializeField] Rigidbody2D rb;
+    [SerializeField] Transform transform;
+
     [Space] 
-    [SerializeField] RacketMode _defaultRacketMode;
+    [SerializeField] Transform player;
+    [SerializeField] RacketType defaultRacketType;
     
-    public Transform Transform => _transform;
+    public Transform Transform => transform;
 
     public RacketModel Model
     {
-        get => _model;
-        set => _model = value;
+        get => model;
+        set => model = value;
     }
     
-    public Rigidbody2D Rigidbody => _rigidbody;
-
-    public RacketMode DefaultRacketMode => _defaultRacketMode;
+    public Rigidbody2D Rb => rb;
+    public Transform Player => player;
+    public RacketType DefaultRacketType => defaultRacketType;
 }
 
 public class RacketScript : MonoBehaviour
 {
-    [SerializeField] Racket _racket;
+    [SerializeField] Racket racket;
         
-    RacketMode _currentRacketMode;
+    RacketType _currentRacketType;
     
-    public void FireAction(InputAction.CallbackContext context) =>_currentRacketMode.HandleFireAction();
+    public void FireAction(InputAction.CallbackContext context) =>_currentRacketType.HandleFireAction(context);
 
     void OnEnable()
     {
-        _currentRacketMode = _racket.DefaultRacketMode;
-        _currentRacketMode.InitDefaultMode(_racket);
+        _currentRacketType = racket.DefaultRacketType;
+        _currentRacketType.InitDefaultMode(racket);
         RacketPowerup.OnRacketPowerupPickup += ApplyPowerupMode;
     }
 
-    void ApplyPowerupMode(RacketMode mode)
+    void ApplyPowerupMode(RacketType type)
     {
-        _currentRacketMode.OnModeExit();
-        _currentRacketMode = mode;
-        _currentRacketMode.OnModeEnter(_racket);
+        if(_currentRacketType == type) return;
+        
+        _currentRacketType.OnModeExit();
+        _currentRacketType = type;
+        _currentRacketType.OnModeEnter(racket);
     }
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if(other.CompareTag(Tags.BALL)) _currentRacketMode.HandleBallCollision(other);
+        if(other.CompareTag(Tags.Ball)) _currentRacketType.HandleBallCollision(other);
     }
 
     void OnDisable()

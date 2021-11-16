@@ -1,12 +1,10 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class RacketPowerup : PowerUp
 {
-    [SerializeField] RacketMode _powerupMode;
-    public static Action<RacketMode> OnRacketPowerupPickup;
+    [SerializeField] RacketType powerupType;
+    public static Action<RacketType> OnRacketPowerupPickup;
 
-    protected override void InvokeEvent() => OnRacketPowerupPickup?.Invoke(_powerupMode);
+    protected override void InvokeEvent() => OnRacketPowerupPickup?.Invoke(powerupType);
 }
