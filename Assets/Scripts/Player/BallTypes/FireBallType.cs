@@ -18,7 +18,7 @@ public class FireBallType : BallType
         foreach (Collider2D brick in bricks)
         {
             if (!brick.CompareTag(Tags.Brick)) continue;
-            brick.attachedRigidbody.GetComponent<BrickScript>().DestroyBrick();
+            brick.attachedRigidbody.GetComponent<BrickController>().BrickHit(Ball.Model.BallCollider);
         }
     }
 }

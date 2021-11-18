@@ -10,7 +10,7 @@ public class PowerupDropper : MonoBehaviour
 
     bool ShouldPowerupDrop => (Random.Range(0, 101) <= powerupDropChance);
 
-    public void RollPowerup(Vector2 pos)
+    public void RollPowerup(Vector2 pos, int score)
     {
         if (!ShouldPowerupDrop) return;
         int whichPowerup = Random.Range(0, powerupList.Count);

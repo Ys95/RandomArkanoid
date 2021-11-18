@@ -17,9 +17,6 @@ public class BallType : ScriptableObject
         else if (collision.collider.CompareTag(Tags.Border)) HandleBorderCollision(collision.collider);
     }
     
-    void ClampVelocity() => Vector2.ClampMagnitude(_ball.Rigidbody.velocity, _ball.MaxSpeed);
-
-
     public virtual void HandleOnTriggerEnter(Collider2D collider)
     {
         if (collider.CompareTag(Tags.Racket)) HandleRacketCollision(collider);

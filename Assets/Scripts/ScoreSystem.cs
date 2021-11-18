@@ -22,11 +22,13 @@ public class ScoreSystem : MonoBehaviour
         PowerUp.OnPowerupPickup += PowerupPickupScore;
     }
 
+    void AddLevelScore(int amount) => _levelScore += amount;
+    
     void PowerupPickupScore() => AddLevelScore(10);
 
-    public void AddLevelScore(int amount)
+    public void AddBrickScore(Vector2 pos, int amount)
     {
-        _levelScore += amount;
+        AddLevelScore(amount);
         UpdateScoreDisplay();
     }
     

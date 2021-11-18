@@ -1363,7 +1363,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 1867572568}
         m_TargetAssemblyTypeName: ScoreSystem, Assembly-CSharp
-        m_MethodName: AddLevelScore
+        m_MethodName: AddBrickScore
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

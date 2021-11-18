@@ -5,19 +5,21 @@ using System.Collections.Generic;
 
 public class BricksManager : MonoBehaviour
 {
-    [SerializeField] UnityEvent<Vector2> onBrickDestroyed;
+    [SerializeField] UnityEvent<Vector2, int> onBrickDestroyed;
 
     [Space]
-    [SerializeField] GameObject brickPrefab;
+    [SerializeField] GameObject brickControllerPrefab;
     [SerializeField] BricksGrid grid;
 
-    List<GameObject> _bricksPool = new List<GameObject>();
+    List<BrickController> _allBricks = new List<BrickController>();
 
     int _bricksLeft;
 
+    public List<BrickController> AllBricks => _allBricks;
+
     void OnEnable()
     {
-        BrickScript.OnBrickDestroyed += TriggerEvent;
+        BrickController.OnBrickDestroyed += TriggerEvent;
     }
     
     public int GenerateNewLevel(LevelProperties leveProperties, int difficultyLevel)
@@ -26,28 +28,42 @@ public class BricksManager : MonoBehaviour
         return bricksAmount;
     }
     
-    void TriggerEvent(Vector2 pos)
+    void TriggerEvent(Vector2 pos, int score)
     {
-        onBrickDestroyed?.Invoke(pos);
+        onBrickDestroyed?.Invoke(pos, score);
     }
 
     [ContextMenu("WipePool")]
-    public void WipePool() => _bricksPool = new List<GameObject>();
+    public void WipePool() => _allBricks = new List<BrickController>();
 
-    public GameObject GetBrick()
+    BrickNames RollBrick()
     {
-        foreach (GameObject brick in _bricksPool)
+        return BrickNames.DurableBrick;
+    }
+    
+    public BrickController GetBrickController()
+    {
+        BrickController controller = GetControllerFromPool();
+        
+        controller.ChangeBrickType(RollBrick());
+
+        return controller;
+    }
+
+    BrickController GetControllerFromPool()
+    {
+        foreach (BrickController brickController in _allBricks)
         {
-            if (!brick.activeInHierarchy) return brick;
+            if (!brickController.IsBrickActive) return brickController;
         }
-        GameObject newBrick = Instantiate(brickPrefab, transform);
-        newBrick.SetActive(false);
-        _bricksPool.Add(newBrick);
-        return newBrick;
+        GameObject newBrick = Instantiate(brickControllerPrefab, transform);
+        BrickController controller = newBrick.GetComponent<BrickController>();
+        _allBricks.Add(controller);
+        return controller;
     }
 
     void OnDisable()
     {
-        BrickScript.OnBrickDestroyed -= TriggerEvent;
+        BrickController.OnBrickDestroyed -= TriggerEvent;
     }
 }
