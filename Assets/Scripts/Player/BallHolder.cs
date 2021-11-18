@@ -28,10 +28,16 @@ public class BallHolder : MonoBehaviour
         _fire.performed -= PushBall;
     }
 
-    void AttachBall()
+    public void AttachBall()
     {
+        Debug.Log("Ball reattached");
         ball.GetBall.StopMoving();
-        ballGameObject.transform.parent = transform;
+        
+        var holderTransform = transform;
+        
+        ballGameObject.transform.parent = holderTransform;
+        ballGameObject.transform.position = holderTransform.position;
+        _fire.performed += PushBall;
     }
 
     void PushBall(InputAction.CallbackContext context)
@@ -39,6 +45,6 @@ public class BallHolder : MonoBehaviour
         ball.transform.parent = player.transform;
         ball.GetBall.StartMoving();
         Debug.Log("Ball pushed");
-        gameObject.SetActive(false);
+        _fire.performed -= PushBall;
     }
 }

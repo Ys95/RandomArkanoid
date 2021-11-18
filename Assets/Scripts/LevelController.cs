@@ -1,58 +1,44 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
-using System;
-using UnityEngine.Events;
+
+[System.Serializable]
+public class LevelProperties
+{
+    public int BricksInCluster => bricksInCluster;
+    public int MINClustersPerDifficultyLvl => minClustersPerDifficultyLvl;
+    public int MAXClustersPerDifficultyLvl => maxClustersPerDifficultyLvl;
+    
+    [SerializeField] int bricksInCluster;
+    [SerializeField] int minClustersPerDifficultyLvl;
+    [SerializeField] int maxClustersPerDifficultyLvl;
+}
 
 public class LevelController : MonoBehaviour
 {
-    [SerializeField] UnityEvent<LevelController> onLevelCleared;
-
+    [Header("Components")]
     [SerializeField] BricksManager bricksManager;
-    
+    [SerializeField] DifficultySystem difficultySystem;
+
     [Space]
     [SerializeField] LevelProperties levelProperties;
     
-    GameStatus _gameStatus;
-    int _currentDifficultyLevel;
+    int _currentLevel;
+    int _activeBricks;
     
-    int CurrentDifficultyLevel => _currentDifficultyLevel;
+    public void ResetLevel() => _currentLevel = 1;
 
-    void OnEnable()
-    {
-        GameManager.OnGameStart += OnNewGameStarted;
-    }
-    
-    void OnNewGameStarted()
-    {
-        _currentDifficultyLevel = 1;
-        RequestLevelGeneration();
-    }
-        
-    void OnNewLevelGenerated(int amountOfBricks)
-    {
-        _gameStatus = new GameStatus(amountOfBricks, _currentDifficultyLevel);
-    }
-    
-    void IncreaseDifficultyLevel() => _currentDifficultyLevel++;
     public void OnBrickDestroyed()
     {
-        _gameStatus.OnBrickDestroyed();;
-        
-        if (_gameStatus.AllBricksDestroyed)
-        {
-            onLevelCleared?.Invoke(this);
-            IncreaseDifficultyLevel();
-        }
-    }
-    
-    public void RequestLevelGeneration()
-    {
-        int bricksAmount = bricksManager.GenerateNewLevel(levelProperties, _currentDifficultyLevel);
-        OnNewLevelGenerated(bricksAmount);
+        _activeBricks--;
+        Debug.Log("Brick left: " + _activeBricks);
+        if(_activeBricks<=0) GameManager.Instance.LevelCleared();
     }
 
-    void OnDisable()
+    public void RequestNewLevel()
     {
-        GameManager.OnGameStart -= OnNewGameStarted;
+        _currentLevel++;
+        _activeBricks = bricksManager.GenerateNewLevel(levelProperties, difficultySystem.CurrentDifficultyLevel);
+        Debug.Log("New level " + difficultySystem.CurrentDifficultyLevel + " : Bricks: " + _activeBricks);
     }
 }
-

@@ -23,4 +23,20 @@ public class PowerupDropper : MonoBehaviour
         GameObject drop = Instantiate(powerup, transform, true);
         drop.transform.position = pos;
     }
+
+    public void WipePowerups()
+    {
+        Transform[] powerups = new Transform[transform.childCount];
+
+        int i = 0;
+        foreach (Transform powerup in transform)
+        {
+            powerups[i] = powerup;
+            i++;
+        }
+        foreach (Transform powerup in powerups)
+        {
+            Destroy(powerup.gameObject);
+        }
+    }
 }

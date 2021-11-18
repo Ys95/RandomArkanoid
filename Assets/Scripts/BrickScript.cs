@@ -9,14 +9,20 @@ public class BrickScript : MonoBehaviour
     [SerializeField] GameObject brickVisuals;
     [SerializeField] ParticleSystem destroyParticle;
 
+    bool _isDestroyed;
+    
     public void OnEnable()
     {
         CancelInvoke(nameof(DisableThis));
         brickVisuals.SetActive(true);
+        _isDestroyed = false;
     }
     
     public void DestroyBrick()
     {
+        if(_isDestroyed) return;
+        
+        _isDestroyed = true;
         brickVisuals.SetActive(false);
         OnBrickDestroyed?.Invoke(transform.position);
         DisableThis();

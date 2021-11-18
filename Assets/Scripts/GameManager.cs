@@ -1,8 +1,18 @@
 using System;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class GameManager:MonoBehaviour
 {
+    [SerializeField] UnityEvent onNewGameStart;
+    
+    [Space]
+    [SerializeField] UnityEvent onLevelCleared;
+    [SerializeField] UnityEvent onLifeLost;
+    [SerializeField] UnityEvent onNewLevelStarted;
+    [SerializeField] UnityEvent onGameOver;
+    
+    
     GameManager _instance;
     public static GameManager Instance;
     
@@ -10,14 +20,11 @@ public class GameManager:MonoBehaviour
     [SerializeField] GameObject level;
 
     [Space]
-    [SerializeField] LevelController levelController;
+    [SerializeField] DifficultySystem difficultySystem;
 
     public static Action OnGamePause;
     public static Action OnGameUnpause;
-    
-    public static Action OnGameStart;
-    public static Action OnGameOver;
-    
+
     static bool _isGamePaused;
 
     void Awake()
@@ -45,7 +52,7 @@ public class GameManager:MonoBehaviour
     public void StartNewGame()
     {
         EnableGameArea();
-        OnGameStart?.Invoke();
+        onNewGameStart?.Invoke();
     }
     
     public void StopGame()
@@ -53,10 +60,13 @@ public class GameManager:MonoBehaviour
         DisableGameArea();
     }
 
-    public void StartNewLevel()
-    {
-        levelController.RequestLevelGeneration();
-    }
+    public void StartNewLevel() => onNewLevelStarted?.Invoke();
+    
+    public void LevelCleared() => onLevelCleared?.Invoke();
+
+    public void LoseLife() => onLifeLost?.Invoke();
+    
+    public void GameOver() =>onGameOver?.Invoke();
     
     public static void PauseGame(bool pause)
     {
@@ -69,10 +79,5 @@ public class GameManager:MonoBehaviour
         }
         OnGameUnpause?.Invoke();
         Time.timeScale = 1f;
-    }
-    
-    public static void GameOver()
-    {
-        OnGameOver?.Invoke();   
     }
 }

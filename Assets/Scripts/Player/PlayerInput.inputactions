@@ -25,7 +25,7 @@
                 },
                 {
                     "name": "MouseMove",
-                    "type": "Value",
+                    "type": "PassThrough",
                     "id": "f925b501-9050-4285-85af-274d3c8ea92e",
                     "expectedControlType": "Axis",
                     "processors": "",

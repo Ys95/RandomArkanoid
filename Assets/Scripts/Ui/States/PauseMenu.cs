@@ -8,4 +8,14 @@ public class PauseMenu : UiState
     }
 
     public void OnResumeBTNPress() => UiController.GoToPreviousState();
+    
+    protected override void OnStateExit()
+    {
+        GameManager.PauseGame(false);
+    }
+    
+    protected override void OnStateEnter()
+    {
+        GameManager.PauseGame(true);    
+    }
 }

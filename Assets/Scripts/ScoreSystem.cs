@@ -3,10 +3,17 @@ using UnityEngine;
 
 public class ScoreSystem : MonoBehaviour
 {
+    public int TotalScore => _totalScore;
+    public int LevelScore => _levelScore;
+    public int PreviousLevelScore => _previousLevelScore;
+    public int PreviousTotalScore => _previousTotalScore;
+    
     [SerializeField] TextMeshProUGUI scoreDisplay;
     
     int _totalScore;
     int _levelScore;
+    int _previousLevelScore;
+    int _previousTotalScore;
 
     void OnEnable()
     {
@@ -22,8 +29,24 @@ public class ScoreSystem : MonoBehaviour
         _levelScore += amount;
         UpdateScoreDisplay();
     }
+    
+    public void ResetAllScore()
+    {
+        _levelScore = 0;
+        _totalScore = 0;
+        UpdateScoreDisplay();
+    }
+    
+    public void SumScores()
+    {
+        _previousTotalScore = _totalScore;
+        _totalScore += _levelScore;
+        
+        _previousLevelScore = _levelScore;
+        _levelScore = 0;
+    }
 
-    void UpdateScoreDisplay()
+    public void UpdateScoreDisplay()
     {
         scoreDisplay.text = _levelScore.ToString();
     }

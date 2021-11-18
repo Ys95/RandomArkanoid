@@ -19,6 +19,14 @@ public class BallController : MonoBehaviour
         _currentBallType.InitDefaultMode(ball);
     }
 
+    public void RestoreDefualtState()
+    {
+        _currentBallType.OnModeExit();
+        _currentBallType = ball.DefaultBallType;
+        ball.SetMaxSpeed();
+        _currentBallType.OnModeEnter(ball);
+    }
+
     void ApplyPowerup(BallType newType)
     {
         if(_currentBallType == newType) return;

@@ -158,10 +158,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92607ff8e0e643c4ca81439cdc727268, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _visuals: {fileID: 5348985421286759839}
-  _rigidbody: {fileID: 7580679073021281687}
-  _audioSource: {fileID: -4290322020105476818}
-  _onHitSound: {fileID: 11400000, guid: 39db207e378843046984a5b41a1ade08, type: 2}
+  visuals: {fileID: 5348985421286759839}
+  rb: {fileID: 7580679073021281687}
+  audioSource: {fileID: -4290322020105476818}
+  onHitSound: {fileID: 11400000, guid: 39db207e378843046984a5b41a1ade08, type: 2}
 --- !u!50 &7580679073021281687
 Rigidbody2D:
   serializedVersion: 4

@@ -13,12 +13,13 @@ public class BricksManager : MonoBehaviour
 
     List<GameObject> _bricksPool = new List<GameObject>();
 
+    int _bricksLeft;
+
     void OnEnable()
     {
         BrickScript.OnBrickDestroyed += TriggerEvent;
-        GameManager.OnGameStart += grid.ClearGrid;
     }
-
+    
     public int GenerateNewLevel(LevelProperties leveProperties, int difficultyLevel)
     {
         int bricksAmount = grid.GenerateRandomly(leveProperties, difficultyLevel);
@@ -48,6 +49,5 @@ public class BricksManager : MonoBehaviour
     void OnDisable()
     {
         BrickScript.OnBrickDestroyed -= TriggerEvent;
-        GameManager.OnGameStart -= grid.ClearGrid;
     }
 }

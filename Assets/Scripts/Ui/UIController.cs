@@ -27,6 +27,14 @@ public class UIController : MonoBehaviour
         _uiStates.Pop().DisableState();
         _uiStates.Peek().EnableState();
     }
+    
+    public void GoToDefault()
+    {
+        _uiStates.Pop().DisableState();
+        _uiStates.Clear();
+        _uiStates.Push(defaultState);
+        defaultState.EnableState();
+    }
 
     //Called from input event
     public void PauseKeyPress(InputAction.CallbackContext context)

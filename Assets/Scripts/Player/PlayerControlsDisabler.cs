@@ -5,9 +5,9 @@ public class PlayerControlsDisabler : MonoBehaviour
 {
     [SerializeField] PlayerInput input;
     
-    void DisableControls() => input.DeactivateInput();
+    public void DisableControls() => input.DeactivateInput();
 
-    void EnableControls() =>input.ActivateInput();
+    public void EnableControls() =>input.ActivateInput();
     
     void OnEnable()
     {

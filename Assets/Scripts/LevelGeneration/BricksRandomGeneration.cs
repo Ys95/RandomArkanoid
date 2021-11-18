@@ -7,25 +7,35 @@ public class BricksRandomGeneration : MonoBehaviour
     [SerializeField] readonly List<Vector2Int[]> _emptyBrickClusters = new();
     [SerializeField] Vector2Int[] emptyBrickSpotsD;
 
+    int CalculateClustersAmount(LevelProperties properties, int difficultyLvl)
+    {
+        int brickClustersAmount = Random.Range(properties.MINClustersPerDifficultyLvl, properties.MAXClustersPerDifficultyLvl + 1);
+        brickClustersAmount *= difficultyLvl;
+
+        return brickClustersAmount;
+    }
+    
+    bool ReachedGridCapacity(int totalAmountOfBricks, Vector2Int gridSize) => totalAmountOfBricks > (gridSize.x * gridSize.y);
+
     public List<Vector2Int> GenerateLevel(Vector2Int gridSize, LevelProperties properties, int difficultyLevel)
     {
-        int brickClustersAmount = Random.Range(properties.MINClustersPerDifficultyLevel, properties.MAXClustersPerDifficultyLevel + 1);
-        brickClustersAmount *= difficultyLevel;
-        int totalAmountOfBricks = brickClustersAmount * properties.BricksPerCluster;
+        int brickClustersAmount = CalculateClustersAmount(properties, difficultyLevel);
+        int totalAmountOfBricks = brickClustersAmount * properties.BricksInCluster;
 
-        if (totalAmountOfBricks > (gridSize.x * gridSize.y))
+        if (ReachedGridCapacity(totalAmountOfBricks, gridSize))
         {
             Debug.LogError("Reached grid capacity");
-            brickClustersAmount = (gridSize.x * gridSize.y) / properties.BricksPerCluster;
-            totalAmountOfBricks = brickClustersAmount * properties.BricksPerCluster;
+            brickClustersAmount = (gridSize.x * gridSize.y) / properties.BricksInCluster;
+            totalAmountOfBricks = brickClustersAmount * properties.BricksInCluster;
         }
 
-        CreateEmptyClusters(properties.BricksPerCluster, gridSize);
+        CreateEmptyClusters(properties.BricksInCluster, gridSize);
+       
         generatedBricks = new List<Vector2Int>();
 
         for (int i = 0; i < brickClustersAmount; i++)
         {
-            Vector2Int[] cluster = PickClusterToFill(gridSize, properties.BricksPerCluster);
+            Vector2Int[] cluster = PickClusterToFill(gridSize, properties.BricksInCluster);
 
             foreach (Vector2Int brick in cluster)
             {

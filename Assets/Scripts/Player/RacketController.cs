@@ -15,6 +15,13 @@ public class RacketController : MonoBehaviour
         _currentRacketType.InitDefaultMode(racket);
         RacketPowerup.OnRacketPowerupPickup += ApplyPowerupMode;
     }
+    
+    public void RestoreDefualtState()
+    {
+        _currentRacketType.OnModeExit();
+        _currentRacketType = racket.DefaultRacketType;
+        _currentRacketType.OnModeEnter(racket);
+    }
 
     void ApplyPowerupMode(RacketType type)
     {
