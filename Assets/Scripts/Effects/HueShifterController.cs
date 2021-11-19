@@ -25,7 +25,12 @@ public class HueShifterController : MonoBehaviour
         }
     }
 
-    void Awake()
+    void OnValidate()
+    {
+        HueShift?.Invoke(Color.HSVToRGB(hsvColor.h, hsvColor.s, hsvColor.v));
+    }
+
+    void OnEnable()
     {
         hsvColor.h = UnityEngine.Random.Range(0f, 1f);
         StartCoroutine(HueShiftCoroutine());

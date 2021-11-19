@@ -30,6 +30,12 @@ public abstract class BrickType : MonoBehaviour
     protected int Score => score;
     
     #endregion
+    
+    public bool IsDestroyed
+    {
+        get => _isDestroyed;
+        protected set => _isDestroyed = value;
+    }
 
     void OnEnable() => OnBrickEnabled();
 

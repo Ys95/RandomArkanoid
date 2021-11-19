@@ -1,10 +1,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BricksGrid : MonoBehaviour
+public class LevelBuilder : MonoBehaviour
 {
-    [SerializeField] BricksManager manager;
-    [SerializeField] BricksRandomGeneration generator;
+    [SerializeField] BrickControllersManager brickControllersManager;
+    [SerializeField] BricksPositionsRandomizer bricksPositionsRandomizer;
+    [SerializeField] BrickTypeRandomizer brickTypeRandomizer;
 
     [Space]
     [SerializeField] Vector2Int grid;
@@ -24,7 +25,7 @@ public class BricksGrid : MonoBehaviour
             {
                 Vector2 brickPos = new Vector2((brickWidth + spacing.x) * (float)x, (brickHeight + spacing.y) * -(float)y);
                 
-                BrickController brickController = manager.GetBrickController();
+                BrickController brickController = brickControllersManager.GetBrickController();
 
                 Transform brickTransform = brickController.transform;
                 brickTransform.localScale = new Vector2(brickWidth, brickHeight);
@@ -35,17 +36,18 @@ public class BricksGrid : MonoBehaviour
             }
         }
     }
-
+    
     [ContextMenu("GenerateRandomly")]
-    public int GenerateRandomly(LevelProperties properties, int difficultyLevel)
+    public int BuildRandomLevel(LevelProperties properties, int difficultyLevel)
     {
-        List<Vector2Int> bricksControllersPositions = generator.GenerateLevel(grid, properties, difficultyLevel);
+        List<Vector2Int> bricksControllersPositions = bricksPositionsRandomizer.GetBricksPositions(grid, properties, difficultyLevel);
         if (bricksControllersPositions == null) return 0;
 
         ClearGrid();
         foreach(Vector2Int brickPosition in bricksControllersPositions)
         {
-            BrickController brickController = manager.GetBrickController();
+            BrickController brickController = brickControllersManager.GetBrickController();
+            brickController.ChangeBrickType(brickTypeRandomizer.RollBrick(difficultyLevel));
             
             Transform brickControllerTransform = brickController.transform;
             brickControllerTransform.localScale = new Vector2(brickWidth, brickHeight);
@@ -62,7 +64,7 @@ public class BricksGrid : MonoBehaviour
     
     public void ClearGrid()
     {
-        foreach (BrickController brickController in manager.AllBricks)
+        foreach (BrickController brickController in brickControllersManager.AllBricks)
         {
             brickController.DisableBricks();
         }

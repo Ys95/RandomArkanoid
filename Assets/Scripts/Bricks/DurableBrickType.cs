@@ -8,7 +8,10 @@ using Random = UnityEngine.Random;
 public class DurableBrickType : BrickType
 {
     [SerializeField] TextMeshPro durabilityText;
-    [SerializeField] GameObject layer;
+    [SerializeField] GameObject destructibleLayer;
+    [SerializeField] ParticleSystem onHitParticle;
+    [SerializeField] AudioSource audioSource;
+    [SerializeField] SoundEffect onHitSoundEffect;
 
     [Space]
     [SerializeField] int minDurability;
@@ -27,7 +30,7 @@ public class DurableBrickType : BrickType
         _currentDurability = _rolledDurability;
         
         durabilityText.text = _currentDurability.ToString();
-        layer.SetActive(true);
+        destructibleLayer.SetActive(true);
     }
     
     
@@ -37,14 +40,19 @@ public class DurableBrickType : BrickType
 
         if (_currentDurability == 0)
         {
-            layer.SetActive(false);
+            destructibleLayer.SetActive(false);
         }
-        else if (_currentDurability < 0) DestroyBrick();
-        else durabilityText.text = _currentDurability.ToString();
+        else if (_currentDurability < 0)
+        {
+            DestroyBrick();
+        }
+        else
+        {
+            durabilityText.text = _currentDurability.ToString();
+            onHitParticle.Play();
+            onHitSoundEffect.Play(audioSource);
+        }
     }
-    
-    public override void HandleOnCollisionEnter(Collider2D other)
-    {
-        ReduceDurability();
-    }
+
+    public override void HandleOnCollisionEnter(Collider2D other) => ReduceDurability();
 }

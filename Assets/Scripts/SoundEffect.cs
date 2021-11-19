@@ -7,8 +7,32 @@ public class SoundEffect : ScriptableObject
     [Range(0f, 3f)] [SerializeField] float volume =1f;
     [Range(0, 3f)] [SerializeField] float pitch=1f;
 
+    GameObject _soundObject;
+    Transform _soundObjectTransform;
+    AudioSource _soundPlayer;
+
     public float Length => clip.length;
 
+    void CreateSoundPlayer()
+    {
+        _soundObject = Instantiate(new GameObject());
+        _soundObject.AddComponent<AudioSource>();
+        _soundPlayer = _soundObject.GetComponent<AudioSource>();
+        _soundObjectTransform = _soundObject.transform;
+    }
+    
+    public void PlayDetached(Vector2 pos)
+    {
+        if(_soundPlayer == null) CreateSoundPlayer();
+        
+        _soundObjectTransform.position = pos;
+        
+        _soundPlayer.volume = volume;
+        _soundPlayer.pitch = pitch;
+        
+        _soundPlayer.PlayOneShot(clip);
+    }
+    
     public void Play(AudioSource source)
     {
         source.volume = volume;

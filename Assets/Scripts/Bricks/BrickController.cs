@@ -32,6 +32,7 @@ public class BrickController : MonoBehaviour
     }
 
     public void RestoreBrick() => brick.gameObject.SetActive(true);
+    
     public void BrickHit(Collider2D other) => brick.HandleOnCollisionEnter(other);
     
     public void DisableBricks()

@@ -1,9 +1,15 @@
+using System;
 using UnityEngine;
 
 public abstract class HueShifter : MonoBehaviour
 {
     [Header("Hue shift controller")]
     [SerializeField] HueShifterController controller;
+
+    void OnValidate()
+    {
+        controller.HueShift += HueShift;
+    }
 
     void OnEnable()
     {

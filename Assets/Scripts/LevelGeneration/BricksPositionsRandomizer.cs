@@ -1,7 +1,10 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
-public class BricksRandomGeneration : MonoBehaviour
+[Serializable]
+public class BricksPositionsRandomizer
 {
     [SerializeField] List<Vector2Int> generatedBricks;
     [SerializeField] readonly List<Vector2Int[]> _emptyBrickClusters = new();
@@ -17,7 +20,7 @@ public class BricksRandomGeneration : MonoBehaviour
     
     bool ReachedGridCapacity(int totalAmountOfBricks, Vector2Int gridSize) => totalAmountOfBricks > (gridSize.x * gridSize.y);
 
-    public List<Vector2Int> GenerateLevel(Vector2Int gridSize, LevelProperties properties, int difficultyLevel)
+    public List<Vector2Int> GetBricksPositions(Vector2Int gridSize, LevelProperties properties, int difficultyLevel)
     {
         int brickClustersAmount = CalculateClustersAmount(properties, difficultyLevel);
         int totalAmountOfBricks = brickClustersAmount * properties.BricksInCluster;

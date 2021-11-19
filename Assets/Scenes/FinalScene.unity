@@ -961,7 +961,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &284135856
 GameObject:
@@ -1046,7 +1046,7 @@ MonoBehaviour:
   uiController: {fileID: 1725420460}
   thisMenuGameObject: {fileID: 1916490523}
   inGameState: {fileID: 284135857}
-  difficultySystem: {fileID: 0}
+  difficultySystem: {fileID: 448808423}
   scoreSystem: {fileID: 1867572568}
   levelScoreDisplay: {fileID: 52688317}
   totalScoreDisplay: {fileID: 7763808}
@@ -1114,6 +1114,50 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 800492203506487288, guid: 06a2d6e08cbbbb14bb145669dc2e63df, type: 3}
   m_PrefabInstance: {fileID: 800492203101832257}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &448808422
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 448808424}
+  - component: {fileID: 448808423}
+  m_Layer: 0
+  m_Name: DifficultySystem
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &448808423
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 448808422}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 045de65fa628e77499f357d5655c3f2e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &448808424
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 448808422}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 10.516817, y: 0.9731804, z: -0.25118297}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &526805891
 GameObject:
   m_ObjectHideFlags: 0
@@ -1329,7 +1373,6 @@ GameObject:
   m_Component:
   - component: {fileID: 665311476}
   - component: {fileID: 665311477}
-  - component: {fileID: 665311475}
   - component: {fileID: 665311473}
   m_Layer: 0
   m_Name: Bricks
@@ -1350,290 +1393,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b12b39f11629bdb4782edfcf82524831, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  manager: {fileID: 665311477}
-  generator: {fileID: 665311475}
+  brickControllersManager: {fileID: 665311477}
+  bricksPositionsRandomizer:
+    generatedBricks: []
+    emptyBrickSpotsD: []
+  brickTypeRandomizer:
+    defaultBrick: 0
+    possibleBricksSpawns:
+    - name: 1
+      baseSpawnRate: 10
+      spawnRatePerDifficulty: 1
+      maxSpawnRate: 40
+    - name: 2
+      baseSpawnRate: 10
+      spawnRatePerDifficulty: 2
+      maxSpawnRate: 60
   grid: {x: 16, y: 16}
   spacing: {x: 0.1, y: 0.1}
   brickWidth: 1.5
   brickHeight: 0.5
---- !u!114 &665311475
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 665311472}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 58771c856e0e0b6468c4dcf17a2bb9fe, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  generatedBricks:
-  - {x: 4, y: -4}
-  - {x: 4, y: -5}
-  - {x: 5, y: -4}
-  - {x: 5, y: -5}
-  - {x: 6, y: -4}
-  - {x: 6, y: -5}
-  - {x: 7, y: -4}
-  - {x: 7, y: -5}
-  emptyBrickSpotsD:
-  - {x: 0, y: 0}
-  - {x: 1, y: 0}
-  - {x: 2, y: 0}
-  - {x: 3, y: 0}
-  - {x: 4, y: 0}
-  - {x: 5, y: 0}
-  - {x: 6, y: 0}
-  - {x: 7, y: 0}
-  - {x: 8, y: 0}
-  - {x: 9, y: 0}
-  - {x: 10, y: 0}
-  - {x: 11, y: 0}
-  - {x: 12, y: 0}
-  - {x: 13, y: 0}
-  - {x: 14, y: 0}
-  - {x: 15, y: 0}
-  - {x: 0, y: -1}
-  - {x: 1, y: -1}
-  - {x: 2, y: -1}
-  - {x: 3, y: -1}
-  - {x: 4, y: -1}
-  - {x: 5, y: -1}
-  - {x: 6, y: -1}
-  - {x: 7, y: -1}
-  - {x: 8, y: -1}
-  - {x: 9, y: -1}
-  - {x: 10, y: -1}
-  - {x: 11, y: -1}
-  - {x: 12, y: -1}
-  - {x: 13, y: -1}
-  - {x: 14, y: -1}
-  - {x: 15, y: -1}
-  - {x: 0, y: -2}
-  - {x: 1, y: -2}
-  - {x: 2, y: -2}
-  - {x: 3, y: -2}
-  - {x: 4, y: -2}
-  - {x: 5, y: -2}
-  - {x: 6, y: -2}
-  - {x: 7, y: -2}
-  - {x: 8, y: -2}
-  - {x: 9, y: -2}
-  - {x: 10, y: -2}
-  - {x: 11, y: -2}
-  - {x: 12, y: -2}
-  - {x: 13, y: -2}
-  - {x: 14, y: -2}
-  - {x: 15, y: -2}
-  - {x: 0, y: -3}
-  - {x: 1, y: -3}
-  - {x: 2, y: -3}
-  - {x: 3, y: -3}
-  - {x: 4, y: -3}
-  - {x: 5, y: -3}
-  - {x: 6, y: -3}
-  - {x: 7, y: -3}
-  - {x: 8, y: -3}
-  - {x: 9, y: -3}
-  - {x: 10, y: -3}
-  - {x: 11, y: -3}
-  - {x: 12, y: -3}
-  - {x: 13, y: -3}
-  - {x: 14, y: -3}
-  - {x: 15, y: -3}
-  - {x: 0, y: -4}
-  - {x: 1, y: -4}
-  - {x: 2, y: -4}
-  - {x: 3, y: -4}
-  - {x: 4, y: -4}
-  - {x: 5, y: -4}
-  - {x: 6, y: -4}
-  - {x: 7, y: -4}
-  - {x: 8, y: -4}
-  - {x: 9, y: -4}
-  - {x: 10, y: -4}
-  - {x: 11, y: -4}
-  - {x: 12, y: -4}
-  - {x: 13, y: -4}
-  - {x: 14, y: -4}
-  - {x: 15, y: -4}
-  - {x: 0, y: -5}
-  - {x: 1, y: -5}
-  - {x: 2, y: -5}
-  - {x: 3, y: -5}
-  - {x: 4, y: -5}
-  - {x: 5, y: -5}
-  - {x: 6, y: -5}
-  - {x: 7, y: -5}
-  - {x: 8, y: -5}
-  - {x: 9, y: -5}
-  - {x: 10, y: -5}
-  - {x: 11, y: -5}
-  - {x: 12, y: -5}
-  - {x: 13, y: -5}
-  - {x: 14, y: -5}
-  - {x: 15, y: -5}
-  - {x: 0, y: -6}
-  - {x: 1, y: -6}
-  - {x: 2, y: -6}
-  - {x: 3, y: -6}
-  - {x: 4, y: -6}
-  - {x: 5, y: -6}
-  - {x: 6, y: -6}
-  - {x: 7, y: -6}
-  - {x: 8, y: -6}
-  - {x: 9, y: -6}
-  - {x: 10, y: -6}
-  - {x: 11, y: -6}
-  - {x: 12, y: -6}
-  - {x: 13, y: -6}
-  - {x: 14, y: -6}
-  - {x: 15, y: -6}
-  - {x: 0, y: -7}
-  - {x: 1, y: -7}
-  - {x: 2, y: -7}
-  - {x: 3, y: -7}
-  - {x: 4, y: -7}
-  - {x: 5, y: -7}
-  - {x: 6, y: -7}
-  - {x: 7, y: -7}
-  - {x: 8, y: -7}
-  - {x: 9, y: -7}
-  - {x: 10, y: -7}
-  - {x: 11, y: -7}
-  - {x: 12, y: -7}
-  - {x: 13, y: -7}
-  - {x: 14, y: -7}
-  - {x: 15, y: -7}
-  - {x: 0, y: -8}
-  - {x: 1, y: -8}
-  - {x: 2, y: -8}
-  - {x: 3, y: -8}
-  - {x: 4, y: -8}
-  - {x: 5, y: -8}
-  - {x: 6, y: -8}
-  - {x: 7, y: -8}
-  - {x: 8, y: -8}
-  - {x: 9, y: -8}
-  - {x: 10, y: -8}
-  - {x: 11, y: -8}
-  - {x: 12, y: -8}
-  - {x: 13, y: -8}
-  - {x: 14, y: -8}
-  - {x: 15, y: -8}
-  - {x: 0, y: -9}
-  - {x: 1, y: -9}
-  - {x: 2, y: -9}
-  - {x: 3, y: -9}
-  - {x: 4, y: -9}
-  - {x: 5, y: -9}
-  - {x: 6, y: -9}
-  - {x: 7, y: -9}
-  - {x: 8, y: -9}
-  - {x: 9, y: -9}
-  - {x: 10, y: -9}
-  - {x: 11, y: -9}
-  - {x: 12, y: -9}
-  - {x: 13, y: -9}
-  - {x: 14, y: -9}
-  - {x: 15, y: -9}
-  - {x: 0, y: -10}
-  - {x: 1, y: -10}
-  - {x: 2, y: -10}
-  - {x: 3, y: -10}
-  - {x: 4, y: -10}
-  - {x: 5, y: -10}
-  - {x: 6, y: -10}
-  - {x: 7, y: -10}
-  - {x: 8, y: -10}
-  - {x: 9, y: -10}
-  - {x: 10, y: -10}
-  - {x: 11, y: -10}
-  - {x: 12, y: -10}
-  - {x: 13, y: -10}
-  - {x: 14, y: -10}
-  - {x: 15, y: -10}
-  - {x: 0, y: -11}
-  - {x: 1, y: -11}
-  - {x: 2, y: -11}
-  - {x: 3, y: -11}
-  - {x: 4, y: -11}
-  - {x: 5, y: -11}
-  - {x: 6, y: -11}
-  - {x: 7, y: -11}
-  - {x: 8, y: -11}
-  - {x: 9, y: -11}
-  - {x: 10, y: -11}
-  - {x: 11, y: -11}
-  - {x: 12, y: -11}
-  - {x: 13, y: -11}
-  - {x: 14, y: -11}
-  - {x: 15, y: -11}
-  - {x: 0, y: -12}
-  - {x: 1, y: -12}
-  - {x: 2, y: -12}
-  - {x: 3, y: -12}
-  - {x: 4, y: -12}
-  - {x: 5, y: -12}
-  - {x: 6, y: -12}
-  - {x: 7, y: -12}
-  - {x: 8, y: -12}
-  - {x: 9, y: -12}
-  - {x: 10, y: -12}
-  - {x: 11, y: -12}
-  - {x: 12, y: -12}
-  - {x: 13, y: -12}
-  - {x: 14, y: -12}
-  - {x: 15, y: -12}
-  - {x: 0, y: -13}
-  - {x: 1, y: -13}
-  - {x: 2, y: -13}
-  - {x: 3, y: -13}
-  - {x: 4, y: -13}
-  - {x: 5, y: -13}
-  - {x: 6, y: -13}
-  - {x: 7, y: -13}
-  - {x: 8, y: -13}
-  - {x: 9, y: -13}
-  - {x: 10, y: -13}
-  - {x: 11, y: -13}
-  - {x: 12, y: -13}
-  - {x: 13, y: -13}
-  - {x: 14, y: -13}
-  - {x: 15, y: -13}
-  - {x: 0, y: -14}
-  - {x: 1, y: -14}
-  - {x: 2, y: -14}
-  - {x: 3, y: -14}
-  - {x: 4, y: -14}
-  - {x: 5, y: -14}
-  - {x: 6, y: -14}
-  - {x: 7, y: -14}
-  - {x: 8, y: -14}
-  - {x: 9, y: -14}
-  - {x: 10, y: -14}
-  - {x: 11, y: -14}
-  - {x: 12, y: -14}
-  - {x: 13, y: -14}
-  - {x: 14, y: -14}
-  - {x: 15, y: -14}
-  - {x: 0, y: -15}
-  - {x: 1, y: -15}
-  - {x: 2, y: -15}
-  - {x: 3, y: -15}
-  - {x: 4, y: -15}
-  - {x: 5, y: -15}
-  - {x: 6, y: -15}
-  - {x: 7, y: -15}
-  - {x: 8, y: -15}
-  - {x: 9, y: -15}
-  - {x: 10, y: -15}
-  - {x: 11, y: -15}
-  - {x: 12, y: -15}
-  - {x: 13, y: -15}
-  - {x: 14, y: -15}
-  - {x: 15, y: -15}
 --- !u!4 &665311476
 Transform:
   m_ObjectHideFlags: 0
@@ -1701,7 +1479,6 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   brickControllerPrefab: {fileID: 2540558040400958456, guid: ea85cc62142582a4e84ceb205ef47854, type: 3}
-  grid: {fileID: 665311473}
 --- !u!1 &671503364
 GameObject:
   m_ObjectHideFlags: 0
@@ -2645,7 +2422,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 959221251}
-  - component: {fileID: 959221252}
   - component: {fileID: 959221253}
   - component: {fileID: 959221250}
   m_Layer: 0
@@ -2726,18 +2502,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &959221252
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 959221249}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 045de65fa628e77499f357d5655c3f2e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &959221253
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2750,8 +2514,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e09647ab82bb9834c8ad32176201dae8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bricksManager: {fileID: 665311477}
-  difficultySystem: {fileID: 959221252}
+  levelBuilder: {fileID: 665311473}
+  difficultySystem: {fileID: 448808423}
   levelProperties:
     bricksInCluster: 8
     minClustersPerDifficultyLvl: 1
@@ -2828,7 +2592,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1080806900 stripped
 GameObject:
@@ -3013,8 +2777,8 @@ MonoBehaviour:
   onNewGameStart:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 959221252}
-        m_TargetAssemblyTypeName: LevelController, Assembly-CSharp
+      - m_Target: {fileID: 448808423}
+        m_TargetAssemblyTypeName: DifficultySystem, Assembly-CSharp
         m_MethodName: ResetDifficulty
         m_Mode: 1
         m_Arguments:
@@ -3148,7 +2912,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 959221252}
+      - m_Target: {fileID: 448808423}
         m_TargetAssemblyTypeName: DifficultySystem, Assembly-CSharp
         m_MethodName: IncreaseDifficultyLevel
         m_Mode: 1
@@ -3315,7 +3079,7 @@ MonoBehaviour:
         m_CallState: 2
   player: {fileID: 1576236198}
   level: {fileID: 959221249}
-  difficultySystem: {fileID: 0}
+  difficultySystem: {fileID: 448808423}
 --- !u!4 &1133276460
 Transform:
   m_ObjectHideFlags: 0
@@ -5301,7 +5065,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1725420459
 GameObject:
@@ -5667,7 +5431,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1892964757 stripped
 GameObject:
@@ -6049,7 +5813,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2126208385
 GameObject:
@@ -6331,7 +6095,7 @@ PrefabInstance:
     - target: {fileID: 855394986888635669, guid: 353e4a4b6e691084bb23f24d77b6dac4, type: 3}
       propertyPath: ball.defaultBallType
       value: 
-      objectReference: {fileID: 11400000, guid: c29072216d3da094e8b97f5793c26a5e, type: 2}
+      objectReference: {fileID: 11400000, guid: 3fa846234d1466449be364561ecc45ca, type: 2}
     - target: {fileID: 855394986888635671, guid: 353e4a4b6e691084bb23f24d77b6dac4, type: 3}
       propertyPath: m_RootOrder
       value: 1

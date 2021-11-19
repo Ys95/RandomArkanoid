@@ -17,7 +17,7 @@ public class LevelProperties
 public class LevelController : MonoBehaviour
 {
     [Header("Components")]
-    [SerializeField] BricksManager bricksManager;
+    [SerializeField] LevelBuilder levelBuilder;
     [SerializeField] DifficultySystem difficultySystem;
 
     [Space]
@@ -38,7 +38,7 @@ public class LevelController : MonoBehaviour
     public void RequestNewLevel()
     {
         _currentLevel++;
-        _activeBricks = bricksManager.GenerateNewLevel(levelProperties, difficultySystem.CurrentDifficultyLevel);
+        _activeBricks = levelBuilder.BuildRandomLevel(levelProperties, difficultySystem.CurrentDifficultyLevel);
         Debug.Log("New level " + difficultySystem.CurrentDifficultyLevel + " : Bricks: " + _activeBricks);
     }
 }
