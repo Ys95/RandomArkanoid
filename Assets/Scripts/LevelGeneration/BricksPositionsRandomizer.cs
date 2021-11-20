@@ -27,7 +27,7 @@ public class BricksPositionsRandomizer
 
         if (ReachedGridCapacity(totalAmountOfBricks, gridSize))
         {
-            Debug.LogError("Reached grid capacity");
+            Debug.Log("Reached grid capacity");
             brickClustersAmount = (gridSize.x * gridSize.y) / properties.BricksInCluster;
             totalAmountOfBricks = brickClustersAmount * properties.BricksInCluster;
         }

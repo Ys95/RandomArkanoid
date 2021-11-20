@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
-    [System.Serializable]
+    [Serializable]
     abstract class MovementType
     {
         [SerializeField] float movementSpeed;
@@ -14,7 +14,7 @@ public class PlayerMovement : MonoBehaviour
         public abstract Vector2 GetMovementValue(float x, Rigidbody2D rb);
     }   
     
-    [System.Serializable]
+    [Serializable]
     class MouseMovement : MovementType
     {
         [SerializeField] float smoothing;
@@ -26,7 +26,7 @@ public class PlayerMovement : MonoBehaviour
         }
     }
     
-    [System.Serializable]
+    [Serializable]
     class KeyboardMovement : MovementType
     {
         public override Vector2 GetMovementValue(float x, Rigidbody2D rb)

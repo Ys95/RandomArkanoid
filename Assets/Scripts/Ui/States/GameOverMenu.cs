@@ -5,9 +5,11 @@ using UnityEngine.InputSystem;
 
 public class GameOverMenu : UiState
 {
+    [SerializeField] UiState sendScore;
+    
     public override void HandleAnyKeyPress(InputAction.CallbackContext context)
     {
-        UiController.GoToDefault();
+        UiController.GoToNewState(sendScore);
     }
 
     protected override void OnStateEnter()

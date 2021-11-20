@@ -11,6 +11,7 @@ public class UIController : MonoBehaviour
     {
         _uiStates = new Stack<UiState>();
         _uiStates.Push(defaultState);
+        defaultState.EnableState();
     }
 
     public void GoToNewState(UiState state)

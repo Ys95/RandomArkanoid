@@ -10,7 +10,7 @@ public class ScoreSystem : MonoBehaviour
     
     [SerializeField] TextMeshProUGUI scoreDisplay;
     
-    int _totalScore;
+   [SerializeField] int _totalScore;
     int _levelScore;
     int _previousLevelScore;
     int _previousTotalScore;

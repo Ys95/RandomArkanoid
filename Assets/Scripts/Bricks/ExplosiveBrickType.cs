@@ -6,30 +6,22 @@ using UnityEngine;
 public class ExplosiveBrickType : BrickType
 {
     [Space]
-    [SerializeField] ExplosionRaycastPoints explosionRaycastPoints;
-    [SerializeField] float explosionRadius;
+    [SerializeField] Vector2 explosionRadius;
+    [SerializeField] int maxExplosionTargets;
     
     [Space]
-    [SerializeField] LayerMask explosionTargetsMask;
+    [SerializeField] LayerMask explosionTargetsLayer;
     [SerializeField] AudioSource audioSource;
     [SerializeField] SoundEffect explosionSoundEffect;
 
     bool _exploded;
+    Collider2D[] _hitByExplosion;
 
-    [Serializable]
-    struct ExplosionRaycastPoints
+    void Awake()
     {
-        [SerializeField] Transform up;
-        [SerializeField] Transform down;
-        [SerializeField] Transform left;
-        [SerializeField] Transform right;
-        
-        public Vector2 Up => up.position;
-        public Vector2 Down => down.position;
-        public Vector2 Left => left.position;
-        public Vector2 Right => right.position;
+        _hitByExplosion = new Collider2D[maxExplosionTargets];
     }
-    
+
     protected override void OnBrickEnabled()
     {
         base.OnBrickEnabled();
@@ -39,24 +31,21 @@ public class ExplosiveBrickType : BrickType
     void Explode()
     {
         _exploded = true;
-        
-        RaycastHit2D[] raycasts = new RaycastHit2D[4];
-        
-        raycasts[0] = Physics2D.Raycast(explosionRaycastPoints.Up, Vector2.up, explosionRadius, explosionTargetsMask);
-        raycasts[1] = Physics2D.Raycast(explosionRaycastPoints.Down, Vector2.down, explosionRadius, explosionTargetsMask);
-        raycasts[2] = Physics2D.Raycast(explosionRaycastPoints.Left, Vector2.left, explosionRadius, explosionTargetsMask);
-        raycasts[3] = Physics2D.Raycast(explosionRaycastPoints.Right, Vector2.right, explosionRadius, explosionTargetsMask);
 
-        foreach (RaycastHit2D rayHit in raycasts)
+        int targetsHit = Physics2D.OverlapBoxNonAlloc(BrickCollider.bounds.center, explosionRadius, 0f, _hitByExplosion, explosionTargetsLayer);
+        Mathf.Clamp(targetsHit, 0, maxExplosionTargets);
+        Debug.Log("Explosive brick targets hit: " + targetsHit);
+       
+        for (int i = 0; i < targetsHit; i++)
         {
-            var brick = rayHit.collider;
-            if(brick == null ) continue;
+            if (_hitByExplosion[i] == null) continue;
+                
+            BrickController controller = _hitByExplosion[i].attachedRigidbody.GetComponent<BrickController>();
+            if(controller==null) continue;
             
-            BrickController brickController = brick.attachedRigidbody.GetComponent<BrickController>();
-            if(brickController==null) continue;
-            
-            brickController.BrickHit(BrickCollider);
+            controller.BrickHit(BrickCollider);
         }
+        
         explosionSoundEffect.PlayDetached(transform.position);
         DestroyBrick();
     }
@@ -70,9 +59,6 @@ public class ExplosiveBrickType : BrickType
 
     void OnDrawGizmos()
     {
-        Gizmos.DrawLine(explosionRaycastPoints.Up, Vector2.up*explosionRadius);
-        Gizmos.DrawLine(explosionRaycastPoints.Down, Vector2.down*explosionRadius);
-        Gizmos.DrawLine(explosionRaycastPoints.Left, Vector2.left*explosionRadius);
-        Gizmos.DrawLine(explosionRaycastPoints.Right, Vector2.right*explosionRadius);
+        Gizmos.DrawWireCube(BrickCollider.bounds.center, explosionRadius);
     }
 }
