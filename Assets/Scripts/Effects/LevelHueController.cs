@@ -1,3 +1,5 @@
+using System;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
@@ -5,12 +7,29 @@ using Random = UnityEngine.Random;
 
 public class LevelHueController : MonoBehaviour
 {
+    [Serializable]
+    struct AffectedMaterial
+    {
+        public Material Material;
+        [Range(0f,1f)] public float Saturation;
+        [Range(0f,1f)] public float Value;
+
+        public void Apply(float hue)
+        {
+            Material.color = Color.HSVToRGB(hue, Saturation, Value);
+        }
+    }
+    
     [SerializeField] Volume volume;
     [SerializeField] ColorAdjustments colorAdjustments;
+
+    [Space]
+    [SerializeField] AffectedMaterial[] affectedMaterials;
 
     float _defaultHue;
     float _defaultSaturation;
     float _defaultValue;
+    
     
     void Awake()
     {
@@ -32,7 +51,16 @@ public class LevelHueController : MonoBehaviour
         float hue = Random.Range(0f, 1f);
         Color color = Color.HSVToRGB(hue, _defaultSaturation, _defaultValue);
         colorAdjustments.colorFilter.Override(color);
+        
+        if(affectedMaterials!=null) ApplyToMaterials(hue);
     }
-    
+
+    void ApplyToMaterials(float hue)
+    {
+        for (int i = 0; i < affectedMaterials.Length; i++)
+        {
+            affectedMaterials[i].Apply(hue);
+        }
+    }
 }
 

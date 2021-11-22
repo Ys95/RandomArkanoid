@@ -1,10 +1,10 @@
 using UnityEngine;
 
-public class ParticleHueShifter : HueShifter
+public class ParticleHSVColorShifter : HSVColorShifter
 {
     [SerializeField] ParticleSystem particle;
 
-    protected override void HueShift(Color color)
+    protected override void ColorShift(Color color)
     {
         var particleMain = particle.main;
         particleMain.startColor = color;

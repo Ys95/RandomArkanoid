@@ -1,13 +1,13 @@
 using UnityEngine.InputSystem;
 
-public class PauseMenu : UiState
+public class PauseMenuState : GameState
 {
     public override void HandlePauseKeyPress(InputAction.CallbackContext context)
     {
-        UiController.GoToPreviousState();
+        GameStateController.GoToPreviousState();
     }
 
-    public void OnResumeBTNPress() => UiController.GoToPreviousState();
+    public void OnResumeBTNPress() => GameStateController.GoToPreviousState();
     
     protected override void OnStateExit()
     {

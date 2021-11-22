@@ -6,6 +6,7 @@ using UnityEngine;
 public class ExplosiveBrickType : BrickType
 {
     [Space]
+    [Header("Explosive brick")]
     [SerializeField] Vector2 explosionRadius;
     [SerializeField] int maxExplosionTargets;
     [SerializeField] SoundEffect explosionSoundEffect;
@@ -58,6 +59,7 @@ public class ExplosiveBrickType : BrickType
 
     void OnDrawGizmos()
     {
+        if(BrickCollider==null) return;
         Gizmos.DrawWireCube(BrickCollider.bounds.center, explosionRadius);
     }
 }

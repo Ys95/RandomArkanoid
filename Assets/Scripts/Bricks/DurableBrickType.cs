@@ -7,8 +7,12 @@ using Random = UnityEngine.Random;
 
 public class DurableBrickType : BrickType
 {
+    [Space]
+    [Header("Durable brick")]
     [SerializeField] TextMeshPro durabilityText;
     [SerializeField] GameObject destructibleLayer;
+    
+    [Space]
     [SerializeField] ParticleSystem onHitParticle;
     [SerializeField] SoundEffect onHitSoundEffect;
 

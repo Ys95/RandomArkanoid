@@ -2,20 +2,20 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class InGame : UiState
+public class InGameState : GameState
 {
     [SerializeField] PlayerControlsDisabler playerControlsDisabler;
     
     [Space]
-    [SerializeField] UiState pauseState;
-    [SerializeField] UiState levelClearedState;
+    [SerializeField] GameState pauseState;
+    [SerializeField] GameState levelClearedState;
     
     
-    public override void HandlePauseKeyPress(InputAction.CallbackContext context) => UiController.GoToNewState(pauseState);
+    public override void HandlePauseKeyPress(InputAction.CallbackContext context) => GameStateController.GoToNewState(pauseState);
 
     public void OnLevelCleared()
     {
-        UiController.GoToNewState(levelClearedState);
+        GameStateController.GoToNewState(levelClearedState);
     }
     
     protected override void OnStateEnter()

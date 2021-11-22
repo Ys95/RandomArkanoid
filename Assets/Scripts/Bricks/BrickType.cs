@@ -7,19 +7,21 @@ using UnityEngine;
 [System.Serializable]
 public abstract class BrickType : MonoBehaviour
 {
-    [SerializeField] BrickController controller;
-    [SerializeField] BrickNames brickName;
-    [SerializeField] int score;
-    
-    [Space]
+    [Header("Components")]
     [SerializeField] Collider2D brickCollider;
     [SerializeField] SpriteRenderer spriteRenderer;
     [SerializeField] Transform brickTransform;
-
-    [Space]
+    
+    [Header("Settings")]
+    [SerializeField] BrickController controller;
+    [SerializeField] BrickNames brickName;
+    [SerializeField] int score;
+    [SerializeField] bool isObstacle;
+    
+    [Header("Effects")]
     [SerializeField] SoundEffect onDestroySoundEffect;
     [SerializeField] ParticleSystem onDestroyParticle;
-    
+  
     bool _isDestroyed;
 
     #region ReadOnlyProperties
@@ -28,6 +30,7 @@ public abstract class BrickType : MonoBehaviour
     public SpriteRenderer SpriteRenderer => spriteRenderer;
     public Transform BrickTransform => brickTransform;
     public BrickNames BrickName => brickName;
+    public bool IsObstacle => isObstacle;
     protected int Score => score;
     
     #endregion
@@ -51,7 +54,7 @@ public abstract class BrickType : MonoBehaviour
     protected virtual void OnBrickEnabled() 
     {
         _isDestroyed = false;
-        if (onDestroyParticle == null)
+        if (onDestroyParticle != null)
         {
             Transform particleTransform = onDestroyParticle.transform;
             particleTransform.parent = brickTransform;

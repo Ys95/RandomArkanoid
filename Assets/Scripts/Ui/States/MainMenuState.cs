@@ -1,16 +1,16 @@
 using UnityEngine;
 
-public class MainMenu : UiState
+public class MainMenuState : GameState
 {
     [Space]
-    [SerializeField] UiState inGameState;
+    [SerializeField] GameState inGameState;
     
     public void OnExitBTNPress() => Application.Quit();
 
     public void OnStartGameBTNPress()
     {
         GameManager.Instance.StartNewGame();
-        UiController.GoToNewState(inGameState);
+        GameStateController.GoToNewState(inGameState);
     }
 
     protected override void OnStateEnter() => GameManager.Instance.StopGame();

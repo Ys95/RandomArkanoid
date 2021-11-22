@@ -41,6 +41,7 @@ public class SoundEffect : ScriptableObject
     
     public void Play(AudioSource source)
     {
+        if(!source.isActiveAndEnabled) return; 
         source.volume = volume;
         source.pitch = pitch;
 

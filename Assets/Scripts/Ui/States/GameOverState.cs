@@ -5,7 +5,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class GameOverMenu : UiState
+public class GameOverState : GameState
 {
     [Space]
     [SerializeField] TextMeshProUGUI scoreDisplay;

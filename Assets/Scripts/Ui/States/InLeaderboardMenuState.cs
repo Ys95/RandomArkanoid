@@ -6,7 +6,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
  
-public class LeaderboardMenu : UiState
+public class InLeaderboardMenuState : GameState
 {
     [SerializeField] Overlay onConnectingOverlay;
     

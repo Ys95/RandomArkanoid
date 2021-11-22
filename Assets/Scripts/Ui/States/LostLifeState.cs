@@ -5,7 +5,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class LoseLifeMenu : UiState
+public class LostLifeState : GameState
 {
     [Space]
     [SerializeField] LivesSystem livesSystem;
@@ -18,7 +18,7 @@ public class LoseLifeMenu : UiState
         GameManager.PauseGame(true);
     }
     
-    public override void HandleAnyKeyPress(InputAction.CallbackContext context) => UiController.GoToPreviousState();
+    public override void HandleAnyKeyPress(InputAction.CallbackContext context) => GameStateController.GoToPreviousState();
 
     void Update()
     {

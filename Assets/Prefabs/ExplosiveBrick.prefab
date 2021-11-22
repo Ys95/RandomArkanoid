@@ -136,13 +136,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54b12978afa913443aa340c01a69e808, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  controller: {fileID: 0}
-  brickName: 1
-  score: 2
   brickCollider: {fileID: 7074977411014834453}
   spriteRenderer: {fileID: 6233888817267908298}
   brickTransform: {fileID: 6820817924014978576}
-  onDestroySoundEffect: {fileID: 0}
+  controller: {fileID: 0}
+  brickName: 1
+  score: 2
+  isObstacle: 0
+  onDestroySoundEffect: {fileID: 11400000, guid: d76ba07dfc323164cbb7104f4f4dec1e, type: 2}
   onDestroyParticle: {fileID: 7157562155694729669}
   explosionRadius: {x: 2, y: 2}
   maxExplosionTargets: 10
@@ -162,22 +163,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5db1776bb66f5d34bb6b873124e459e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hsvColor:
-    h: 1
-    s: 0.8
+  startingColor:
+    h: 0
+    s: 0
     v: 1
   hue:
     shift: 0
+    pingPongMode: 0
     amountPerTick: 0
     min: 0
     max: 0
   value:
     shift: 1
+    pingPongMode: 1
     amountPerTick: 0.01
     min: 0.1
     max: 1
   saturation:
     shift: 0
+    pingPongMode: 0
     amountPerTick: 1
     min: 0
     max: 0

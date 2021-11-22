@@ -22,6 +22,7 @@ public class BrickController : MonoBehaviour
             BrickType brickType = child.GetComponent<BrickType>();
             if(brickType == null) continue;
             
+            Debug.Log("Adding: " + brickType.BrickName);
             _attachedBrickTypes.Add(brickType.BrickName, brickType);
         }
     }

@@ -2,11 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SpriteHueShifter : HueShifter
+public class SpriteHSVColorShifter : HSVColorShifter
 {
     [SerializeField] SpriteRenderer spriteRenderer;
     
-    protected override void HueShift(Color color)
+    protected override void ColorShift(Color color)
     {
         spriteRenderer.color = color;
     }

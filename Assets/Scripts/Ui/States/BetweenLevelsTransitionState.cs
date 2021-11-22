@@ -5,9 +5,9 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class BetweenLevelsTransitionMenu : UiState
+public class BetweenLevelsTransitionState : GameState
 {
-    [SerializeField] UiState inGameState;
+    [SerializeField] GameState inGameState;
     
     [Space]
     [SerializeField] DifficultySystem difficultySystem;
@@ -50,7 +50,7 @@ public class BetweenLevelsTransitionMenu : UiState
         levelScoreDisplay.text = "0";
         totalScoreDisplay.text = scoreSystem.TotalScore.ToString();
         
-        _onAnyButtonPressAction = () => UiController.GoToNewState(inGameState);
+        _onAnyButtonPressAction = () => GameStateController.GoToNewState(inGameState);
     }
 
     IEnumerator SumScoreEffect()
@@ -71,7 +71,7 @@ public class BetweenLevelsTransitionMenu : UiState
 
             yield return new WaitForSeconds(timeBetweenTicks);
         }
-        _onAnyButtonPressAction = () => UiController.GoToNewState(inGameState);
+        _onAnyButtonPressAction = () => GameStateController.GoToNewState(inGameState);
     }
     
 }

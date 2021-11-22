@@ -101,7 +101,7 @@ SpriteRenderer:
   m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0.7, g: 0.7, b: 0.7, a: 1}
+  m_Color: {r: 0.8, g: 0.8, b: 0.8, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -157,12 +157,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3619751fde643fa458cc18c5737537f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  controller: {fileID: 0}
-  brickName: 0
-  score: 0
   brickCollider: {fileID: 2289754580451892478}
   spriteRenderer: {fileID: 3128507545477692193}
   brickTransform: {fileID: 2540558040400958459}
+  controller: {fileID: 0}
+  brickName: 0
+  score: 1
+  isObstacle: 0
   onDestroySoundEffect: {fileID: 11400000, guid: 39db207e378843046984a5b41a1ade08, type: 2}
   onDestroyParticle: {fileID: 2215011301446224942}
 --- !u!1001 &2775724178252026570

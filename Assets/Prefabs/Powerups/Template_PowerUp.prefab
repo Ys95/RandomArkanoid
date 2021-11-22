@@ -78,7 +78,7 @@ MeshRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1398812713
-  m_SortingLayer: 4
+  m_SortingLayer: 3
   m_SortingOrder: 1
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!114 &5778473754228113079
@@ -103,7 +103,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'iks
 
-    de'
+    ded'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 58172e5877f84b94e9c8814829fd4f72, type: 2}
   m_sharedMaterial: {fileID: -1740865780190670172, guid: 58172e5877f84b94e9c8814829fd4f72, type: 2}
@@ -112,8 +112,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4278190335
+  m_fontColor: {r: 1, g: 0, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -187,7 +187,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a81cc045cb113546b2d8f739e988914, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  controller: {fileID: 2838239691288325908}
+  controller: {fileID: 3699837128123236231}
   text: {fileID: 5778473754228113079}
 --- !u!1 &5778473754298780974
 GameObject:
@@ -5003,7 +5003,7 @@ ParticleSystemRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -765168889
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_RenderMode: 0
   m_MeshDistribution: 0
@@ -5047,7 +5047,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a2828a16ad1aca489b47d994da0f0da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  controller: {fileID: 2838239691288325908}
+  controller: {fileID: 3699837128123236231}
   particle: {fileID: 5778473755682400749}
 --- !u!1 &5778473756222062595
 GameObject:
@@ -5062,7 +5062,7 @@ GameObject:
   - component: {fileID: -4169441742059582242}
   - component: {fileID: -2395506472649890347}
   - component: {fileID: 316750671602896455}
-  - component: {fileID: 2838239691288325908}
+  - component: {fileID: 3699837128123236231}
   m_Layer: 0
   m_Name: Template_PowerUp
   m_TagString: Untagged
@@ -5161,7 +5161,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &2838239691288325908
+--- !u!114 &3699837128123236231
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -5173,9 +5173,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5db1776bb66f5d34bb6b873124e459e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hsvColor:
+  startingColor:
     h: 0
     s: 1
     v: 1
+  hue:
+    shift: 1
+    pingPongMode: 0
+    amountPerTick: 0.01
+    min: 0
+    max: 1
+  value:
+    shift: 0
+    pingPongMode: 0
+    amountPerTick: 0
+    min: 0
+    max: 0
+  saturation:
+    shift: 0
+    pingPongMode: 0
+    amountPerTick: 0
+    min: 0
+    max: 0
   tickFrequency: 0.1
-  amountPerTick: 0.02

@@ -43,6 +43,8 @@ public class LevelBuilder : MonoBehaviour
         List<Vector2Int> bricksControllersPositions = bricksPositionsRandomizer.GetBricksPositions(grid, properties, difficultyLevel);
         if (bricksControllersPositions == null) return 0;
 
+        int brickCount = 0;
+
         ClearGrid();
         foreach(Vector2Int brickPosition in bricksControllersPositions)
         {
@@ -57,9 +59,10 @@ public class LevelBuilder : MonoBehaviour
             brickControllerTransform.localPosition = brickPos;
 
             brickController.RestoreBrick();
+            if (!brickController.Brick.IsObstacle) brickCount++;
         }
 
-        return bricksControllersPositions.Count;
+        return brickCount;
     }
     
     public void ClearGrid()

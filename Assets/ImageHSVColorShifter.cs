@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ImageHueShifter : HueShifter
+public class ImageHSVColorShifter : HSVColorShifter
 {
     [SerializeField] Image image;
     
-    protected override void HueShift(Color color)
+    protected override void ColorShift(Color color)
     {
         image.color = color;
     }
