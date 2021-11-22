@@ -16,7 +16,7 @@ public class RacketController : MonoBehaviour
         RacketPowerup.OnRacketPowerupPickup += ApplyPowerupMode;
     }
     
-    public void RestoreDefualtState()
+    public void RestoreDefaultState()
     {
         _currentRacketType.OnModeExit();
         _currentRacketType = racket.DefaultRacketType;
@@ -40,5 +40,6 @@ public class RacketController : MonoBehaviour
     void OnDisable()
     {
         RacketPowerup.OnRacketPowerupPickup -= ApplyPowerupMode;
+        RestoreDefaultState();
     }
 }

@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: LaserBallBounce_SoundEffect
   m_EditorClassIdentifier: 
   clip: {fileID: 8300000, guid: dae69772c1ed7444396068caabbd89ce, type: 3}
-  volume: 1
+  volume: 0.7
   pitch: 1

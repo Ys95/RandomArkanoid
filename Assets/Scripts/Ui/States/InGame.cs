@@ -9,15 +9,9 @@ public class InGame : UiState
     [Space]
     [SerializeField] UiState pauseState;
     [SerializeField] UiState levelClearedState;
-    [SerializeField] UiState gameOverState;
     
     
     public override void HandlePauseKeyPress(InputAction.CallbackContext context) => UiController.GoToNewState(pauseState);
-
-    public void OnGameOver()
-    {
-        UiController.GoToNewState(gameOverState);
-    }
 
     public void OnLevelCleared()
     {

@@ -2,25 +2,23 @@ using UnityEngine;
 
 public class BulletScript : MonoBehaviour
 {
-    [Header("Components")] 
-    [SerializeField] GameObject visuals;
+    [Header("Components")]
     [SerializeField] Rigidbody2D rb;
-    [SerializeField] AudioSource audioSource;
-
+    
+    [Header("Effects")]
+    [SerializeField] TrailRenderer trail;
     [SerializeField] SoundEffect onHitSound;
     public Rigidbody2D Rb => rb;
 
     void OnEnable()
     {
-        visuals.SetActive(true);
+        trail.Clear();
     }
 
     void OnCollisionEnter2D(Collision2D other)
     {
-        onHitSound.Play(audioSource);
-        visuals.SetActive(false);
-        Invoke(nameof(Disable), onHitSound.Length);
+        onHitSound.PlayDetached(transform.position);
+        trail.Clear();
+        gameObject.SetActive(false);
     }
-
-    void Disable() => gameObject.SetActive(false);
 }

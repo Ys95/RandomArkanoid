@@ -10,7 +10,6 @@ public class DurableBrickType : BrickType
     [SerializeField] TextMeshPro durabilityText;
     [SerializeField] GameObject destructibleLayer;
     [SerializeField] ParticleSystem onHitParticle;
-    [SerializeField] AudioSource audioSource;
     [SerializeField] SoundEffect onHitSoundEffect;
 
     [Space]
@@ -50,7 +49,7 @@ public class DurableBrickType : BrickType
         {
             durabilityText.text = _currentDurability.ToString();
             onHitParticle.Play();
-            onHitSoundEffect.Play(audioSource);
+            onHitSoundEffect.PlayDetached(BrickTransform.position);
         }
     }
 

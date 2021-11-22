@@ -27,7 +27,7 @@ public class RacketType : ScriptableObject
         _model = _racket.Model;
     }
 
-    public void OnModeEnter(Racket racket)
+    public virtual void OnModeEnter(Racket racket)
     {
         if (_model == null)
         {
@@ -41,8 +41,8 @@ public class RacketType : ScriptableObject
         _model.gameObject.SetActive(true);
     }
 
-    public void OnModeExit()
+    public virtual void OnModeExit()
     {
-        _racket.Model.gameObject.SetActive(false);
+        _model.gameObject.SetActive(false);
     }
 }

@@ -29,16 +29,24 @@ public class SoundEffect : ScriptableObject
         
         _soundPlayer.volume = volume;
         _soundPlayer.pitch = pitch;
-        
-        _soundPlayer.PlayOneShot(clip);
+
+        if (_soundPlayer.isPlaying)
+        {
+            _soundPlayer.Stop();
+        }
+
+        _soundPlayer.clip = clip;
+        _soundPlayer.Play();
     }
     
     public void Play(AudioSource source)
     {
         source.volume = volume;
         source.pitch = pitch;
-        
-        source.PlayOneShot(clip);
+
+        if(source.isPlaying) source.Stop();
+        source.clip = clip;
+        source.Play();
     }
     
     public void PlayLoop(AudioSource source)

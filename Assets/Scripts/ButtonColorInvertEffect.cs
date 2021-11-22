@@ -28,6 +28,9 @@ public class ButtonColorInvertEffect : MonoBehaviour, IPointerEnterHandler, IPoi
         }
     }
 
+    [SerializeField] Button btn;
+    
+    [Space]
     [SerializeField] ButtonPart buttonPart1;
     [SerializeField] ButtonPart buttonPart2;
 
@@ -39,6 +42,8 @@ public class ButtonColorInvertEffect : MonoBehaviour, IPointerEnterHandler, IPoi
 
     void Invert()
     {
+        if(btn.interactable == false) return;
+
         Color tempBgColor = buttonPart1.Background.color;
         Color tempTextColor = buttonPart1.Text.color;
 

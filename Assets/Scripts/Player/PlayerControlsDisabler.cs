@@ -7,7 +7,7 @@ public class PlayerControlsDisabler : MonoBehaviour
     
     public void DisableControls() => input.DeactivateInput();
 
-    public void EnableControls() =>input.ActivateInput();
+    public void EnableControls() => input.ActivateInput();
     
     void OnEnable()
     {

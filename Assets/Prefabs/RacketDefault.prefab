@@ -51,6 +51,7 @@ MonoBehaviour:
   rb: {fileID: 6316259557056683987}
   mouseMovement:
     movementSpeed: 15
+    smoothing: 0
   keyboardMovement:
     movementSpeed: 35
 --- !u!114 &6316259557056683991
@@ -194,6 +195,18 @@ PrefabInstance:
     - target: {fileID: 2574907799725336908, guid: d3040e87ed5a8b4439fb2cb82f882b58, type: 3}
       propertyPath: m_Name
       value: DefaultRacketModel
+      objectReference: {fileID: 0}
+    - target: {fileID: 3760947863071081041, guid: d3040e87ed5a8b4439fb2cb82f882b58, type: 3}
+      propertyPath: m_SortingLayer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3760947863071081041, guid: d3040e87ed5a8b4439fb2cb82f882b58, type: 3}
+      propertyPath: m_SortingOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3760947863071081041, guid: d3040e87ed5a8b4439fb2cb82f882b58, type: 3}
+      propertyPath: m_SortingLayerID
+      value: 1398812713
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d3040e87ed5a8b4439fb2cb82f882b58, type: 3}

@@ -97,11 +97,11 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingLayerID: 277109899
+  m_SortingLayer: 1
+  m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.7, g: 0.7, b: 0.7, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -157,9 +157,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3619751fde643fa458cc18c5737537f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  controller: {fileID: 0}
+  brickName: 0
+  score: 0
   brickCollider: {fileID: 2289754580451892478}
   spriteRenderer: {fileID: 3128507545477692193}
   brickTransform: {fileID: 2540558040400958459}
+  onDestroySoundEffect: {fileID: 11400000, guid: 39db207e378843046984a5b41a1ade08, type: 2}
   onDestroyParticle: {fileID: 2215011301446224942}
 --- !u!1001 &2775724178252026570
 PrefabInstance:
@@ -211,6 +215,18 @@ PrefabInstance:
     - target: {fileID: 271906785346314047, guid: 1a7cfb9ed8b41bb449c366e87d9ed904, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4051013583134351076, guid: 1a7cfb9ed8b41bb449c366e87d9ed904, type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5064379287909241720, guid: 1a7cfb9ed8b41bb449c366e87d9ed904, type: 3}
+      propertyPath: m_SortingLayer
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5064379287909241720, guid: 1a7cfb9ed8b41bb449c366e87d9ed904, type: 3}
+      propertyPath: m_SortingLayerID
+      value: -765168889
       objectReference: {fileID: 0}
     - target: {fileID: 7186329507614206154, guid: 1a7cfb9ed8b41bb449c366e87d9ed904, type: 3}
       propertyPath: m_Name

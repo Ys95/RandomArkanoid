@@ -8,11 +8,10 @@ public class ExplosiveBrickType : BrickType
     [Space]
     [SerializeField] Vector2 explosionRadius;
     [SerializeField] int maxExplosionTargets;
+    [SerializeField] SoundEffect explosionSoundEffect;
     
     [Space]
     [SerializeField] LayerMask explosionTargetsLayer;
-    [SerializeField] AudioSource audioSource;
-    [SerializeField] SoundEffect explosionSoundEffect;
 
     bool _exploded;
     Collider2D[] _hitByExplosion;

@@ -20,9 +20,18 @@ public class ShootingRacketType : RacketType
         }
 
         GameObject newBullet = Instantiate(bulletPrefab, Racket.Player);
+        newBullet.SetActive(false);
         BulletScript bulletScript = newBullet.GetComponent<BulletScript>();
         _bulletPool.Add(bulletScript);
         return bulletScript;
+    }
+
+    void DisableAllBullets()
+    {
+        foreach (BulletScript bullet in _bulletPool)
+        {
+            if (bullet.gameObject.activeInHierarchy) bullet.gameObject.SetActive(false);
+        }
     }
     
     public override void HandleFireAction(InputAction.CallbackContext context)
@@ -32,15 +41,21 @@ public class ShootingRacketType : RacketType
         ShootingRacketModel shootingRacketModel = (ShootingRacketModel) Model;
         
         BulletScript bullet1 = GetPooledBullet();
-        bullet1.gameObject.SetActive(true);
         bullet1.transform.position = shootingRacketModel.GunBarrel1.position;
+        bullet1.gameObject.SetActive(true);
         bullet1.Rb.velocity = Vector2.up *bulletSpeed;
         
         BulletScript bullet2 = GetPooledBullet();
-        bullet2.gameObject.SetActive(true);
         bullet2.transform.position = shootingRacketModel.GunBarrel2.position;
+        bullet2.gameObject.SetActive(true);
         bullet2.Rb.velocity = Vector2.up *bulletSpeed;
         
         shootingRacketModel.PlayOnShootEffect();
+    }
+
+    public override void OnModeExit()
+    {
+        base.OnModeExit();
+        DisableAllBullets();
     }
 }

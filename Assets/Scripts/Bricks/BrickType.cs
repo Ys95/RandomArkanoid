@@ -15,8 +15,9 @@ public abstract class BrickType : MonoBehaviour
     [SerializeField] Collider2D brickCollider;
     [SerializeField] SpriteRenderer spriteRenderer;
     [SerializeField] Transform brickTransform;
-    
+
     [Space]
+    [SerializeField] SoundEffect onDestroySoundEffect;
     [SerializeField] ParticleSystem onDestroyParticle;
     
     bool _isDestroyed;
@@ -70,6 +71,7 @@ public abstract class BrickType : MonoBehaviour
             onDestroyParticle.transform.parent = gameObject.transform.parent;
             onDestroyParticle.Play();
         }
+        if(onDestroySoundEffect!=null) onDestroySoundEffect.PlayDetached(brickTransform.position);
         gameObject.SetActive(false);
     }
     

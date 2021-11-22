@@ -2,29 +2,38 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using LootLocker.Requests;
+using Unity.VisualScripting;
+using UnityEditor;
 using UnityEngine;
 
 [Serializable]
-public class LeaderboardDisplay
+public class LeaderboardDisplay : MonoBehaviour
 {
-    [SerializeField] ScoreText[] displaySlots;
+    [SerializeField] GameObject slotPrefab;
+
+    [Space]
+    [SerializeField] int maxEntries;
+    [SerializeField] Transform entriesParent;
+    [SerializeField] LeaderboardEntry[] displayedEntries;
+    
+    [ContextMenu("Create display")]
+    void CreateDisplay()
+    {
+        displayedEntries = new LeaderboardEntry[maxEntries];
+        for (int i = 0; i < maxEntries; i++)
+        {
+            displayedEntries[i] = PrefabUtility.InstantiatePrefab(slotPrefab, entriesParent).GetComponent<LeaderboardEntry>();
+            displayedEntries[i].SetEntryIndex(i+1);
+            displayedEntries[i].FillWithDefaultValue();
+        }
+    }
 
     public void UpdateDisplay(LootLockerLeaderboardMember[] scores)
     {
         for (int i = 0; i < scores.Length; i++)
         {
-            displaySlots[i].PlayerName.text = scores[i].player.name;
-            displaySlots[i].Score.text = scores[i].score.ToString();
-        }
-        FillEmptyDisplaySlots(scores.Length);
-    }
-
-    void FillEmptyDisplaySlots(int scoresAmount)
-    {
-        for (int j = scoresAmount; j < displaySlots.Length; j++)
-        {
-            displaySlots[j].PlayerName.text = "-";
-            displaySlots[j].Score.text = "-";
+            if(i>=displayedEntries.Length) return;
+            displayedEntries[i].UpdateEntry(scores[i].player.name, scores[i].score);
         }
     }
 }

@@ -42,11 +42,14 @@ TagManager:
   - 
   - 
   m_SortingLayers:
-  - name: UI
-    uniqueID: 959948455
-    locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Bricks
+    uniqueID: 277109899
+    locked: 0
+  - name: Ball
+    uniqueID: 32327387
     locked: 0
   - name: Player
     uniqueID: 1398812713
@@ -54,6 +57,9 @@ TagManager:
   - name: Particles
     uniqueID: 3529798407
     locked: 0
-  - name: Bricks
-    uniqueID: 277109899
+  - name: Boundaries
+    uniqueID: 257172851
+    locked: 0
+  - name: UI
+    uniqueID: 959948455
     locked: 0

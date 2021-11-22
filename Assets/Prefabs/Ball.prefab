@@ -85,6 +85,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: DefaultBallModel
       objectReference: {fileID: 0}
+    - target: {fileID: 7027644043256625628, guid: 02850dd7d96099d4cb5b9c4174729ff5, type: 3}
+      propertyPath: m_SortingLayer
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7027644043256625628, guid: 02850dd7d96099d4cb5b9c4174729ff5, type: 3}
+      propertyPath: m_SortingOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7027644043256625628, guid: 02850dd7d96099d4cb5b9c4174729ff5, type: 3}
+      propertyPath: m_SortingLayerID
+      value: -765168889
+      objectReference: {fileID: 0}
     - target: {fileID: 7336527860541364327, guid: 02850dd7d96099d4cb5b9c4174729ff5, type: 3}
       propertyPath: m_Pitch
       value: 1
@@ -136,6 +148,14 @@ PrefabInstance:
     - target: {fileID: 8241963792764504498, guid: 02850dd7d96099d4cb5b9c4174729ff5, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8325219465064716680, guid: 02850dd7d96099d4cb5b9c4174729ff5, type: 3}
+      propertyPath: m_SortingLayer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8325219465064716680, guid: 02850dd7d96099d4cb5b9c4174729ff5, type: 3}
+      propertyPath: m_SortingLayerID
+      value: 1398812713
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 02850dd7d96099d4cb5b9c4174729ff5, type: 3}

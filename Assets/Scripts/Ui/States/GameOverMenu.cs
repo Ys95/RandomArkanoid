@@ -1,24 +1,20 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class GameOverMenu : UiState
 {
-    [SerializeField] UiState sendScore;
-    
-    public override void HandleAnyKeyPress(InputAction.CallbackContext context)
-    {
-        UiController.GoToNewState(sendScore);
-    }
+    [Space]
+    [SerializeField] TextMeshProUGUI scoreDisplay;
+    [SerializeField] ScoreSystem scoreSystem;
 
+    
     protected override void OnStateEnter()
     {
-        GameManager.PauseGame(true);
-    }
-
-    protected override void OnStateExit()
-    {
-        GameManager.PauseGame(false);
+        scoreSystem.SumScores();
+        scoreDisplay.text = scoreSystem.TotalScore.ToString();
     }
 }

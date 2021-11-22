@@ -50,7 +50,6 @@ public class OnlineLeaderboardSystem
     string _playerName;
     int _playerBestScore;
     int _playerLeaderboardPosition;
-
     
     LootLockerLeaderboardMember[] scoreBoard { get; set; }
     
@@ -68,13 +67,16 @@ public class OnlineLeaderboardSystem
                         
                         FetchScores((scores) =>
                         {
-                            GetPlayerPosition(scores, out _playerLeaderboardPosition, out _playerBestScore);
-                            
-                            ConnectedPlayer player = new ConnectedPlayer(_playerName, _memeberId, _playerBestScore, _playerLeaderboardPosition);
-                            ConnectionReturnMessage msg = new ConnectionReturnMessage(CONNECTION_SUCCESSFUL, player);
-                            onConnected?.Invoke(msg);
-                            
-                        });
+                            GetPlayerPosition((response) =>
+                            {
+                                _playerBestScore = response.score;
+                                _playerLeaderboardPosition = response.rank;
+
+                                ConnectedPlayer player = new ConnectedPlayer(_playerName, _memeberId, _playerBestScore, _playerLeaderboardPosition);
+                                ConnectionReturnMessage msg = new ConnectionReturnMessage(CONNECTION_SUCCESSFUL, player);
+                                onConnected?.Invoke(msg);
+                            });
+                            });
                     });
                 }
                 else
@@ -90,19 +92,12 @@ public class OnlineLeaderboardSystem
     }
     
 
-    void GetPlayerPosition(LootLockerLeaderboardMember[] scores, out int rank, out int score)
+    void GetPlayerPosition(Action<LootLockerGetMemberRankResponse> onCompleted)
     {
-        for (int i = 0; i < scores.Length; i++)
+        LootLockerSDKManager.GetMemberRank(leaderboardID.ToString(), _memeberId, (response)=>
         {
-            if (scores[i].player.id == _memeberId)
-            {
-                score = scores[i].score;
-                rank = scores[i].rank;
-                return;
-            }
-        }
-        rank = NO_BEST_SCORE;
-        score = NO_BEST_SCORE;
+            onCompleted?.Invoke(response);
+        });
     }
     
     public void FetchPlayerName(Action<string> onComplete)
@@ -116,7 +111,7 @@ public class OnlineLeaderboardSystem
     
     public void FetchScores(Action<LootLockerLeaderboardMember[]> onCompleted)
     {
-        LootLockerSDKManager.GetScoreListMain(809, 6, 0, (response) =>
+        LootLockerSDKManager.GetScoreListMain(809, 100, 0, (response) =>
         {
             if (response.success)
             {

@@ -31,20 +31,20 @@ public class BallType : ScriptableObject
         Vector2 dir = new Vector2(x, 1f);
         _ball.Rigidbody.velocity = dir * _ball.MaxSpeed;
         
-        _ball.Model.PlayOnRacketHitParticle();
-        _ball.Model.PlayOnRacketHitSound();
+        _ball.Model.PlayOnBounceParticle();
+        _ball.Model.PlayOnBounceSound();
     }
 
     protected virtual void HandleBrickCollision(Collider2D collider)
     {
-        _ball.Model.PlayOnCollisionParticle();
-        _ball.Model.PlayOnCollisionSound();
+        _ball.Model.PlaOnBounceParticle();
+        _ball.Model.PlayOnBrickHitSound();
     }
     
     protected virtual void HandleBorderCollision(Collider2D collider)
     {
-        _ball.Model.PlayOnCollisionParticle();
-        _ball.Model.PlayOnBorderHitSound();
+        _ball.Model.PlaOnBounceParticle();
+        _ball.Model.PlayOnBounceSound();
     }
     
     void SetSpeed()

@@ -5,10 +5,17 @@ using LootLocker.Requests;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-
-public class SendScoreMenu : UiState
+ 
+public class LeaderboardMenu : UiState
 {
+    [SerializeField] Overlay onConnectingOverlay;
+    
+    [Space]
     [SerializeField] TMP_InputField nameInputField;
+    [SerializeField] Button sendScoreBtn;
+    [SerializeField] PopupMessage popupMessage;
+    
+    [Space]
     [SerializeField] TextMeshProUGUI playerCurrentScoreDisplay;
     [SerializeField] TextMeshProUGUI playerBestScoreDisplay;
     
@@ -18,16 +25,21 @@ public class SendScoreMenu : UiState
     
     [Space]
     [SerializeField] LeaderboardDisplay leaderboardDisplay;
-
+    
     OnlineLeaderboardSystem _onlineLeaderboardSystem;
     OnlineLeaderboardSystem.ConnectedPlayer? _connectedPlayer;
+
+    readonly string _cantOverwriteScore = "Can't send score lower than your best score.";
+    readonly string _scoreSend = "Score send successfully.";
 
     void OnConnectedToScoreSystem(OnlineLeaderboardSystem.ConnectionReturnMessage msg)
     {
         if (msg.ConnectionMSG == OnlineLeaderboardSystem.CONNECTION_FAILED)
         {
             _connectedPlayer = null;
-            return;;
+            onConnectingOverlay.DisplayIdleOverlay(false);
+            onConnectingOverlay.DisplayFailedOverlay(true);
+            return;
         }
 
         _connectedPlayer = msg.Player;
@@ -43,29 +55,54 @@ public class SendScoreMenu : UiState
         {
             playerBestScoreDisplay.text = _connectedPlayer?.BestScore.ToString();
         }
-        
-        
-    }
 
-    void UpdateLeaderboard(string msg) => _onlineLeaderboardSystem.FetchScores(leaderboardDisplay.UpdateDisplay); 
+        onConnectingOverlay.TurnOff();
+    }
     
     protected override void OnStateEnter()
     {
+        onConnectingOverlay.TurnOn();
+        
         _onlineLeaderboardSystem = new OnlineLeaderboardSystem(leaderboardID);
         
         playerCurrentScoreDisplay.text = scoreSystem.TotalScore.ToString();
         _onlineLeaderboardSystem.Connect(OnConnectedToScoreSystem);
     }
 
+    public void OpenLeaderboardsOnly()
+    {
+        Open();
+        nameInputField.interactable = false;
+        sendScoreBtn.gameObject.SetActive(false);
+    }
+    
+    bool PlayerEligibleToSendScore => _connectedPlayer?.BestScore < scoreSystem.TotalScore;
     public void OnSendScoreBTNPress()
     {
-        if (_connectedPlayer?.BestScore >= scoreSystem.TotalScore)
+        if (PlayerEligibleToSendScore)
         {
-            Debug.Log("Cant send lower score");
+            onConnectingOverlay.TurnOn();
+            _onlineLeaderboardSystem.SendScore(nameInputField.text, scoreSystem.TotalScore, OnScoreSend);
+            return;
         }
-        else
+        popupMessage.Show(_cantOverwriteScore);
+    }
+    
+    void OnScoreSend(string msg)
+    {
+        _onlineLeaderboardSystem.FetchScores((response) =>
         {
-            _onlineLeaderboardSystem.SendScore(nameInputField.text, scoreSystem.TotalScore, UpdateLeaderboard);
-        }
+            leaderboardDisplay.UpdateDisplay(response);
+            onConnectingOverlay.TurnOff();
+            playerBestScoreDisplay.text = playerCurrentScoreDisplay.text;
+            popupMessage.Show(_scoreSend);
+        });
+    }
+    
+    protected override void OnStateExit()
+    {
+        nameInputField.interactable = true;
+        sendScoreBtn.gameObject.SetActive(true);
+        popupMessage.Hide();
     }
 }

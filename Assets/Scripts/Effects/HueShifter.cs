@@ -6,20 +6,22 @@ public abstract class HueShifter : MonoBehaviour
     [Header("Hue shift controller")]
     [SerializeField] HueShifterController controller;
 
-    void OnValidate()
-    {
-        controller.HueShift += HueShift;
-    }
-
+    protected HueShifterController Controller => controller;
+    
     void OnEnable()
     {
-        controller.HueShift += HueShift;
+        controller.ColorShift += HueShift;
     }
     
     protected abstract void HueShift(Color color);
 
     void OnDisable()
     {
-        controller.HueShift -= HueShift;
+        controller.ColorShift -= HueShift;
+    }
+
+    void OnDestroy()
+    {
+        controller.ColorShift -= HueShift;
     }
 }
