@@ -5,13 +5,8 @@ public class BallController : MonoBehaviour
     [SerializeField] Ball ball;
     
     BallType _currentBallType;
-
-    public Ball GetBall => ball;
     
-    void OnEnable()
-    {
-        BallPowerUp.OnBallPowerupPickup += ApplyPowerup;
-    }
+    public Ball GetBall => ball;
 
     void Awake()
     {
@@ -19,21 +14,14 @@ public class BallController : MonoBehaviour
         _currentBallType.InitDefaultMode(ball);
     }
 
-    public void RestoreDefualtState()
+    void OnEnable()
     {
-        _currentBallType.OnModeExit();
-        _currentBallType = ball.DefaultBallType;
-        ball.SetMaxSpeed();
-        _currentBallType.OnModeEnter(ball);
+        BallPowerup.OnBallPowerupPickup += ApplyPowerup;
     }
 
-    void ApplyPowerup(BallType newType)
+    void OnDisable()
     {
-        if(_currentBallType == newType) return;
-        
-        _currentBallType.OnModeExit();
-        _currentBallType = newType;
-        _currentBallType.OnModeEnter(ball);
+        BallPowerup.OnBallPowerupPickup -= ApplyPowerup;
     }
 
     void OnCollisionEnter2D(Collision2D other)
@@ -46,8 +34,20 @@ public class BallController : MonoBehaviour
         _currentBallType.HandleOnTriggerEnter(other);
     }
 
-    void OnDisable()
+    public void RestoreDefualtState()
     {
-        BallPowerUp.OnBallPowerupPickup -= ApplyPowerup;
+        _currentBallType.OnModeExit();
+        _currentBallType = ball.DefaultBallType;
+        ball.SetMaxSpeed();
+        _currentBallType.OnModeEnter(ball);
+    }
+
+    void ApplyPowerup(BallType newType)
+    {
+        if (_currentBallType == newType) return;
+
+        _currentBallType.OnModeExit();
+        _currentBallType = newType;
+        _currentBallType.OnModeEnter(ball);
     }
 }

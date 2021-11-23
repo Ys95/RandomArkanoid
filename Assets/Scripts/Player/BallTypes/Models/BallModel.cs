@@ -6,11 +6,11 @@ public class BallModel : MonoBehaviour
     [SerializeField] Collider2D ballCollider;
     [SerializeField] SpriteRenderer sprite;
     [SerializeField] AudioSource audioSource;
-
-    [Header("Particles")] 
+    
+    [Header("Particles")]
     [SerializeField] ParticleSystem onBrickHitParticle;
     [SerializeField] ParticleSystem onBounceParticle;
-
+    
     [Header("Sounds")]
     [SerializeField] SoundEffect onBounceSound;
     [SerializeField] SoundEffect onBrickHitSound;
@@ -20,20 +20,33 @@ public class BallModel : MonoBehaviour
 
     void Play(SoundEffect effect)
     {
-        if(effect==null) return;
+        if (effect == null) return;
         effect.Play(audioSource);
     }
 
     void Play(ParticleSystem particle)
     {
-        if(particle==null) return;
+        if (particle == null) return;
         particle.Play();
     }
 
-    public void PlayOnBrickHitSound() => Play(onBrickHitSound);
-    public void PlayOnBounceSound() => Play(onBounceSound);
+    public void PlayOnBrickHitSound()
+    {
+        Play(onBrickHitSound);
+    }
 
-    
-    public void PlaOnBounceParticle() => Play(onBrickHitParticle);
-    public void PlayOnBounceParticle() => Play(onBounceParticle);
+    public void PlayOnBounceSound()
+    {
+        Play(onBounceSound);
+    }
+
+    public void PlayOnBounceParticle()
+    {
+        Play(onBounceParticle);
+    }
+
+    public void PlayOnBrickHitParticle()
+    {
+        Play(onBrickHitParticle);
+    }
 }

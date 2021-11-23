@@ -1,52 +1,53 @@
-using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
-using System.Collections.Generic;
-using Random = UnityEngine.Random;
 
 public class BrickControllersManager : MonoBehaviour
 {
     [SerializeField] UnityEvent<Vector2, int> onBrickDestroyed;
-
+  
     [Space]
     [SerializeField] GameObject brickControllerPrefab;
-
-    List<BrickController> _allBricks = new();
-
+    
     int _bricksLeft;
     
-    public List<BrickController> AllBricks => _allBricks;
+    public List<BrickController> AllBricks { get; private set; } = new();
 
     void OnEnable()
     {
         BrickController.OnBrickDestroyed += TriggerEvent;
     }
-    
+
+    void OnDisable()
+    {
+        BrickController.OnBrickDestroyed -= TriggerEvent;
+    }
+
     void TriggerEvent(Vector2 pos, int score)
     {
         onBrickDestroyed?.Invoke(pos, score);
     }
 
     [ContextMenu("WipePool")]
-    public void WipePool() => _allBricks = new List<BrickController>();
-    
+    public void WipePool()
+    {
+        AllBricks = new List<BrickController>();
+    }
+
     BrickController GetControllerFromPool()
     {
-        foreach (BrickController brickController in _allBricks)
-        {
-            if (!brickController.IsBrickActive) return brickController;
-        }
+        foreach (var brickController in AllBricks)
+            if (!brickController.IsBrickActive)
+                return brickController;
 
-        GameObject newBrick = Instantiate(brickControllerPrefab, transform);
-        BrickController controller = newBrick.GetComponent<BrickController>();
-        _allBricks.Add(controller);
+        var newBrick = Instantiate(brickControllerPrefab, transform);
+        var controller = newBrick.GetComponent<BrickController>();
+        AllBricks.Add(controller);
         return controller;
     }
 
-    public BrickController GetBrickController() => GetControllerFromPool();
-
-    void OnDisable()
+    public BrickController GetBrickController()
     {
-        BrickController.OnBrickDestroyed -= TriggerEvent;
+        return GetControllerFromPool();
     }
 }

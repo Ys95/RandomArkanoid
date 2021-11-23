@@ -7,7 +7,7 @@ public class BallHolder : MonoBehaviour
     [SerializeField] GameObject ballGameObject;
     [SerializeField] BallController ball;
     [SerializeField] InputActionAsset input;
-
+    
     InputActionMap _defaultMap;
     InputAction _fire;
 
@@ -32,9 +32,9 @@ public class BallHolder : MonoBehaviour
     {
         Debug.Log("Ball reattached");
         ball.GetBall.StopMoving();
-        
+
         var holderTransform = transform;
-        
+
         ballGameObject.transform.parent = holderTransform;
         ballGameObject.transform.position = holderTransform.position;
         _fire.performed += PushBall;

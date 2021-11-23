@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class ExplosiveBrickType : BrickType
@@ -13,13 +10,19 @@ public class ExplosiveBrickType : BrickType
     
     [Space]
     [SerializeField] LayerMask explosionTargetsLayer;
-
+    
     bool _exploded;
     Collider2D[] _hitByExplosion;
 
     void Awake()
     {
         _hitByExplosion = new Collider2D[maxExplosionTargets];
+    }
+
+    void OnDrawGizmos()
+    {
+        if (BrickCollider == null) return;
+        Gizmos.DrawWireCube(BrickCollider.bounds.center, explosionRadius);
     }
 
     protected override void OnBrickEnabled()
@@ -32,34 +35,29 @@ public class ExplosiveBrickType : BrickType
     {
         _exploded = true;
 
-        int targetsHit = Physics2D.OverlapBoxNonAlloc(BrickCollider.bounds.center, explosionRadius, 0f, _hitByExplosion, explosionTargetsLayer);
+        var targetsHit = Physics2D.OverlapBoxNonAlloc(BrickCollider.bounds.center, explosionRadius, 0f, _hitByExplosion,
+            explosionTargetsLayer);
         Mathf.Clamp(targetsHit, 0, maxExplosionTargets);
         Debug.Log("Explosive brick targets hit: " + targetsHit);
-       
-        for (int i = 0; i < targetsHit; i++)
+
+        for (var i = 0; i < targetsHit; i++)
         {
             if (_hitByExplosion[i] == null) continue;
-                
-            BrickController controller = _hitByExplosion[i].attachedRigidbody.GetComponent<BrickController>();
-            if(controller==null) continue;
-            
+
+            var controller = _hitByExplosion[i].attachedRigidbody.GetComponent<BrickController>();
+            if (controller == null) continue;
+
             controller.BrickHit(BrickCollider);
         }
-        
+
         explosionSoundEffect.PlayDetached(transform.position);
         DestroyBrick();
     }
-    
+
     public override void HandleOnCollisionEnter(Collider2D other)
     {
         if (_exploded) return;
 
         Explode();
-    }
-
-    void OnDrawGizmos()
-    {
-        if(BrickCollider==null) return;
-        Gizmos.DrawWireCube(BrickCollider.bounds.center, explosionRadius);
     }
 }

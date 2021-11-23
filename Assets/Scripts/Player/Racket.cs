@@ -1,16 +1,15 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
 
-[System.Serializable]
+[Serializable]
 public class Racket
 {
-    [Header("Components")] 
+    [Header("Components")]
     [SerializeField] RacketModel model;
     [SerializeField] Rigidbody2D rb;
     [SerializeField] Transform transform;
-
-    [Space] 
+    
+    [Space]
     [SerializeField] Transform player;
     [SerializeField] RacketType defaultRacketType;
     
@@ -21,7 +20,7 @@ public class Racket
         get => model;
         set => model = value;
     }
-    
+
     public Rigidbody2D Rb => rb;
     public Transform Player => player;
     public RacketType DefaultRacketType => defaultRacketType;

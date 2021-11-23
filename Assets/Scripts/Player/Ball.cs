@@ -6,15 +6,14 @@ public class Ball
 {
     [Header("Components")]
     [SerializeField] Rigidbody2D rigidbody;
-
     [SerializeField] Transform transform;
     [SerializeField] BallModel model;
-
+    
     [Space]
     [SerializeField] BallType defaultBallType;
     [SerializeField] float initialSpeed;
     [SerializeField] float maxSpeedIncreasePerCollision;
-
+    
     public float MaxSpeed { get; private set; }
 
     public BallModel Model

@@ -2,8 +2,12 @@ using System;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class GameManager:MonoBehaviour
+public class GameManager : MonoBehaviour
 {
+    public static GameManager Instance;
+    public static Action OnGamePause;
+    public static Action OnGameUnpause;
+    
     [SerializeField] UnityEvent onNewGameStart;
     
     [Space]
@@ -11,21 +15,13 @@ public class GameManager:MonoBehaviour
     [SerializeField] UnityEvent onLifeLost;
     [SerializeField] UnityEvent onNewLevelStarted;
     [SerializeField] UnityEvent onGameOver;
-    
-    
-    GameManager _instance;
-    public static GameManager Instance;
-    
     [SerializeField] GameObject player;
     [SerializeField] GameObject level;
-
+    
     [Space]
     [SerializeField] DifficultySystem difficultySystem;
-
-    public static Action OnGamePause;
-    public static Action OnGameUnpause;
-
-    static bool _isGamePaused;
+    
+    GameManager _instance;
 
     void Awake()
     {
@@ -34,49 +30,64 @@ public class GameManager:MonoBehaviour
             _instance = this;
             Instance = _instance;
         }
-        else Destroy(this);
+        else
+        {
+            Destroy(this);
+        }
     }
 
-    public void DisableGameArea()
+    void DisableGameArea()
     {
         player.SetActive(false);
         level.SetActive(false);
     }
 
-    public void EnableGameArea()
+    void EnableGameArea()
     {
         player.SetActive(true);
         level.SetActive(true);
     }
-    
+
     public void StartNewGame()
     {
         EnableGameArea();
         onNewGameStart?.Invoke();
     }
-    
+
     public void StopGame()
     {
         DisableGameArea();
     }
 
-    public void StartNewLevel() => onNewLevelStarted?.Invoke();
-    
-    public void LevelCleared() => onLevelCleared?.Invoke();
+    public void StartNewLevel()
+    {
+        onNewLevelStarted?.Invoke();
+    }
 
-    public void LoseLife() => onLifeLost?.Invoke();
-    
-    public void GameOver() =>onGameOver?.Invoke();
-    
+    public void LevelCleared()
+    {
+        onLevelCleared?.Invoke();
+    }
+
+    public void LoseLife()
+    {
+        onLifeLost?.Invoke();
+    }
+
+    public void GameOver()
+    {
+        onGameOver?.Invoke();
+    }
+
     public static void PauseGame(bool pause)
     {
-        _isGamePaused = pause;
         if (pause)
         {
             Time.timeScale = 0f;
             OnGamePause?.Invoke();
             return;
         }
+
         OnGameUnpause?.Invoke();
         Time.timeScale = 1f;
     }

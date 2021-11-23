@@ -1351,7 +1351,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 563376541}
         m_TargetAssemblyTypeName: PowerupDropper, Assembly-CSharp
-        m_MethodName: RollPowerup
+        m_MethodName: RollPickup
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

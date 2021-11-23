@@ -5,14 +5,10 @@ using UnityEngine.InputSystem;
 public class RacketType : ScriptableObject
 {
     [SerializeField] GameObject modelPrefab;
+    
+    public Racket Racket { get; private set; }
+    public RacketModel Model { get; private set; }
 
-    Racket _racket;
-    RacketModel _model;
-
-    public Racket Racket => _racket;
-
-    public RacketModel Model => _model;
-        
     public virtual void HandleFireAction(InputAction.CallbackContext context)
     {
     }
@@ -23,26 +19,27 @@ public class RacketType : ScriptableObject
 
     public void InitDefaultMode(Racket racket)
     {
-        _racket = racket;
-        _model = _racket.Model;
+        Racket = racket;
+        Model = Racket.Model;
     }
 
     public virtual void OnModeEnter(Racket racket)
     {
-        if (_model == null)
+        if (Model == null)
         {
-            GameObject gameObject = Instantiate(modelPrefab, racket.Transform, true);
-            _model = gameObject.GetComponent<RacketModel>();
+            var gameObject = Instantiate(modelPrefab, racket.Transform, true);
+            Model = gameObject.GetComponent<RacketModel>();
         }
-        _racket = racket;
-        
-        _racket.Model = _model;
-        _racket.Model.transform.position = _racket.Transform.position;
-        _model.gameObject.SetActive(true);
+
+        Racket = racket;
+
+        Racket.Model = Model;
+        Racket.Model.transform.position = Racket.Transform.position;
+        Model.gameObject.SetActive(true);
     }
 
     public virtual void OnModeExit()
     {
-        _model.gameObject.SetActive(false);
+        Model.gameObject.SetActive(false);
     }
 }

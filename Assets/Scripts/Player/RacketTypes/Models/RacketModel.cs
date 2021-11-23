@@ -8,8 +8,6 @@ public class RacketModel : MonoBehaviour
     [SerializeField] SpriteRenderer sprite;
     
     public Collider2D ModelCollider => modelCollider;
-
     public Collider2D BallBounceArea => ballBounceArea;
-
     public SpriteRenderer Sprite => sprite;
 }

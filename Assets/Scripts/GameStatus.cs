@@ -1,27 +1,23 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+using System;
 
-[System.Serializable]
+[Serializable]
 public class GameStatus
 {
-    public readonly int TotalBricksAmount;
     public readonly int DifficultyLevel;
-
-    int _bricksLeft;
-    public int BricksLeft => _bricksLeft;
-
-    public void OnBrickDestroyed() 
-    {
-        _bricksLeft--;
-    }
-
-    public bool AllBricksDestroyed => _bricksLeft <= 0;
+    public readonly int TotalBricksAmount;
 
     public GameStatus(int totalBricks, int difficulty)
     {
         TotalBricksAmount = totalBricks;
-        _bricksLeft = totalBricks;
+        BricksLeft = totalBricks;
         DifficultyLevel = difficulty;
+    }
+
+    public int BricksLeft { get; private set; }
+    public bool AllBricksDestroyed => BricksLeft <= 0;
+
+    public void OnBrickDestroyed()
+    {
+        BricksLeft--;
     }
 }
