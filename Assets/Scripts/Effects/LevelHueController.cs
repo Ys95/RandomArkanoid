@@ -8,10 +8,10 @@ public class LevelHueController : MonoBehaviour
 {
     [SerializeField] Volume volume;
     [SerializeField] ColorAdjustments colorAdjustments;
-    
+
     [Space]
     [SerializeField] AffectedMaterial[] affectedMaterials;
-    
+
     float _defaultHue;
     float _defaultSaturation;
     float _defaultValue;

@@ -6,11 +6,11 @@ public class SoundEffect : ScriptableObject
     [SerializeField] AudioClip clip;
     [Range(0f, 3f)] [SerializeField] float volume = 1f;
     [Range(0f, 3f)] [SerializeField] float pitch = 1f;
-    
+
     GameObject _soundObject;
     Transform _soundObjectTransform;
     AudioSource _soundPlayer;
-    
+
     public float Length => clip.length;
 
     void CreateSoundPlayer()

@@ -5,11 +5,11 @@ using UnityEngine;
 public class BrickController : MonoBehaviour
 {
     public static Action<Vector2, int> OnBrickDestroyed;
-    
+
     [SerializeField] BrickType brick;
-    
+
     Dictionary<BrickNames, BrickType> _attachedBrickTypes;
-    
+
     public bool IsBrickActive => brick.gameObject.activeInHierarchy;
     public BrickType Brick => brick;
 
@@ -56,6 +56,7 @@ public class BrickController : MonoBehaviour
 
     public void DisableBricks()
     {
+        GetAttachedBrickTypes();
         foreach (var brickType in _attachedBrickTypes) brickType.Value.gameObject.SetActive(false);
     }
 

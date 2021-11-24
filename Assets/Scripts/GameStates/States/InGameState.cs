@@ -4,7 +4,7 @@ using UnityEngine.InputSystem;
 public class InGameState : GameState
 {
     [SerializeField] PlayerControlsDisabler playerControlsDisabler;
-    
+
     [Space]
     [SerializeField] GameState pauseState;
     [SerializeField] GameState levelClearedState;

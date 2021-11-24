@@ -5,12 +5,12 @@ using UnityEngine.Events;
 public class BrickControllersManager : MonoBehaviour
 {
     [SerializeField] UnityEvent<Vector2, int> onBrickDestroyed;
-  
+
     [Space]
     [SerializeField] GameObject brickControllerPrefab;
-    
+
     int _bricksLeft;
-    
+
     public List<BrickController> AllBricks { get; private set; } = new();
 
     void OnEnable()

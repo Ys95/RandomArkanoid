@@ -14562,11 +14562,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 663905534151221738, guid: 02850dd7d96099d4cb5b9c4174729ff5, type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4425708982846779080, guid: 02850dd7d96099d4cb5b9c4174729ff5, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5504293343804489463, guid: 02850dd7d96099d4cb5b9c4174729ff5, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6188054085431707325, guid: 02850dd7d96099d4cb5b9c4174729ff5, type: 3}
       propertyPath: m_Name

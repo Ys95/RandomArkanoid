@@ -4,7 +4,7 @@ using UnityEngine.InputSystem;
 public class RacketController : MonoBehaviour
 {
     [SerializeField] Racket racket;
-    
+
     RacketType _currentRacketType;
 
     void OnEnable()

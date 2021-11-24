@@ -7,7 +7,7 @@ public class LevelProperties
     [SerializeField] int bricksInCluster;
     [SerializeField] int minClustersPerDifficultyLvl;
     [SerializeField] int maxClustersPerDifficultyLvl;
-    
+
     public int BricksInCluster => bricksInCluster;
     public int MINClustersPerDifficultyLvl => minClustersPerDifficultyLvl;
     public int MAXClustersPerDifficultyLvl => maxClustersPerDifficultyLvl;
@@ -18,10 +18,10 @@ public class LevelController : MonoBehaviour
     [Header("Components")]
     [SerializeField] LevelBuilder levelBuilder;
     [SerializeField] DifficultySystem difficultySystem;
-    
+
     [Space]
     [SerializeField] LevelProperties levelProperties;
-    
+
     int _activeBricks;
     int _currentLevel;
 

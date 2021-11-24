@@ -7,7 +7,7 @@ public class BallHolder : MonoBehaviour
     [SerializeField] GameObject ballGameObject;
     [SerializeField] BallController ball;
     [SerializeField] InputActionAsset input;
-    
+
     InputActionMap _defaultMap;
     InputAction _fire;
 

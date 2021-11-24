@@ -5,15 +5,15 @@ using UnityEngine;
 public class HSVColorShifterController : MonoBehaviour
 {
     [SerializeField] HSVColor startingColor;
-    
+
     [Space]
     [SerializeField] ShiftedValue hue;
     [SerializeField] ShiftedValue value;
     [SerializeField] ShiftedValue saturation;
-    
+
     [Space]
     [Range(0f, 1f)] public float tickFrequency;
-    
+
     public Action<Color> ColorShift;
 
     public HSVColor StartingColor

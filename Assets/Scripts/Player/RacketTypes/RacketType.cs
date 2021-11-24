@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 public class RacketType : ScriptableObject
 {
     [SerializeField] GameObject modelPrefab;
-    
+
     public Racket Racket { get; private set; }
     public RacketModel Model { get; private set; }
 

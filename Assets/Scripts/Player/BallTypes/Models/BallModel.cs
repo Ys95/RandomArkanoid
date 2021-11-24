@@ -6,15 +6,15 @@ public class BallModel : MonoBehaviour
     [SerializeField] Collider2D ballCollider;
     [SerializeField] SpriteRenderer sprite;
     [SerializeField] AudioSource audioSource;
-    
+
     [Header("Particles")]
     [SerializeField] ParticleSystem onBrickHitParticle;
     [SerializeField] ParticleSystem onBounceParticle;
-    
+
     [Header("Sounds")]
     [SerializeField] SoundEffect onBounceSound;
     [SerializeField] SoundEffect onBrickHitSound;
-    
+
     public Collider2D BallCollider => ballCollider;
     public SpriteRenderer Sprite => sprite;
 

@@ -3,9 +3,9 @@ using UnityEngine;
 public class BallController : MonoBehaviour
 {
     [SerializeField] Ball ball;
-    
+
     BallType _currentBallType;
-    
+
     public Ball GetBall => ball;
 
     void Awake()

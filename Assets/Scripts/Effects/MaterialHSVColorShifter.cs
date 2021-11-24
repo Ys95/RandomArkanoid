@@ -3,7 +3,7 @@ using UnityEngine;
 public class MaterialHSVColorShifter : HSVColorShifter
 {
     static readonly int ColorID = Shader.PropertyToID("_Color");
-    
+
     [Space]
     [SerializeField] Material material;
 

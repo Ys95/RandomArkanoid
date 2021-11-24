@@ -13,38 +13,32 @@ public class Overlay
     [SerializeField] GameObject onFailedOverlayDisplay;
     [SerializeField] GameObject onSucceededOverlayDisplay;
 
+    GameObject _currentOverlay;
+
     public void TurnOn()
     {
         overlay.SetActive(true);
-        DisplayIdleOverlay(true);
-        
-        DisplayFailedOverlay(false);
-        DisplaySucceededOverlay(false);
-    }
+        DisplayIdleOverlay();
+     }
 
     public void TurnOff()
     {
         overlay.SetActive(false);
-        DisplayIdleOverlay(false);
-        DisplayFailedOverlay(false);
-        DisplaySucceededOverlay(false);
+        _currentOverlay = null;
     }
 
-    void Display(bool display, GameObject overlay)
+    void Display(GameObject overlay)
     {
-        if(overlay==null) return;
+        if (overlay == null) return;
+        if (_currentOverlay != null) _currentOverlay.SetActive(false);
 
-        if (display)
-        {
-            overlay.SetActive(true);
-            return;
-        }
-        overlay.SetActive(false);
+        overlay.SetActive(true);
+        _currentOverlay = overlay;
     }
 
-    public void DisplayIdleOverlay(bool display) => Display(display, idleOverlayDisplay);
+    public void DisplayIdleOverlay() => Display( idleOverlayDisplay);
 
-    public void DisplayFailedOverlay(bool display) => Display(display, onFailedOverlayDisplay);
+    public void DisplayFailedOverlay() => Display( onFailedOverlayDisplay);
 
-    public void DisplaySucceededOverlay(bool display) => Display(display, onSucceededOverlayDisplay);
+    public void DisplaySucceededOverlay() => Display( onSucceededOverlayDisplay);
 }

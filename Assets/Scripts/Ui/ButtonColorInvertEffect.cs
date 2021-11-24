@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class ButtonColorInvertEffect : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     [SerializeField] Button btn;
-    
+
     [Space]
     [SerializeField] ButtonPart buttonPart1;
     [SerializeField] ButtonPart buttonPart2;

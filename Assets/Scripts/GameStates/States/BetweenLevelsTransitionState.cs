@@ -7,17 +7,16 @@ public class BetweenLevelsTransitionState : GameState
 {
     [SerializeField] GameState inGameState;
     [Space]
-    
     [SerializeField] DifficultySystem difficultySystem;
     [SerializeField] ScoreSystem scoreSystem;
-    
+
     [Space]
     [SerializeField] TextMeshProUGUI levelScoreDisplay;
     [SerializeField] TextMeshProUGUI totalScoreDisplay;
-    
+
     [Header("Sum score effect")]
     [SerializeField] float timeBetweenTicks;
-    
+
     IEnumerator _effectCoroutine;
     AnyButtonPressAction _onAnyButtonPressAction;
 

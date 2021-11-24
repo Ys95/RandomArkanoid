@@ -732,7 +732,7 @@ GameObject:
   - component: {fileID: 7783482617007850091}
   - component: {fileID: 7783482617007850086}
   - component: {fileID: 7783482617007850085}
-  - component: {fileID: 7783482617007850084}
+  - component: {fileID: 1990840007688747048}
   m_Layer: 5
   m_Name: Top100
   m_TagString: Untagged
@@ -829,7 +829,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &7783482617007850084
+--- !u!114 &1990840007688747048
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -838,10 +838,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 7783482617007850089}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 31a19414c41e5ae4aae2af33fee712f6, type: 3}
+  m_Script: {fileID: 11500000, guid: 3312d7739989d2b4e91e6319e9a96d76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_ShowMaskGraphic: 1
+  m_Padding: {x: 0, y: 0, z: 0, w: 0}
+  m_Softness: {x: 0, y: 0}
 --- !u!1 &7783482617008028085
 GameObject:
   m_ObjectHideFlags: 0
@@ -1784,7 +1785,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0.7, b: 0.7, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1827,12 +1828,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5db1776bb66f5d34bb6b873124e459e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hsvColor:
+  startingColor:
     h: 0
-    s: 0.3
-    v: 1
+    s: 0
+    v: 0
+  hue:
+    shift: 0
+    pingPongMode: 0
+    amountPerTick: 0
+    min: 0
+    max: 0
+  value:
+    shift: 0
+    pingPongMode: 0
+    amountPerTick: 0
+    min: 0
+    max: 0
+  saturation:
+    shift: 0
+    pingPongMode: 0
+    amountPerTick: 0
+    min: 0
+    max: 0
   tickFrequency: 0.01
-  amountPerTick: 0.01
 --- !u!1 &7783482618145115441
 GameObject:
   m_ObjectHideFlags: 0

@@ -4,10 +4,10 @@ using UnityEngine;
 public class PickupDropper : MonoBehaviour
 {
     [Range(0, 100)] [SerializeField] int pickupDropChance;
-    
+
     [Space]
     [SerializeField] List<GameObject> pickupList;
-    
+
     bool ShouldPickupDrop => Random.Range(0, 101) <= pickupDropChance;
 
     public void RollPickup(Vector2 pos, int score)

@@ -7,9 +7,9 @@ using Random = UnityEngine.Random;
 public class BricksPositionsRandomizer
 {
     [SerializeField] List<Vector2Int> generatedBricks;
-    
-    Vector2Int[] _emptyBrickSpots;
     readonly List<Vector2Int[]> _emptyBrickClusters = new();
+
+    Vector2Int[] _emptyBrickSpots;
 
     int CalculateClustersAmount(LevelProperties properties, int difficultyLvl)
     {

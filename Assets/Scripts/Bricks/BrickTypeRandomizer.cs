@@ -9,7 +9,7 @@ public class BrickTypeRandomizer
     [Space]
     [SerializeField] BrickNames defaultBrick;
     [SerializeField] BrickSpawn[] possibleBricksSpawns;
-    
+
     List<BrickNames> _spawnCandidates = new();
     bool ShouldNonDefaultBrickSpawn => Random.Range(0f, 1f) <= 0.4f;
 

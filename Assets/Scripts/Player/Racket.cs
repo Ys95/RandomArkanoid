@@ -8,11 +8,11 @@ public class Racket
     [SerializeField] RacketModel model;
     [SerializeField] Rigidbody2D rb;
     [SerializeField] Transform transform;
-    
+
     [Space]
     [SerializeField] Transform player;
     [SerializeField] RacketType defaultRacketType;
-    
+
     public Transform Transform => transform;
 
     public RacketModel Model

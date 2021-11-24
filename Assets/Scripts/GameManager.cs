@@ -7,9 +7,9 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance;
     public static Action OnGamePause;
     public static Action OnGameUnpause;
-    
+
     [SerializeField] UnityEvent onNewGameStart;
-    
+
     [Space]
     [SerializeField] UnityEvent onLevelCleared;
     [SerializeField] UnityEvent onLifeLost;
@@ -17,10 +17,10 @@ public class GameManager : MonoBehaviour
     [SerializeField] UnityEvent onGameOver;
     [SerializeField] GameObject player;
     [SerializeField] GameObject level;
-    
+
     [Space]
-    [SerializeField] DifficultySystem difficultySystem;
-    
+    [SerializeField] BGMController bgmController;
+
     GameManager _instance;
 
     void Awake()
@@ -34,6 +34,14 @@ public class GameManager : MonoBehaviour
         {
             Destroy(this);
         }
+    }
+
+    void Start()
+    {
+#if UNITY_ANDROID
+        Application.targetFrameRate = 60;
+#endif
+        bgmController.StartPlaying();
     }
 
     void DisableGameArea()

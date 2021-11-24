@@ -6,10 +6,10 @@ using UnityEngine.InputSystem;
 public class ShootingRacketType : RacketType
 {
     [SerializeField] GameObject bulletPrefab;
-    
+
     [Space]
     [SerializeField] float bulletSpeed;
-    
+
     readonly List<BulletScript> _bulletPool = new();
 
     BulletScript GetPooledBullet()

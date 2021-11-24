@@ -3,7 +3,7 @@ using UnityEngine;
 public class LivesSystem : MonoBehaviour
 {
     [SerializeField] int initialLivesAmount;
-    
+
     public int LivesLeft { get; private set; }
 
     public void AddChance()

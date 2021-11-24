@@ -5,11 +5,11 @@ public class LevelBuilder : MonoBehaviour
     [SerializeField] BrickControllersManager brickControllersManager;
     [SerializeField] BricksPositionsRandomizer bricksPositionsRandomizer;
     [SerializeField] BrickTypeRandomizer brickTypeRandomizer;
-    
+
     [Space]
     [SerializeField] Vector2Int grid;
     [SerializeField] Vector2 spacing;
-    
+
     [Space]
     [SerializeField] float brickWidth;
     [SerializeField] float brickHeight;
@@ -67,6 +67,7 @@ public class LevelBuilder : MonoBehaviour
     public void ClearGrid()
     {
         foreach (var brickController in brickControllersManager.AllBricks) brickController.DisableBricks();
+        brickControllersManager.AllBricks.Clear();
     }
 
     [ContextMenu("Wipe")]

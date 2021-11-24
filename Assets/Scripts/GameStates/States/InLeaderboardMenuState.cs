@@ -5,46 +5,58 @@ using UnityEngine.UI;
 public class InLeaderboardMenuState : GameState
 {
     [SerializeField] Overlay onConnectingOverlay;
-   
+
     [Space]
     [SerializeField] TMP_InputField nameInputField;
     [SerializeField] Button sendScoreBtn;
     [SerializeField] PopupMessage popupMessage;
-    
+
     [Space]
     [SerializeField] GameObject playerCurrentScore;
     [SerializeField] TextMeshProUGUI playerCurrentScoreDisplay;
     [SerializeField] TextMeshProUGUI playerBestScoreDisplay;
-    
+
     [Space]
     [SerializeField] int leaderboardID;
     [SerializeField] ScoreSystem scoreSystem;
-    
+
     [Space]
     [SerializeField] LeaderboardDisplay leaderboardDisplay;
-    
+
     readonly string _cantOverwriteScore = "Can't send score lower than your best score.";
     readonly string _scoreSend = "Score send successfully.";
-    
+
     OnlineLeaderboardSystem.ConnectedPlayer? _connectedPlayer;
     OnlineLeaderboardSystem _onlineLeaderboardSystem;
-    
+
     bool PlayerEligibleToSendScore => _connectedPlayer?.BestScore < scoreSystem.TotalScore;
 
     void OnConnectedToScoreSystem(OnlineLeaderboardSystem.ConnectionReturnMessage msg)
     {
+        bool connectionSucceeded=false;
+
         if (msg.ConnectionMSG == OnlineLeaderboardSystem.CONNECTION_FAILED)
         {
             _connectedPlayer = null;
-            onConnectingOverlay.DisplayIdleOverlay(false);
-            onConnectingOverlay.DisplayFailedOverlay(true);
+            connectionSucceeded = false;
+        }
+        else connectionSucceeded = true;
+
+        if (connectionSucceeded == false)
+        {
+            onConnectingOverlay.DisplayFailedOverlay();
             return;
         }
-
+        
         _connectedPlayer = msg.Player;
         nameInputField.text = msg.Player?.Name;
 
-        _onlineLeaderboardSystem.FetchScores(leaderboardDisplay.UpdateDisplay);
+        _onlineLeaderboardSystem.FetchScores((response) =>
+        {
+            if (response == null) return;
+            leaderboardDisplay.UpdateDisplay(response);
+        });
+
 
         if (_connectedPlayer?.BestScore == OnlineLeaderboardSystem.NO_BEST_SCORE)
             playerBestScoreDisplay.text = "-";

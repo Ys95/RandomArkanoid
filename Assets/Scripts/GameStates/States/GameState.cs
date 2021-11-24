@@ -6,7 +6,7 @@ public abstract class GameState : MonoBehaviour
     [Header("Setup")]
     [SerializeField] GameStateController gameStateController;
     [SerializeField] GameObject displayedUI;
-    
+
     protected GameStateController GameStateController => gameStateController;
 
     void OnValidate()

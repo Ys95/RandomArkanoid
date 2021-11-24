@@ -1,6 +1,5 @@
 using System;
 using LootLocker.Requests;
-using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 
@@ -8,24 +7,27 @@ using UnityEngine;
 public class LeaderboardDisplay : MonoBehaviour
 {
     [SerializeField] GameObject slotPrefab;
-    
+
     [Space]
     [SerializeField] int maxEntries;
     [SerializeField] Transform entriesParent;
     [SerializeField] LeaderboardEntry[] displayedEntries;
 
+#if UNITY_EDITOR
     [ContextMenu("Create display")]
     void CreateDisplay()
     {
         displayedEntries = new LeaderboardEntry[maxEntries];
         for (var i = 0; i < maxEntries; i++)
         {
-            displayedEntries[i] = PrefabUtility.InstantiatePrefab(slotPrefab, entriesParent)
-                .GetComponent<LeaderboardEntry>();
+            var go = PrefabUtility.InstantiatePrefab(slotPrefab, entriesParent);
+            GameObject go2 = (GameObject) go;
+            displayedEntries[i] =  go2.GetComponent<LeaderboardEntry>();
             displayedEntries[i].SetEntryIndex(i + 1);
             displayedEntries[i].FillWithDefaultValue();
         }
     }
+#endif
 
     public void UpdateDisplay(LootLockerLeaderboardMember[] scores)
     {

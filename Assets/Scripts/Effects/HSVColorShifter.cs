@@ -4,7 +4,7 @@ public abstract class HSVColorShifter : MonoBehaviour
 {
     [Header("Color shift controller")]
     [SerializeField] HSVColorShifterController controller;
-    
+
     protected HSVColorShifterController Controller => controller;
 
     void OnEnable()

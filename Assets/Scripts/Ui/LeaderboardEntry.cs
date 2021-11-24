@@ -6,7 +6,7 @@ public class LeaderboardEntry : MonoBehaviour
     [SerializeField] TextMeshProUGUI playerName;
     [SerializeField] TextMeshProUGUI playerPosition;
     [SerializeField] TextMeshProUGUI playerScore;
-    
+
     int _index;
 
     public void SetEntryIndex(int index)

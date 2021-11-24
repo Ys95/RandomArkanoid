@@ -6,7 +6,7 @@ using UnityEngine;
 public class PopupMessage : MonoBehaviour
 {
     [SerializeField] GameObject messageWindow;
-    
+
     [Space]
     [SerializeField] TextMeshProUGUI message;
 

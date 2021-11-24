@@ -8,11 +8,11 @@ public class OnlineLeaderboardSystem
     public static readonly string CONNECTION_SUCCESSFUL = "Connection successful";
     public static readonly string SCORE_SEND_FAILED = "Score send failed";
     public static readonly string SCORE_SEND_SUCCESSFUL = "Score send successful";
-    
+
     public static readonly int NO_BEST_SCORE = -1;
-    
+
     readonly int leaderboardID;
-    
+
     int _memeberId;
     int _playerBestScore;
     int _playerLeaderboardPosition;
@@ -81,7 +81,7 @@ public class OnlineLeaderboardSystem
 
     public void FetchScores(Action<LootLockerLeaderboardMember[]> onCompleted)
     {
-        LootLockerSDKManager.GetScoreListMain(809, 100, 0, response =>
+        LootLockerSDKManager.GetScoreListMain(leaderboardID, 100, 0, response =>
         {
             if (response.success)
             {

@@ -6,10 +6,10 @@ public class ShootingRacketModel : RacketModel
     [SerializeField] Transform gunBarrel1;
     [SerializeField] Transform gunBarrel2;
     [SerializeField] AudioSource audioSource;
-    
+
     [Space]
     [SerializeField] ParticleSystem[] shootEffects;
-    
+
     [Space]
     [SerializeField] SoundEffect shootSound;
     public Transform GunBarrel1 => gunBarrel1;

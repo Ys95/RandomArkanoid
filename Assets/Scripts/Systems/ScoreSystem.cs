@@ -5,7 +5,7 @@ public class ScoreSystem : MonoBehaviour
 {
     [SerializeField] TextMeshProUGUI scoreDisplay;
     [SerializeField] int _totalScore;
-    
+
     public int TotalScore => _totalScore;
     public int LevelScore { get; private set; }
     public int PreviousLevelScore { get; private set; }

@@ -5,9 +5,9 @@ public class BallType : ScriptableObject
 {
     [SerializeField] GameObject modelPrefab;
     [SerializeField] float modeSpeedModifier;
-    
+
     BallModel _model;
-    
+
     protected Ball Ball { get; private set; }
 
     public void HandleOnCollisionEnter(Collision2D collision)
