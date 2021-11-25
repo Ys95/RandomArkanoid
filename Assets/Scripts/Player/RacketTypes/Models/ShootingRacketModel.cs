@@ -1,26 +1,30 @@
+using Effects;
 using UnityEngine;
 
-public class ShootingRacketModel : RacketModel
+namespace Player.RacketTypes.Models
 {
-    [Space]
-    [SerializeField] Transform gunBarrel1;
-    [SerializeField] Transform gunBarrel2;
-    [SerializeField] AudioSource audioSource;
-
-    [Space]
-    [SerializeField] ParticleSystem[] shootEffects;
-
-    [Space]
-    [SerializeField] SoundEffect shootSound;
-    public Transform GunBarrel1 => gunBarrel1;
-    public Transform GunBarrel2 => gunBarrel2;
-
-    public void PlayOnShootEffect()
+    public class ShootingRacketModel : RacketModel
     {
-        foreach (var effect in shootEffects)
+        [Space]
+        [SerializeField] Transform gunBarrel1;
+        [SerializeField] Transform gunBarrel2;
+        [SerializeField] AudioSource audioSource;
+
+        [Space]
+        [SerializeField] ParticleSystem[] shootEffects;
+
+        [Space]
+        [SerializeField] SoundEffect shootSound;
+        public Transform GunBarrel1 => gunBarrel1;
+        public Transform GunBarrel2 => gunBarrel2;
+
+        public void PlayOnShootEffect()
         {
-            effect.Play();
-            shootSound.Play(audioSource);
+            foreach (var effect in shootEffects)
+            {
+                effect.Play();
+                shootSound.Play(audioSource);
+            }
         }
     }
 }

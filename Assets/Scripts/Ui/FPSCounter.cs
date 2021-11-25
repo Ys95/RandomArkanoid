@@ -1,34 +1,37 @@
 using TMPro;
 using UnityEngine;
 
-public class FPSCounter : MonoBehaviour
+namespace UI
 {
-    [SerializeField] TextMeshProUGUI display;
-
-    float _fps;
-    float _averageFps;
-    float _displayedFps;
-    int _counter;
-
-    void UpdateDisplay()
+    public class FPSCounter : MonoBehaviour
     {
-        display.text = "FPS: " + _displayedFps;
-    }
+        [SerializeField] TextMeshProUGUI display;
+        float _averageFps;
+        int _counter;
+        float _displayedFps;
 
-    void Update()
-    {
-        _fps = 1 / Time.unscaledDeltaTime;
-        _averageFps += _fps;
-        _counter++;
+        float _fps;
 
-        if (_counter >= 10)
+        void Update()
         {
-            _averageFps /= _counter;
-            _displayedFps = Mathf.Round(_averageFps);
-            UpdateDisplay();
+            _fps = 1 / Time.unscaledDeltaTime;
+            _averageFps += _fps;
+            _counter++;
 
-            _averageFps = 0f;
-            _counter = 0;
+            if (_counter >= 10)
+            {
+                _averageFps /= _counter;
+                _displayedFps = Mathf.Round(_averageFps);
+                UpdateDisplay();
+
+                _averageFps = 0f;
+                _counter = 0;
+            }
+        }
+
+        void UpdateDisplay()
+        {
+            display.text = "FPS: " + _displayedFps;
         }
     }
 }

@@ -1,13 +1,16 @@
 using TMPro;
 using UnityEngine;
 
-public class TextMeshHSVColorShifter : HSVColorShifter
+namespace Effects.ColorShifter
 {
-    [Space]
-    [SerializeField] TextMeshPro text;
-
-    protected override void ColorShift(Color color)
+    public class TextMeshHSVColorShifter : HSVColorShifter
     {
-        text.color = color;
+        [Space]
+        [SerializeField] TextMeshPro text;
+
+        protected override void ColorShift(Color color)
+        {
+            text.color = color;
+        }
     }
 }

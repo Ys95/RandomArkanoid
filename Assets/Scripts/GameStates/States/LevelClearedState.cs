@@ -1,19 +1,22 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class LevelClearedState : GameState
+namespace GameStates.States
 {
-    [SerializeField] GameState transitionScreen;
-
-    public override void HandlePauseKeyPress(InputAction.CallbackContext context)
+    public class LevelClearedState : GameState
     {
-        base.HandlePauseKeyPress(context);
-        GameStateController.GoToNewState(transitionScreen);
-    }
+        [SerializeField] GameState transitionScreen;
 
-    public override void HandleAnyKeyPress(InputAction.CallbackContext context)
-    {
-        base.HandleAnyKeyPress(context);
-        GameStateController.GoToNewState(transitionScreen);
+        public override void HandlePauseKeyPress(InputAction.CallbackContext context)
+        {
+            base.HandlePauseKeyPress(context);
+            GameStateController.GoToNewState(transitionScreen);
+        }
+
+        public override void HandleAnyKeyPress(InputAction.CallbackContext context)
+        {
+            base.HandleAnyKeyPress(context);
+            GameStateController.GoToNewState(transitionScreen);
+        }
     }
 }

@@ -2,89 +2,92 @@ using System;
 using System.Collections;
 using UnityEngine;
 
-public class HSVColorShifterController : MonoBehaviour
+namespace Effects.ColorShifter
 {
-    [SerializeField] HSVColor startingColor;
-
-    [Space]
-    [SerializeField] ShiftedValue hue;
-    [SerializeField] ShiftedValue value;
-    [SerializeField] ShiftedValue saturation;
-
-    [Space]
-    [Range(0f, 1f)] public float tickFrequency;
-
-    public Action<Color> ColorShift;
-
-    public HSVColor StartingColor
+    public class HSVColorShifterController : MonoBehaviour
     {
-        get => startingColor;
-        set => startingColor = value;
-    }
+        [SerializeField] HSVColor startingColor;
 
-    void OnEnable()
-    {
-        StartCoroutine(ColorShiftCoroutine());
-    }
-
-    Color GetColor()
-    {
-        if (hue.IsShifted) startingColor.H = hue.Shift(StartingColor.H);
-        if (saturation.IsShifted) startingColor.S = saturation.Shift(StartingColor.S);
-        if (value.IsShifted) startingColor.V = value.Shift(StartingColor.V);
-
-        return Color.HSVToRGB(StartingColor.H, StartingColor.S, StartingColor.V);
-    }
-
-    IEnumerator ColorShiftCoroutine()
-    {
-        while (gameObject.activeInHierarchy)
-        {
-            ColorShift?.Invoke(GetColor());
-            yield return new WaitForSeconds(tickFrequency);
-        }
-    }
-
-    [Serializable]
-    struct ShiftedValue
-    {
-        [SerializeField] bool shift;
-        [SerializeField] bool pingPongMode;
         [Space]
-        [Range(0f, 1f)] [SerializeField] float amountPerTick;
+        [SerializeField] ShiftedValue hue;
+        [SerializeField] ShiftedValue value;
+        [SerializeField] ShiftedValue saturation;
+
         [Space]
-        [Range(0f, 1f)] [SerializeField] float min;
-        [Range(0f, 1f)] [SerializeField] float max;
-        bool _pingPongReverse;
-        public bool IsShifted => shift;
+        [Range(0f, 1f)] public float tickFrequency;
 
-        public float Shift(float hsv)
+        public Action<Color> ColorShift;
+
+        public HSVColor StartingColor
         {
-            if (pingPongMode) return PingPongShift(hsv);
-            return NormalShift(hsv);
+            get => startingColor;
+            set => startingColor = value;
         }
 
-        float NormalShift(float hsv)
+        void OnEnable()
         {
-            hsv += amountPerTick;
-            if (hsv >= max) hsv = min;
-            return hsv;
+            StartCoroutine(ColorShiftCoroutine());
         }
 
-        float PingPongShift(float hsv)
+        Color GetColor()
         {
-            if (!_pingPongReverse)
+            if (hue.IsShifted) startingColor.H = hue.Shift(StartingColor.H);
+            if (saturation.IsShifted) startingColor.S = saturation.Shift(StartingColor.S);
+            if (value.IsShifted) startingColor.V = value.Shift(StartingColor.V);
+
+            return Color.HSVToRGB(StartingColor.H, StartingColor.S, StartingColor.V);
+        }
+
+        IEnumerator ColorShiftCoroutine()
+        {
+            while (gameObject.activeInHierarchy)
+            {
+                ColorShift?.Invoke(GetColor());
+                yield return new WaitForSeconds(tickFrequency);
+            }
+        }
+
+        [Serializable]
+        struct ShiftedValue
+        {
+            [SerializeField] bool shift;
+            [SerializeField] bool pingPongMode;
+            [Space]
+            [Range(0f, 1f)] [SerializeField] float amountPerTick;
+            [Space]
+            [Range(0f, 1f)] [SerializeField] float min;
+            [Range(0f, 1f)] [SerializeField] float max;
+            bool _pingPongReverse;
+            public bool IsShifted => shift;
+
+            public float Shift(float hsv)
+            {
+                if (pingPongMode) return PingPongShift(hsv);
+                return NormalShift(hsv);
+            }
+
+            float NormalShift(float hsv)
             {
                 hsv += amountPerTick;
-                if (hsv >= max) _pingPongReverse = true;
-            }
-            else
-            {
-                hsv -= amountPerTick;
-                if (hsv <= min) _pingPongReverse = false;
+                if (hsv >= max) hsv = min;
+                return hsv;
             }
 
-            return hsv;
+            float PingPongShift(float hsv)
+            {
+                if (!_pingPongReverse)
+                {
+                    hsv += amountPerTick;
+                    if (hsv >= max) _pingPongReverse = true;
+                }
+                else
+                {
+                    hsv -= amountPerTick;
+                    if (hsv <= min) _pingPongReverse = false;
+                }
+
+                return hsv;
+            }
         }
     }
 }

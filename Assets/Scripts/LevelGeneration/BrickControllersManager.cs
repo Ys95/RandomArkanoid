@@ -1,53 +1,57 @@
 using System.Collections.Generic;
+using Bricks;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class BrickControllersManager : MonoBehaviour
+namespace LevelGeneration
 {
-    [SerializeField] UnityEvent<Vector2, int> onBrickDestroyed;
-
-    [Space]
-    [SerializeField] GameObject brickControllerPrefab;
-
-    int _bricksLeft;
-
-    public List<BrickController> AllBricks { get; private set; } = new();
-
-    void OnEnable()
+    public class BrickControllersManager : MonoBehaviour
     {
-        BrickController.OnBrickDestroyed += TriggerEvent;
-    }
+        [SerializeField] UnityEvent<Vector2, int> onBrickDestroyed;
 
-    void OnDisable()
-    {
-        BrickController.OnBrickDestroyed -= TriggerEvent;
-    }
+        [Space]
+        [SerializeField] GameObject brickControllerPrefab;
 
-    void TriggerEvent(Vector2 pos, int score)
-    {
-        onBrickDestroyed?.Invoke(pos, score);
-    }
+        int _bricksLeft;
 
-    [ContextMenu("WipePool")]
-    public void WipePool()
-    {
-        AllBricks = new List<BrickController>();
-    }
+        public List<BrickController> AllBricks { get; private set; } = new();
 
-    BrickController GetControllerFromPool()
-    {
-        foreach (var brickController in AllBricks)
-            if (!brickController.IsBrickActive)
-                return brickController;
+        void OnEnable()
+        {
+            BrickController.OnBrickDestroyed += TriggerEvent;
+        }
 
-        var newBrick = Instantiate(brickControllerPrefab, transform);
-        var controller = newBrick.GetComponent<BrickController>();
-        AllBricks.Add(controller);
-        return controller;
-    }
+        void OnDisable()
+        {
+            BrickController.OnBrickDestroyed -= TriggerEvent;
+        }
 
-    public BrickController GetBrickController()
-    {
-        return GetControllerFromPool();
+        void TriggerEvent(Vector2 pos, int score)
+        {
+            onBrickDestroyed?.Invoke(pos, score);
+        }
+
+        [ContextMenu("WipePool")]
+        public void WipePool()
+        {
+            AllBricks = new List<BrickController>();
+        }
+
+        BrickController GetControllerFromPool()
+        {
+            foreach (var brickController in AllBricks)
+                if (!brickController.IsBrickActive)
+                    return brickController;
+
+            var newBrick = Instantiate(brickControllerPrefab, transform);
+            var controller = newBrick.GetComponent<BrickController>();
+            AllBricks.Add(controller);
+            return controller;
+        }
+
+        public BrickController GetBrickController()
+        {
+            return GetControllerFromPool();
+        }
     }
 }

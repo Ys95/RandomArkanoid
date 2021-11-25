@@ -1,15 +1,19 @@
+using GameSystems;
 using TMPro;
 using UnityEngine;
 
-public class GameOverState : GameState
+namespace GameStates.States
 {
-    [Space]
-    [SerializeField] TextMeshProUGUI scoreDisplay;
-    [SerializeField] ScoreSystem scoreSystem;
-
-    protected override void OnStateEnter()
+    public class GameOverState : GameState
     {
-        scoreSystem.SumScores();
-        scoreDisplay.text = scoreSystem.TotalScore.ToString();
+        [Space]
+        [SerializeField] TextMeshProUGUI scoreDisplay;
+        [SerializeField] ScoreSystem scoreSystem;
+
+        protected override void OnStateEnter()
+        {
+            scoreSystem.SumScores();
+            scoreDisplay.text = scoreSystem.TotalScore.ToString();
+        }
     }
 }

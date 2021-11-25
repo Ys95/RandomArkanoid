@@ -1,9 +1,12 @@
 using UnityEngine;
 
-public class NormalBrickType : BrickType
+namespace Bricks
 {
-    public override void HandleOnCollisionEnter(Collider2D other)
+    public class NormalBrickType : BrickType
     {
-        DestroyBrick();
+        public override void HandleOnCollisionEnter(Collider2D other)
+        {
+            DestroyBrick();
+        }
     }
 }

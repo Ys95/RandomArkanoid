@@ -1,59 +1,63 @@
 using System.Collections.Generic;
+using Player.RacketTypes.Models;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-[CreateAssetMenu(fileName = "Shooting_RacketType", menuName = "RacketType/ShootingRacketType")]
-public class ShootingRacketType : RacketType
+namespace Player.RacketTypes
 {
-    [SerializeField] GameObject bulletPrefab;
-
-    [Space]
-    [SerializeField] float bulletSpeed;
-
-    readonly List<BulletScript> _bulletPool = new();
-
-    BulletScript GetPooledBullet()
+    [CreateAssetMenu(fileName = "Shooting_RacketType", menuName = "RacketType/ShootingRacketType")]
+    public class ShootingRacketType : RacketType
     {
-        foreach (var bullet in _bulletPool)
-            if (!bullet.gameObject.activeInHierarchy)
-                return bullet;
+        [SerializeField] GameObject bulletPrefab;
 
-        var newBullet = Instantiate(bulletPrefab, Racket.Player);
-        newBullet.SetActive(false);
-        var bulletScript = newBullet.GetComponent<BulletScript>();
-        _bulletPool.Add(bulletScript);
-        return bulletScript;
-    }
+        [Space]
+        [SerializeField] float bulletSpeed;
 
-    void DisableAllBullets()
-    {
-        foreach (var bullet in _bulletPool)
-            if (bullet.gameObject.activeInHierarchy)
-                bullet.gameObject.SetActive(false);
-    }
+        readonly List<BulletScript> _bulletPool = new();
 
-    public override void HandleFireAction(InputAction.CallbackContext context)
-    {
-        if (!context.started) return;
+        BulletScript GetPooledBullet()
+        {
+            foreach (var bullet in _bulletPool)
+                if (!bullet.gameObject.activeInHierarchy)
+                    return bullet;
 
-        var shootingRacketModel = (ShootingRacketModel) Model;
+            var newBullet = Instantiate(bulletPrefab, Racket.Player);
+            newBullet.SetActive(false);
+            var bulletScript = newBullet.GetComponent<BulletScript>();
+            _bulletPool.Add(bulletScript);
+            return bulletScript;
+        }
 
-        var bullet1 = GetPooledBullet();
-        bullet1.transform.position = shootingRacketModel.GunBarrel1.position;
-        bullet1.gameObject.SetActive(true);
-        bullet1.Rb.velocity = Vector2.up * bulletSpeed;
+        void DisableAllBullets()
+        {
+            foreach (var bullet in _bulletPool)
+                if (bullet.gameObject.activeInHierarchy)
+                    bullet.gameObject.SetActive(false);
+        }
 
-        var bullet2 = GetPooledBullet();
-        bullet2.transform.position = shootingRacketModel.GunBarrel2.position;
-        bullet2.gameObject.SetActive(true);
-        bullet2.Rb.velocity = Vector2.up * bulletSpeed;
+        public override void HandleFireAction(InputAction.CallbackContext context)
+        {
+            if (!context.started) return;
 
-        shootingRacketModel.PlayOnShootEffect();
-    }
+            var shootingRacketModel = (ShootingRacketModel) Model;
 
-    public override void OnModeExit()
-    {
-        base.OnModeExit();
-        DisableAllBullets();
+            var bullet1 = GetPooledBullet();
+            bullet1.transform.position = shootingRacketModel.GunBarrel1.position;
+            bullet1.gameObject.SetActive(true);
+            bullet1.Rb.velocity = Vector2.up * bulletSpeed;
+
+            var bullet2 = GetPooledBullet();
+            bullet2.transform.position = shootingRacketModel.GunBarrel2.position;
+            bullet2.gameObject.SetActive(true);
+            bullet2.Rb.velocity = Vector2.up * bulletSpeed;
+
+            shootingRacketModel.PlayOnShootEffect();
+        }
+
+        public override void OnModeExit()
+        {
+            base.OnModeExit();
+            DisableAllBullets();
+        }
     }
 }

@@ -1,52 +1,56 @@
+using Effects;
 using UnityEngine;
 
-public class BallModel : MonoBehaviour
+namespace Player.BallTypes.Models
 {
-    [Header("Components")]
-    [SerializeField] Collider2D ballCollider;
-    [SerializeField] SpriteRenderer sprite;
-    [SerializeField] AudioSource audioSource;
-
-    [Header("Particles")]
-    [SerializeField] ParticleSystem onBrickHitParticle;
-    [SerializeField] ParticleSystem onBounceParticle;
-
-    [Header("Sounds")]
-    [SerializeField] SoundEffect onBounceSound;
-    [SerializeField] SoundEffect onBrickHitSound;
-
-    public Collider2D BallCollider => ballCollider;
-    public SpriteRenderer Sprite => sprite;
-
-    void Play(SoundEffect effect)
+    public class BallModel : MonoBehaviour
     {
-        if (effect == null) return;
-        effect.Play(audioSource);
-    }
+        [Header("Components")]
+        [SerializeField] Collider2D ballCollider;
+        [SerializeField] SpriteRenderer sprite;
+        [SerializeField] AudioSource audioSource;
 
-    void Play(ParticleSystem particle)
-    {
-        if (particle == null) return;
-        particle.Play();
-    }
+        [Header("Particles")]
+        [SerializeField] ParticleSystem onBrickHitParticle;
+        [SerializeField] ParticleSystem onBounceParticle;
 
-    public void PlayOnBrickHitSound()
-    {
-        Play(onBrickHitSound);
-    }
+        [Header("Sounds")]
+        [SerializeField] SoundEffect onBounceSound;
+        [SerializeField] SoundEffect onBrickHitSound;
 
-    public void PlayOnBounceSound()
-    {
-        Play(onBounceSound);
-    }
+        public Collider2D BallCollider => ballCollider;
+        public SpriteRenderer Sprite => sprite;
 
-    public void PlayOnBounceParticle()
-    {
-        Play(onBounceParticle);
-    }
+        void Play(SoundEffect effect)
+        {
+            if (effect == null) return;
+            effect.Play(audioSource);
+        }
 
-    public void PlayOnBrickHitParticle()
-    {
-        Play(onBrickHitParticle);
+        void Play(ParticleSystem particle)
+        {
+            if (particle == null) return;
+            particle.Play();
+        }
+
+        public void PlayOnBrickHitSound()
+        {
+            Play(onBrickHitSound);
+        }
+
+        public void PlayOnBounceSound()
+        {
+            Play(onBounceSound);
+        }
+
+        public void PlayOnBounceParticle()
+        {
+            Play(onBounceParticle);
+        }
+
+        public void PlayOnBrickHitParticle()
+        {
+            Play(onBrickHitParticle);
+        }
     }
 }

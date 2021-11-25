@@ -1,37 +1,40 @@
 using System;
 using UnityEngine;
 
-[Serializable]
-public struct HSVColor
+namespace Effects.ColorShifter
 {
-    [Range(0f, 1f)] [SerializeField] float h;
-    [Range(0f, 1f)] [SerializeField] float s;
-    [Range(0f, 1f)] [SerializeField] float v;
-
-    public HSVColor(float h, float s, float v)
+    [Serializable]
+    public struct HSVColor
     {
-        this.h = h;
-        this.s = s;
-        this.v = v;
-    }
+        [Range(0f, 1f)] [SerializeField] float h;
+        [Range(0f, 1f)] [SerializeField] float s;
+        [Range(0f, 1f)] [SerializeField] float v;
 
-    public float H
-    {
-        get => h;
-        set => h = value;
-    }
+        public HSVColor(float h, float s, float v)
+        {
+            this.h = h;
+            this.s = s;
+            this.v = v;
+        }
 
-    public float S
-    {
-        get => s;
-        set => s = value;
-    }
+        public float H
+        {
+            get => h;
+            set => h = value;
+        }
 
-    public float V
-    {
-        get => v;
-        set => v = value;
-    }
+        public float S
+        {
+            get => s;
+            set => s = value;
+        }
 
-    public Color GetColor => Color.HSVToRGB(h, s, v);
+        public float V
+        {
+            get => v;
+            set => v = value;
+        }
+
+        public Color GetColor => Color.HSVToRGB(h, s, v);
+    }
 }

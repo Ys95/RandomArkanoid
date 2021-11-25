@@ -1,52 +1,56 @@
 using System.Collections.Generic;
+using GameStates.States;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class GameStateController : MonoBehaviour
+namespace GameStates
 {
-    [SerializeField] GameState defaultState;
-    Stack<GameState> _gameStates;
-
-    void OnEnable()
+    public class GameStateController : MonoBehaviour
     {
-        _gameStates = new Stack<GameState>();
-        _gameStates.Push(defaultState);
-        defaultState.EnableState();
-    }
+        [SerializeField] GameState defaultState;
+        Stack<GameState> _gameStates;
 
-    public void GoToNewState(GameState state)
-    {
-        _gameStates.Peek().DisableState();
-        _gameStates.Push(state);
-        state.EnableState();
-    }
+        void OnEnable()
+        {
+            _gameStates = new Stack<GameState>();
+            _gameStates.Push(defaultState);
+            defaultState.EnableState();
+        }
 
-    public void GoToPreviousState()
-    {
-        if (_gameStates.Peek() == defaultState) return;
+        public void GoToNewState(GameState state)
+        {
+            _gameStates.Peek().DisableState();
+            _gameStates.Push(state);
+            state.EnableState();
+        }
 
-        _gameStates.Pop().DisableState();
-        _gameStates.Peek().EnableState();
-    }
+        public void GoToPreviousState()
+        {
+            if (_gameStates.Peek() == defaultState) return;
 
-    public void GoToDefault()
-    {
-        _gameStates.Pop().DisableState();
-        _gameStates.Clear();
-        _gameStates.Push(defaultState);
-        defaultState.EnableState();
-    }
+            _gameStates.Pop().DisableState();
+            _gameStates.Peek().EnableState();
+        }
 
-    //Called from input event
-    public void PauseKeyPress(InputAction.CallbackContext context)
-    {
-        if (!context.started) return;
-        _gameStates.Peek().HandlePauseKeyPress(context);
-    }
+        public void GoToDefault()
+        {
+            _gameStates.Pop().DisableState();
+            _gameStates.Clear();
+            _gameStates.Push(defaultState);
+            defaultState.EnableState();
+        }
 
-    public void AnyKeyPress(InputAction.CallbackContext context)
-    {
-        if (!context.started) return;
-        _gameStates.Peek().HandleAnyKeyPress(context);
+        //Called from input event
+        public void PauseKeyPress(InputAction.CallbackContext context)
+        {
+            if (!context.started) return;
+            _gameStates.Peek().HandlePauseKeyPress(context);
+        }
+
+        public void AnyKeyPress(InputAction.CallbackContext context)
+        {
+            if (!context.started) return;
+            _gameStates.Peek().HandleAnyKeyPress(context);
+        }
     }
 }

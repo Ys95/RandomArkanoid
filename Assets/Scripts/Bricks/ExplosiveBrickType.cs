@@ -1,63 +1,67 @@
+using Effects;
 using UnityEngine;
 
-public class ExplosiveBrickType : BrickType
+namespace Bricks
 {
-    [Space]
-    [Header("Explosive brick")]
-    [SerializeField] Vector2 explosionRadius;
-    [SerializeField] int maxExplosionTargets;
-    [SerializeField] SoundEffect explosionSoundEffect;
-
-    [Space]
-    [SerializeField] LayerMask explosionTargetsLayer;
-
-    bool _exploded;
-    Collider2D[] _hitByExplosion;
-
-    void Awake()
+    public class ExplosiveBrickType : BrickType
     {
-        _hitByExplosion = new Collider2D[maxExplosionTargets];
-    }
+        [Space]
+        [Header("Explosive brick")]
+        [SerializeField] Vector2 explosionRadius;
+        [SerializeField] int maxExplosionTargets;
+        [SerializeField] SoundEffect explosionSoundEffect;
 
-    void OnDrawGizmos()
-    {
-        if (BrickCollider == null) return;
-        Gizmos.DrawWireCube(BrickCollider.bounds.center, explosionRadius);
-    }
+        [Space]
+        [SerializeField] LayerMask explosionTargetsLayer;
 
-    protected override void OnBrickEnabled()
-    {
-        base.OnBrickEnabled();
-        _exploded = false;
-    }
+        bool _exploded;
+        Collider2D[] _hitByExplosion;
 
-    void Explode()
-    {
-        _exploded = true;
-
-        var targetsHit = Physics2D.OverlapBoxNonAlloc(BrickCollider.bounds.center, explosionRadius, 0f, _hitByExplosion,
-            explosionTargetsLayer);
-        Mathf.Clamp(targetsHit, 0, maxExplosionTargets);
-        Debug.Log("Explosive brick targets hit: " + targetsHit);
-
-        for (var i = 0; i < targetsHit; i++)
+        void Awake()
         {
-            if (_hitByExplosion[i] == null) continue;
-
-            var controller = _hitByExplosion[i].attachedRigidbody.GetComponent<BrickController>();
-            if (controller == null) continue;
-
-            controller.BrickHit(BrickCollider);
+            _hitByExplosion = new Collider2D[maxExplosionTargets];
         }
 
-        explosionSoundEffect.PlayDetached(transform.position);
-        DestroyBrick();
-    }
+        void OnDrawGizmos()
+        {
+            if (BrickCollider == null) return;
+            Gizmos.DrawWireCube(BrickCollider.bounds.center, explosionRadius);
+        }
 
-    public override void HandleOnCollisionEnter(Collider2D other)
-    {
-        if (_exploded) return;
+        protected override void OnBrickEnabled()
+        {
+            base.OnBrickEnabled();
+            _exploded = false;
+        }
 
-        Explode();
+        void Explode()
+        {
+            _exploded = true;
+
+            var targetsHit = Physics2D.OverlapBoxNonAlloc(BrickCollider.bounds.center, explosionRadius, 0f, _hitByExplosion,
+                explosionTargetsLayer);
+            Mathf.Clamp(targetsHit, 0, maxExplosionTargets);
+            Debug.Log("Explosive brick targets hit: " + targetsHit);
+
+            for (var i = 0; i < targetsHit; i++)
+            {
+                if (_hitByExplosion[i] == null) continue;
+
+                var controller = _hitByExplosion[i].attachedRigidbody.GetComponent<BrickController>();
+                if (controller == null) continue;
+
+                controller.BrickHit(BrickCollider);
+            }
+
+            explosionSoundEffect.PlayDetached(transform.position);
+            DestroyBrick();
+        }
+
+        public override void HandleOnCollisionEnter(Collider2D other)
+        {
+            if (_exploded) return;
+
+            Explode();
+        }
     }
 }

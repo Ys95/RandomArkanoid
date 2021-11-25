@@ -1,55 +1,58 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public abstract class GameState : MonoBehaviour
+namespace GameStates.States
 {
-    [Header("Setup")]
-    [SerializeField] GameStateController gameStateController;
-    [SerializeField] GameObject displayedUI;
-
-    protected GameStateController GameStateController => gameStateController;
-
-    void OnValidate()
+    public abstract class GameState : MonoBehaviour
     {
-        var controller = transform.parent.GetComponent<GameStateController>();
-        if (controller != null) gameStateController = controller;
-    }
+        [Header("Setup")]
+        [SerializeField] GameStateController gameStateController;
+        [SerializeField] GameObject displayedUI;
 
-    public virtual void HandlePauseKeyPress(InputAction.CallbackContext context)
-    {
-    }
+        protected GameStateController GameStateController => gameStateController;
 
-    public virtual void HandleAnyKeyPress(InputAction.CallbackContext context)
-    {
-    }
+        void OnValidate()
+        {
+            var controller = transform.parent.GetComponent<GameStateController>();
+            if (controller != null) gameStateController = controller;
+        }
 
-    public void Open()
-    {
-        gameStateController.GoToNewState(this);
-    }
+        public virtual void HandlePauseKeyPress(InputAction.CallbackContext context)
+        {
+        }
 
-    public void Close()
-    {
-        gameStateController.GoToPreviousState();
-    }
+        public virtual void HandleAnyKeyPress(InputAction.CallbackContext context)
+        {
+        }
 
-    protected virtual void OnStateEnter()
-    {
-    }
+        public void Open()
+        {
+            gameStateController.GoToNewState(this);
+        }
 
-    protected virtual void OnStateExit()
-    {
-    }
+        public void Close()
+        {
+            gameStateController.GoToPreviousState();
+        }
 
-    public void EnableState()
-    {
-        if (displayedUI != null) displayedUI.SetActive(true);
-        OnStateEnter();
-    }
+        protected virtual void OnStateEnter()
+        {
+        }
 
-    public void DisableState()
-    {
-        if (displayedUI != null) displayedUI.SetActive(false);
-        OnStateExit();
+        protected virtual void OnStateExit()
+        {
+        }
+
+        public void EnableState()
+        {
+            if (displayedUI != null) displayedUI.SetActive(true);
+            OnStateEnter();
+        }
+
+        public void DisableState()
+        {
+            if (displayedUI != null) displayedUI.SetActive(false);
+            OnStateExit();
+        }
     }
 }

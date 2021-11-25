@@ -1,14 +1,17 @@
 using UnityEngine;
 
-public class MaterialHSVColorShifter : HSVColorShifter
+namespace Effects.ColorShifter
 {
-    static readonly int ColorID = Shader.PropertyToID("_Color");
-
-    [Space]
-    [SerializeField] Material material;
-
-    protected override void ColorShift(Color color)
+    public class MaterialHSVColorShifter : HSVColorShifter
     {
-        material.SetColor(ColorID, color);
+        static readonly int ColorID = Shader.PropertyToID("_Color");
+
+        [Space]
+        [SerializeField] Material material;
+
+        protected override void ColorShift(Color color)
+        {
+            material.SetColor(ColorID, color);
+        }
     }
 }

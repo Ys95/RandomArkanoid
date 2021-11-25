@@ -1,14 +1,18 @@
+using Effects;
 using UnityEngine;
 
-public class IndestructibleBrickType : BrickType
+namespace Bricks
 {
-    [Space]
-    [Header("Indestructible brick")]
-    [SerializeField] AudioSource audioSource;
-    [SerializeField] SoundEffect onHitEffect;
-
-    public override void HandleOnCollisionEnter(Collider2D other)
+    public class IndestructibleBrickType : BrickType
     {
-        onHitEffect.Play(audioSource);
+        [Space]
+        [Header("Indestructible brick")]
+        [SerializeField] AudioSource audioSource;
+        [SerializeField] SoundEffect onHitEffect;
+
+        public override void HandleOnCollisionEnter(Collider2D other)
+        {
+            onHitEffect.Play(audioSource);
+        }
     }
 }

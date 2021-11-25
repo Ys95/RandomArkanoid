@@ -1,45 +1,49 @@
+using Player.RacketTypes.Models;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-[CreateAssetMenu(fileName = "Default_RacketType", menuName = "RacketType/DefaultRacketType")]
-public class RacketType : ScriptableObject
+namespace Player.RacketTypes
 {
-    [SerializeField] GameObject modelPrefab;
-
-    public Racket Racket { get; private set; }
-    public RacketModel Model { get; private set; }
-
-    public virtual void HandleFireAction(InputAction.CallbackContext context)
+    [CreateAssetMenu(fileName = "Default_RacketType", menuName = "RacketType/DefaultRacketType")]
+    public class RacketType : ScriptableObject
     {
-    }
+        [SerializeField] GameObject modelPrefab;
 
-    public virtual void HandleBallCollision(Collider2D collider2D)
-    {
-    }
+        public Racket Racket { get; private set; }
+        public RacketModel Model { get; private set; }
 
-    public void InitDefaultMode(Racket racket)
-    {
-        Racket = racket;
-        Model = Racket.Model;
-    }
-
-    public virtual void OnModeEnter(Racket racket)
-    {
-        if (Model == null)
+        public virtual void HandleFireAction(InputAction.CallbackContext context)
         {
-            var gameObject = Instantiate(modelPrefab, racket.Transform, true);
-            Model = gameObject.GetComponent<RacketModel>();
         }
 
-        Racket = racket;
+        public virtual void HandleBallCollision(Collider2D collider2D)
+        {
+        }
 
-        Racket.Model = Model;
-        Racket.Model.transform.position = Racket.Transform.position;
-        Model.gameObject.SetActive(true);
-    }
+        public void InitDefaultMode(Racket racket)
+        {
+            Racket = racket;
+            Model = Racket.Model;
+        }
 
-    public virtual void OnModeExit()
-    {
-        Model.gameObject.SetActive(false);
+        public virtual void OnModeEnter(Racket racket)
+        {
+            if (Model == null)
+            {
+                var gameObject = Instantiate(modelPrefab, racket.Transform, true);
+                Model = gameObject.GetComponent<RacketModel>();
+            }
+
+            Racket = racket;
+
+            Racket.Model = Model;
+            Racket.Model.transform.position = Racket.Transform.position;
+            Model.gameObject.SetActive(true);
+        }
+
+        public virtual void OnModeExit()
+        {
+            Model.gameObject.SetActive(false);
+        }
     }
 }

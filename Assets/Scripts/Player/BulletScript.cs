@@ -1,25 +1,29 @@
+using Effects;
 using UnityEngine;
 
-public class BulletScript : MonoBehaviour
+namespace Player
 {
-    [Header("Components")]
-    [SerializeField] Rigidbody2D rb;
-
-    [Header("Effects")]
-    [SerializeField] TrailRenderer trail;
-    [SerializeField] SoundEffect onHitSound;
-
-    public Rigidbody2D Rb => rb;
-
-    void OnEnable()
+    public class BulletScript : MonoBehaviour
     {
-        trail.Clear();
-    }
+        [Header("Components")]
+        [SerializeField] Rigidbody2D rb;
 
-    void OnCollisionEnter2D(Collision2D other)
-    {
-        onHitSound.PlayDetached(transform.position);
-        trail.Clear();
-        gameObject.SetActive(false);
+        [Header("Effects")]
+        [SerializeField] TrailRenderer trail;
+        [SerializeField] SoundEffect onHitSound;
+
+        public Rigidbody2D Rb => rb;
+
+        void OnEnable()
+        {
+            trail.Clear();
+        }
+
+        void OnCollisionEnter2D(Collision2D other)
+        {
+            onHitSound.PlayDetached(transform.position);
+            trail.Clear();
+            gameObject.SetActive(false);
+        }
     }
 }

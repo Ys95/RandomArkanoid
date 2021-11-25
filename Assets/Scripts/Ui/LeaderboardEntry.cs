@@ -1,30 +1,33 @@
 using TMPro;
 using UnityEngine;
 
-public class LeaderboardEntry : MonoBehaviour
+namespace UI
 {
-    [SerializeField] TextMeshProUGUI playerName;
-    [SerializeField] TextMeshProUGUI playerPosition;
-    [SerializeField] TextMeshProUGUI playerScore;
-
-    int _index;
-
-    public void SetEntryIndex(int index)
+    public class LeaderboardEntry : MonoBehaviour
     {
-        _index = index;
-        playerPosition.text = index.ToString();
-    }
+        [SerializeField] TextMeshProUGUI playerName;
+        [SerializeField] TextMeshProUGUI playerPosition;
+        [SerializeField] TextMeshProUGUI playerScore;
 
-    public void UpdateEntry(string name, int score)
-    {
-        playerName.text = name;
-        playerScore.text = score.ToString();
-    }
+        int _index;
 
-    public void FillWithDefaultValue()
-    {
-        playerName.text = "-";
-        playerPosition.text = _index.ToString();
-        playerScore.text = "-";
+        public void SetEntryIndex(int index)
+        {
+            _index = index;
+            playerPosition.text = index.ToString();
+        }
+
+        public void UpdateEntry(string name, int score)
+        {
+            playerName.text = name;
+            playerScore.text = score.ToString();
+        }
+
+        public void FillWithDefaultValue()
+        {
+            playerName.text = "-";
+            playerPosition.text = _index.ToString();
+            playerScore.text = "-";
+        }
     }
 }

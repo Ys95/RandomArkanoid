@@ -1,23 +1,26 @@
 using UnityEngine;
 
-public class MainMenuState : GameState
+namespace GameStates.States
 {
-    [Space]
-    [SerializeField] GameState inGameState;
-
-    public void OnExitBTNPress()
+    public class MainMenuState : GameState
     {
-        Application.Quit();
-    }
+        [Space]
+        [SerializeField] GameState inGameState;
 
-    public void OnStartGameBTNPress()
-    {
-        GameManager.Instance.StartNewGame();
-        GameStateController.GoToNewState(inGameState);
-    }
+        public void OnExitBTNPress()
+        {
+            Application.Quit();
+        }
 
-    protected override void OnStateEnter()
-    {
-        GameManager.Instance.StopGame();
+        public void OnStartGameBTNPress()
+        {
+            GameManager.Instance.StartNewGame();
+            GameStateController.GoToNewState(inGameState);
+        }
+
+        protected override void OnStateEnter()
+        {
+            GameManager.Instance.StopGame();
+        }
     }
 }

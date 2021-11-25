@@ -1,30 +1,34 @@
+using GameSystems;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class LostLifeState : GameState
+namespace GameStates.States
 {
-    [Space]
-    [SerializeField] LivesSystem livesSystem;
-    [SerializeField] TextMeshProUGUI livesDisplay;
-
-    void Update()
+    public class LostLifeState : GameState
     {
-        UpdateLivesDisplay();
-    }
+        [Space]
+        [SerializeField] LivesSystem livesSystem;
+        [SerializeField] TextMeshProUGUI livesDisplay;
 
-    void UpdateLivesDisplay()
-    {
-        livesDisplay.text = livesSystem.LivesLeft.ToString();
-    }
+        void Update()
+        {
+            UpdateLivesDisplay();
+        }
 
-    protected override void OnStateEnter()
-    {
-        GameManager.PauseGame(true);
-    }
+        void UpdateLivesDisplay()
+        {
+            livesDisplay.text = livesSystem.LivesLeft.ToString();
+        }
 
-    public override void HandleAnyKeyPress(InputAction.CallbackContext context)
-    {
-        GameStateController.GoToPreviousState();
+        protected override void OnStateEnter()
+        {
+            GameManager.PauseGame(true);
+        }
+
+        public override void HandleAnyKeyPress(InputAction.CallbackContext context)
+        {
+            GameStateController.GoToPreviousState();
+        }
     }
 }

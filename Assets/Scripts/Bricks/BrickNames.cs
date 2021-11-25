@@ -1,7 +1,10 @@
-public enum BrickNames
+namespace Bricks
 {
-    NormalBrick = 0,
-    ExplosiveBrick = 1,
-    DurableBrick = 2,
-    IndestructibleBrick = 3
+    public enum BrickNames
+    {
+        NormalBrick = 0,
+        ExplosiveBrick = 1,
+        DurableBrick = 2,
+        IndestructibleBrick = 3
+    }
 }

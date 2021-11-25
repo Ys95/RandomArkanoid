@@ -1,36 +1,40 @@
+using Player;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class InGameState : GameState
+namespace GameStates.States
 {
-    [SerializeField] PlayerControlsDisabler playerControlsDisabler;
-
-    [Space]
-    [SerializeField] GameState pauseState;
-    [SerializeField] GameState levelClearedState;
-
-    public override void HandlePauseKeyPress(InputAction.CallbackContext context)
+    public class InGameState : GameState
     {
-        GameStateController.GoToNewState(pauseState);
-    }
+        [SerializeField] PlayerControlsDisabler playerControlsDisabler;
 
-    public void OnLevelCleared()
-    {
-        GameStateController.GoToNewState(levelClearedState);
-    }
+        [Space]
+        [SerializeField] GameState pauseState;
+        [SerializeField] GameState levelClearedState;
 
-    protected override void OnStateEnter()
-    {
-        playerControlsDisabler.EnableControls();
-        GameManager.PauseGame(false);
-        Cursor.visible = false;
-        Cursor.lockState = CursorLockMode.Locked;
-    }
+        public override void HandlePauseKeyPress(InputAction.CallbackContext context)
+        {
+            GameStateController.GoToNewState(pauseState);
+        }
 
-    protected override void OnStateExit()
-    {
-        playerControlsDisabler.DisableControls();
-        Cursor.visible = true;
-        Cursor.lockState = CursorLockMode.None;
+        public void OnLevelCleared()
+        {
+            GameStateController.GoToNewState(levelClearedState);
+        }
+
+        protected override void OnStateEnter()
+        {
+            playerControlsDisabler.EnableControls();
+            GameManager.PauseGame(false);
+            Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.Locked;
+        }
+
+        protected override void OnStateExit()
+        {
+            playerControlsDisabler.DisableControls();
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
+        }
     }
 }

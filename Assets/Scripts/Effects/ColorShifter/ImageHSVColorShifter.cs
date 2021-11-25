@@ -1,14 +1,15 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ImageHSVColorShifter : HSVColorShifter
+namespace Effects.ColorShifter
 {
-    [SerializeField] Image image;
-    
-    protected override void ColorShift(Color color)
+    public class ImageHSVColorShifter : HSVColorShifter
     {
-        image.color = color;
+        [SerializeField] Image image;
+
+        protected override void ColorShift(Color color)
+        {
+            image.color = color;
+        }
     }
 }

@@ -1,27 +1,32 @@
+using Bricks;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "Fire_BallType", menuName = "BallType/FireBallType")]
-public class FireBallType : BallType
+namespace Player.BallTypes
 {
-    [SerializeField] float destroyRadius;
-    [SerializeField] LayerMask bricksLayer;
-
-    Collider2D[] _targetsHit = new Collider2D[12];
-
-    protected override void HandleBrickCollision(Collider2D collider)
+    [CreateAssetMenu(fileName = "Fire_BallType", menuName = "BallType/FireBallType")]
+    public class FireBallType : BallType
     {
-        base.HandleBrickCollision(collider);
-        DestroyBricksAround();
-    }
+        [SerializeField] float destroyRadius;
+        [SerializeField] LayerMask bricksLayer;
 
-    void DestroyBricksAround()
-    {
-        var targetsAmount = Physics2D.OverlapCircleNonAlloc(Ball.Model.BallCollider.bounds.center, destroyRadius, _targetsHit, bricksLayer);
+        readonly Collider2D[] _targetsHit = new Collider2D[12];
 
-        for (var i = 0; i < targetsAmount; i++)
+        protected override void HandleBrickCollision(Collider2D collider)
         {
-            if (!_targetsHit[i].CompareTag(Tags.Brick)) continue;
-            _targetsHit[i].attachedRigidbody.GetComponent<BrickController>().BrickHit(Ball.Model.BallCollider);
+            base.HandleBrickCollision(collider);
+            DestroyBricksAround();
+        }
+
+        void DestroyBricksAround()
+        {
+            var targetsAmount = Physics2D.OverlapCircleNonAlloc(Ball.Model.BallCollider.bounds.center, destroyRadius,
+                _targetsHit, bricksLayer);
+
+            for (var i = 0; i < targetsAmount; i++)
+            {
+                if (!_targetsHit[i].CompareTag(Tags.Brick)) continue;
+                _targetsHit[i].attachedRigidbody.GetComponent<BrickController>().BrickHit(Ball.Model.BallCollider);
+            }
         }
     }
 }

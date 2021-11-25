@@ -1,32 +1,35 @@
 using UnityEngine;
 
-public abstract class HSVColorShifter : MonoBehaviour
+namespace Effects.ColorShifter
 {
-    [Header("Color shift controller")]
-    [SerializeField] HSVColorShifterController controller;
-
-    protected HSVColorShifterController Controller => controller;
-
-    void OnEnable()
+    public abstract class HSVColorShifter : MonoBehaviour
     {
-        controller.ColorShift += ColorShift;
-    }
+        [Header("Color shift controller")]
+        [SerializeField] HSVColorShifterController controller;
 
-    void OnDisable()
-    {
-        controller.ColorShift -= ColorShift;
-    }
+        protected HSVColorShifterController Controller => controller;
 
-    void OnDrawGizmos()
-    {
-        Refresh();
-    }
+        void OnEnable()
+        {
+            controller.ColorShift += ColorShift;
+        }
 
-    [ContextMenu("Refresh")]
-    public void Refresh()
-    {
-        ColorShift(controller.StartingColor.GetColor);
-    }
+        void OnDisable()
+        {
+            controller.ColorShift -= ColorShift;
+        }
 
-    protected abstract void ColorShift(Color color);
+        void OnDrawGizmos()
+        {
+            Refresh();
+        }
+
+        [ContextMenu("Refresh")]
+        public void Refresh()
+        {
+            ColorShift(controller.StartingColor.GetColor);
+        }
+
+        protected abstract void ColorShift(Color color);
+    }
 }

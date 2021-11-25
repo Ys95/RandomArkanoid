@@ -1,53 +1,58 @@
+using Player.BallTypes;
+using Powerups;
 using UnityEngine;
 
-public class BallController : MonoBehaviour
+namespace Player
 {
-    [SerializeField] Ball ball;
-
-    BallType _currentBallType;
-
-    public Ball GetBall => ball;
-
-    void Awake()
+    public class BallController : MonoBehaviour
     {
-        _currentBallType = ball.DefaultBallType;
-        _currentBallType.InitDefaultMode(ball);
-    }
+        [SerializeField] Ball ball;
 
-    void OnEnable()
-    {
-        BallPowerup.OnBallPowerupPickup += ApplyPowerup;
-    }
+        BallType _currentBallType;
 
-    void OnDisable()
-    {
-        BallPowerup.OnBallPowerupPickup -= ApplyPowerup;
-    }
+        public Ball GetBall => ball;
 
-    void OnCollisionEnter2D(Collision2D other)
-    {
-        _currentBallType.HandleOnCollisionEnter(other);
-    }
+        void Awake()
+        {
+            _currentBallType = ball.DefaultBallType;
+            _currentBallType.InitDefaultMode(ball);
+        }
 
-    void OnTriggerEnter2D(Collider2D other)
-    {
-        _currentBallType.HandleOnTriggerEnter(other);
-    }
+        void OnEnable()
+        {
+            BallPowerup.OnBallPowerupPickup += ApplyPowerup;
+        }
 
-    public void RestoreDefualtState()
-    {
-        _currentBallType.OnModeExit();
-        _currentBallType = ball.DefaultBallType;
-        ball.SetMaxSpeed();
-        _currentBallType.OnModeEnter(ball);
-    }
+        void OnDisable()
+        {
+            BallPowerup.OnBallPowerupPickup -= ApplyPowerup;
+        }
 
-    void ApplyPowerup(BallType newType)
-    {
-        if (_currentBallType == newType) return;
+        void OnCollisionEnter2D(Collision2D other)
+        {
+            _currentBallType.HandleOnCollisionEnter(other);
+        }
 
-        _currentBallType.OnModeExit();
-        _currentBallType = newType;
-        _currentBallType.OnModeEnter(ball);
+        void OnTriggerEnter2D(Collider2D other)
+        {
+            _currentBallType.HandleOnTriggerEnter(other);
+        }
+
+        public void RestoreDefualtState()
+        {
+            _currentBallType.OnModeExit();
+            _currentBallType = ball.DefaultBallType;
+            ball.SetMaxSpeed();
+            _currentBallType.OnModeEnter(ball);
+        }
+
+        void ApplyPowerup(BallType newType)
+        {
+            if (_currentBallType == newType) return;
+
+            _currentBallType.OnModeExit();
+            _currentBallType = newType;
+            _currentBallType.OnModeEnter(ball);
+        }
     }
 }

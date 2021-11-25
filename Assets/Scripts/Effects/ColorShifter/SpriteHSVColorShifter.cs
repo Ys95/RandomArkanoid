@@ -1,11 +1,14 @@
 using UnityEngine;
 
-public class SpriteHSVColorShifter : HSVColorShifter
+namespace Effects.ColorShifter
 {
-    [SerializeField] SpriteRenderer spriteRenderer;
-
-    protected override void ColorShift(Color color)
+    public class SpriteHSVColorShifter : HSVColorShifter
     {
-        spriteRenderer.color = color;
+        [SerializeField] SpriteRenderer spriteRenderer;
+
+        protected override void ColorShift(Color color)
+        {
+            spriteRenderer.color = color;
+        }
     }
 }
