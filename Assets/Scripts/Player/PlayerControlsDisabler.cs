@@ -1,23 +1,32 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerControlsDisabler : MonoBehaviour
+namespace Player
 {
-    [SerializeField] PlayerInput input;
-    
-    void DisableControls() => input.DeactivateInput();
+    public class PlayerControlsDisabler : MonoBehaviour
+    {
+        [SerializeField] PlayerInput input;
 
-    void EnableControls() =>input.ActivateInput();
-    
-    void OnEnable()
-    {
-        GameManager.OnGamePause += DisableControls;
-        GameManager.OnGameUnpause += EnableControls;
-    }
-    
-    void OnDisable()
-    {
-        GameManager.OnGamePause -= DisableControls;
-        GameManager.OnGameUnpause -= EnableControls;
+        void OnEnable()
+        {
+            GameManager.OnGamePause += DisableControls;
+            GameManager.OnGameUnpause += EnableControls;
+        }
+
+        void OnDisable()
+        {
+            GameManager.OnGamePause -= DisableControls;
+            GameManager.OnGameUnpause -= EnableControls;
+        }
+
+        public void DisableControls()
+        {
+            input.DeactivateInput();
+        }
+
+        public void EnableControls()
+        {
+            input.ActivateInput();
+        }
     }
 }

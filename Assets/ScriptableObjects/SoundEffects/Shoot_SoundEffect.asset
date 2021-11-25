@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Shoot_SoundEffect
   m_EditorClassIdentifier: 
   clip: {fileID: 8300000, guid: 72e4561bda6d51f44af4e18b29c4e4c4, type: 3}
-  volume: 1
+  volume: 0.6
   pitch: 1

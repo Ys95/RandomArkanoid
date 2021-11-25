@@ -1,37 +1,53 @@
+using Player.RacketTypes;
+using Powerups;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class RacketController : MonoBehaviour
+namespace Player
 {
-    [SerializeField] Racket racket;
-        
-    RacketType _currentRacketType;
-    
-    public void FireAction(InputAction.CallbackContext context) =>_currentRacketType.HandleFireAction(context);
-
-    void OnEnable()
+    public class RacketController : MonoBehaviour
     {
-        _currentRacketType = racket.DefaultRacketType;
-        _currentRacketType.InitDefaultMode(racket);
-        RacketPowerup.OnRacketPowerupPickup += ApplyPowerupMode;
-    }
+        [SerializeField] Racket racket;
 
-    void ApplyPowerupMode(RacketType type)
-    {
-        if(_currentRacketType == type) return;
-        
-        _currentRacketType.OnModeExit();
-        _currentRacketType = type;
-        _currentRacketType.OnModeEnter(racket);
-    }
+        RacketType _currentRacketType;
 
-    void OnTriggerEnter2D(Collider2D other)
-    {
-        if(other.CompareTag(Tags.Ball)) _currentRacketType.HandleBallCollision(other);
-    }
+        void OnEnable()
+        {
+            _currentRacketType = racket.DefaultRacketType;
+            _currentRacketType.InitDefaultMode(racket);
+            RacketPowerup.OnRacketPowerupPickup += ApplyPowerupMode;
+        }
 
-    void OnDisable()
-    {
-        RacketPowerup.OnRacketPowerupPickup -= ApplyPowerupMode;
+        void OnDisable()
+        {
+            RacketPowerup.OnRacketPowerupPickup -= ApplyPowerupMode;
+            RestoreDefaultState();
+        }
+
+        void OnTriggerEnter2D(Collider2D other)
+        {
+            if (other.CompareTag(Tags.Ball)) _currentRacketType.HandleBallCollision(other);
+        }
+
+        public void FireAction(InputAction.CallbackContext context)
+        {
+            _currentRacketType.HandleFireAction(context);
+        }
+
+        public void RestoreDefaultState()
+        {
+            _currentRacketType.OnModeExit();
+            _currentRacketType = racket.DefaultRacketType;
+            _currentRacketType.OnModeEnter(racket);
+        }
+
+        void ApplyPowerupMode(RacketType type)
+        {
+            if (_currentRacketType == type) return;
+
+            _currentRacketType.OnModeExit();
+            _currentRacketType = type;
+            _currentRacketType.OnModeEnter(racket);
+        }
     }
 }

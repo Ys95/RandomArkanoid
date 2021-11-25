@@ -1,49 +1,56 @@
+using Effects;
 using UnityEngine;
 
-public class BallModel : MonoBehaviour
+namespace Player.BallTypes.Models
 {
-    [Header("Components")]
-    [SerializeField] Collider2D ballCollider;
-    [SerializeField] SpriteRenderer sprite;
-    [SerializeField] AudioSource audioSource;
-    [SerializeField] AudioSource idleAudioSource;
-
-    [Header("Particles")] 
-    [SerializeField] ParticleSystem onCollisionParticle;
-    [SerializeField] ParticleSystem onRacketHitParticle;
-
-    [Header("Sounds")] 
-    [SerializeField] SoundEffect idleSound;
-    [SerializeField] SoundEffect onCollisionSound;
-    [SerializeField] SoundEffect onRacketHitSound;
-    [SerializeField] SoundEffect onBorderHitSound;
-    
-
-    public Collider2D BallCollider => ballCollider;
-    public SpriteRenderer Sprite => sprite;
-
-    void Awake()
+    public class BallModel : MonoBehaviour
     {
-        if (idleSound == null || idleAudioSource==null) return;
-        idleSound.PlayLoop(idleAudioSource);
-    }
+        [Header("Components")]
+        [SerializeField] Collider2D ballCollider;
+        [SerializeField] SpriteRenderer sprite;
+        [SerializeField] AudioSource audioSource;
 
-    void Play(SoundEffect effect)
-    {
-        if(effect==null) return;
-        effect.Play(audioSource);
-    }
+        [Header("Particles")]
+        [SerializeField] ParticleSystem onBrickHitParticle;
+        [SerializeField] ParticleSystem onBounceParticle;
 
-    void Play(ParticleSystem particle)
-    {
-        if(particle==null) return;
-        particle.Play();
-    }
+        [Header("Sounds")]
+        [SerializeField] SoundEffect onBounceSound;
+        [SerializeField] SoundEffect onBrickHitSound;
 
-    public void PlayOnCollisionSound() => Play(onCollisionSound);
-    public void PlayOnRacketHitSound() => Play(onRacketHitSound);
-    public void PlayOnBorderHitSound() => Play(onBorderHitSound);
-    
-    public void PlayOnCollisionParticle() => Play(onCollisionParticle);
-    public void PlayOnRacketHitParticle() => Play(onRacketHitParticle);
+        public Collider2D BallCollider => ballCollider;
+        public SpriteRenderer Sprite => sprite;
+
+        void Play(SoundEffect effect)
+        {
+            if (effect == null) return;
+            effect.Play(audioSource);
+        }
+
+        void Play(ParticleSystem particle)
+        {
+            if (particle == null) return;
+            particle.Play();
+        }
+
+        public void PlayOnBrickHitSound()
+        {
+            Play(onBrickHitSound);
+        }
+
+        public void PlayOnBounceSound()
+        {
+            Play(onBounceSound);
+        }
+
+        public void PlayOnBounceParticle()
+        {
+            Play(onBounceParticle);
+        }
+
+        public void PlayOnBrickHitParticle()
+        {
+            Play(onBrickHitParticle);
+        }
+    }
 }

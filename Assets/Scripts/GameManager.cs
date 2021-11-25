@@ -1,17 +1,28 @@
 using System;
+using UI;
 using UnityEngine;
+using UnityEngine.Events;
 
-public class GameManager:MonoBehaviour
+public class GameManager : MonoBehaviour
 {
-    GameManager _instance;
     public static GameManager Instance;
-    
+    public static Action OnGamePause;
+    public static Action OnGameUnpause;
+
+    [SerializeField] UnityEvent onNewGameStart;
+
+    [Space]
+    [SerializeField] UnityEvent onLevelCleared;
+    [SerializeField] UnityEvent onLifeLost;
+    [SerializeField] UnityEvent onNewLevelStarted;
+    [SerializeField] UnityEvent onGameOver;
     [SerializeField] GameObject player;
     [SerializeField] GameObject level;
 
-    public static Action OnGamePause;
-    public static Action OnGameUnpause;
-    static bool _isGamePaused;
+    [Space]
+    [SerializeField] BGMController bgmController;
+
+    GameManager _instance;
 
     void Awake()
     {
@@ -20,31 +31,73 @@ public class GameManager:MonoBehaviour
             _instance = this;
             Instance = _instance;
         }
-        else Destroy(this);
+        else
+        {
+            Destroy(this);
+        }
+    }
+
+    void Start()
+    {
+#if UNITY_ANDROID
+        Application.targetFrameRate = 60;
+#endif
+        bgmController.StartPlaying();
+    }
+
+    void DisableGameArea()
+    {
+        player.SetActive(false);
+        level.SetActive(false);
+    }
+
+    void EnableGameArea()
+    {
+        player.SetActive(true);
+        level.SetActive(true);
+    }
+
+    public void StartNewGame()
+    {
+        EnableGameArea();
+        onNewGameStart?.Invoke();
+    }
+
+    public void StopGame()
+    {
+        DisableGameArea();
+    }
+
+    public void StartNewLevel()
+    {
+        onNewLevelStarted?.Invoke();
+    }
+
+    public void LevelCleared()
+    {
+        onLevelCleared?.Invoke();
+    }
+
+    public void LoseLife()
+    {
+        onLifeLost?.Invoke();
+    }
+
+    public void GameOver()
+    {
+        onGameOver?.Invoke();
     }
 
     public static void PauseGame(bool pause)
     {
-        _isGamePaused = pause;
         if (pause)
         {
             Time.timeScale = 0f;
             OnGamePause?.Invoke();
             return;
         }
+
         OnGameUnpause?.Invoke();
         Time.timeScale = 1f;
-    }
-
-    public void StopGame()
-    {
-        player.SetActive(false);
-        level.SetActive(false);
-    }
-
-    public void StartGame()
-    {
-        player.SetActive(true);
-        level.SetActive(true);
     }
 }

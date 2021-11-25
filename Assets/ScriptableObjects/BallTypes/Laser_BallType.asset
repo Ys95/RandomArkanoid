@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Laser_BallType
   m_EditorClassIdentifier: 
   modelPrefab: {fileID: 7030617476121282768, guid: 8325c63300a0a84499ab74abf40d66e9, type: 3}
-  modeSpeedModifier: 10
+  modeSpeedModifier: 3

@@ -42,6 +42,27 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Background
+    uniqueID: 2398679331
+    locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Bricks
+    uniqueID: 277109899
+    locked: 0
+  - name: Ball
+    uniqueID: 32327387
+    locked: 0
+  - name: Player
+    uniqueID: 1398812713
+    locked: 0
+  - name: Particles
+    uniqueID: 3529798407
+    locked: 0
+  - name: Boundaries
+    uniqueID: 257172851
+    locked: 0
+  - name: UI
+    uniqueID: 959948455
     locked: 0

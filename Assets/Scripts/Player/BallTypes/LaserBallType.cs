@@ -1,11 +1,14 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "Laser_BallType", menuName = "BallType/LaserBallType")]
-public class LaserBallType : BallType
+namespace Player.BallTypes
 {
-    public override void HandleOnTriggerEnter(Collider2D collider)
+    [CreateAssetMenu(fileName = "Laser_BallType", menuName = "BallType/LaserBallType")]
+    public class LaserBallType : BallType
     {
-        base.HandleOnTriggerEnter(collider);
-        if(collider.CompareTag(Tags.Brick)) HandleBrickCollision(collider); 
+        public override void HandleOnTriggerEnter(Collider2D collider)
+        {
+            base.HandleOnTriggerEnter(collider);
+            if (collider.CompareTag(Tags.Brick)) HandleBrickCollision(collider);
+        }
     }
 }

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6366290911149949696}
   - component: {fileID: 2395092753182750335}
   m_Layer: 10
-  m_Name: OnCollisionEffect
+  m_Name: OnBrickHitParticle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -170,7 +170,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 3
       scalar: 6
-      minScalar: 3
+      minScalar: 5
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -977,7 +977,7 @@ ParticleSystem:
       countCurve:
         serializedVersion: 2
         minMaxState: 0
-        scalar: 90
+        scalar: 45
         minScalar: 30
         maxCurve:
           serializedVersion: 2
@@ -4838,9 +4838,9 @@ ParticleSystemRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 2
+  m_SortingLayerID: -765168889
+  m_SortingLayer: 4
+  m_SortingOrder: 0
   m_RenderMode: 0
   m_MeshDistribution: 0
   m_SortMode: 0
@@ -4883,7 +4883,7 @@ GameObject:
   - component: {fileID: 276198672094559497}
   - component: {fileID: 8351471975828827835}
   m_Layer: 10
-  m_Name: OnRacketHitEffect
+  m_Name: OnBounceParticle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9708,9 +9708,9 @@ ParticleSystemRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 2
+  m_SortingLayerID: -765168889
+  m_SortingLayer: 4
+  m_SortingOrder: 0
   m_RenderMode: 0
   m_MeshDistribution: 0
   m_SortMode: 0
@@ -14520,9 +14520,9 @@ ParticleSystemRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingLayerID: -765168889
+  m_SortingLayer: 4
+  m_SortingOrder: 0
   m_RenderMode: 0
   m_MeshDistribution: 0
   m_SortMode: 0
@@ -14564,9 +14564,29 @@ PrefabInstance:
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 4425708982846779080, guid: 02850dd7d96099d4cb5b9c4174729ff5, type: 3}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5504293343804489463, guid: 02850dd7d96099d4cb5b9c4174729ff5, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6188054085431707325, guid: 02850dd7d96099d4cb5b9c4174729ff5, type: 3}
       propertyPath: m_Name
       value: FireBallModel
+      objectReference: {fileID: 0}
+    - target: {fileID: 7027644043256625628, guid: 02850dd7d96099d4cb5b9c4174729ff5, type: 3}
+      propertyPath: m_SortingLayer
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7027644043256625628, guid: 02850dd7d96099d4cb5b9c4174729ff5, type: 3}
+      propertyPath: m_SortingOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7027644043256625628, guid: 02850dd7d96099d4cb5b9c4174729ff5, type: 3}
+      propertyPath: m_SortingLayerID
+      value: -765168889
       objectReference: {fileID: 0}
     - target: {fileID: 8241963792764504498, guid: 02850dd7d96099d4cb5b9c4174729ff5, type: 3}
       propertyPath: m_RootOrder
@@ -14617,9 +14637,21 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2100000, guid: 903af8b225e6c3a4d94d0fc4bdf3896b, type: 2}
     - target: {fileID: 8325219465064716681, guid: 02850dd7d96099d4cb5b9c4174729ff5, type: 3}
+      propertyPath: onBounceSound
+      value: 
+      objectReference: {fileID: 11400000, guid: 3d206f6c39a4e5c4cbe5e76cfe954e05, type: 2}
+    - target: {fileID: 8325219465064716681, guid: 02850dd7d96099d4cb5b9c4174729ff5, type: 3}
+      propertyPath: onBrickHitSound
+      value: 
+      objectReference: {fileID: 11400000, guid: 8f6fad235ac5b774898cab83e570199c, type: 2}
+    - target: {fileID: 8325219465064716681, guid: 02850dd7d96099d4cb5b9c4174729ff5, type: 3}
       propertyPath: onBorderHitSound
       value: 
       objectReference: {fileID: 11400000, guid: 3d206f6c39a4e5c4cbe5e76cfe954e05, type: 2}
+    - target: {fileID: 8325219465064716681, guid: 02850dd7d96099d4cb5b9c4174729ff5, type: 3}
+      propertyPath: onBounceParticle
+      value: 
+      objectReference: {fileID: 276198672094559497}
     - target: {fileID: 8325219465064716681, guid: 02850dd7d96099d4cb5b9c4174729ff5, type: 3}
       propertyPath: onCollisionSound
       value: 
@@ -14641,9 +14673,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 3d206f6c39a4e5c4cbe5e76cfe954e05, type: 2}
     - target: {fileID: 8325219465064716681, guid: 02850dd7d96099d4cb5b9c4174729ff5, type: 3}
+      propertyPath: onBrickHitParticle
+      value: 
+      objectReference: {fileID: 6366290911149949696}
+    - target: {fileID: 8325219465064716681, guid: 02850dd7d96099d4cb5b9c4174729ff5, type: 3}
       propertyPath: onCollisionParticle
       value: 
       objectReference: {fileID: 6366290911149949696}
+    - target: {fileID: 8325219465064716681, guid: 02850dd7d96099d4cb5b9c4174729ff5, type: 3}
+      propertyPath: onRacketHitParticle
+      value: 
+      objectReference: {fileID: 276198672094559497}
     - target: {fileID: 8325219465064716681, guid: 02850dd7d96099d4cb5b9c4174729ff5, type: 3}
       propertyPath: _onCollisionParticle
       value: 
@@ -14652,6 +14692,10 @@ PrefabInstance:
       propertyPath: _onRacketHitParticle
       value: 
       objectReference: {fileID: 276198672094559497}
+    - target: {fileID: 8424378070307456831, guid: 02850dd7d96099d4cb5b9c4174729ff5, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 02850dd7d96099d4cb5b9c4174729ff5, type: 3}
 --- !u!4 &6499527350611787207 stripped

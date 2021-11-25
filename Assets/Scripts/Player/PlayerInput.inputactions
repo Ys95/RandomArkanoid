@@ -25,8 +25,17 @@
                 },
                 {
                     "name": "MouseMove",
-                    "type": "Value",
+                    "type": "PassThrough",
                     "id": "f925b501-9050-4285-85af-274d3c8ea92e",
+                    "expectedControlType": "Axis",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "TouchscreenMove",
+                    "type": "Value",
+                    "id": "6ce9587b-4a92-4b29-9c3e-58a6150550ce",
                     "expectedControlType": "Axis",
                     "processors": "",
                     "interactions": "",
@@ -124,12 +133,34 @@
                 },
                 {
                     "name": "",
+                    "id": "0f27c52a-f576-4bb3-8d2a-f63f05a8f920",
+                    "path": "<Touchscreen>/primaryTouch/tap",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Fire",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "ab3b9c20-ab5a-437e-bac6-0e0922b22da3",
                     "path": "<Mouse>/delta/x",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
                     "action": "MouseMove",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "1232739c-cb6d-4809-8c35-fb6b51b597f4",
+                    "path": "<Touchscreen>/delta/x",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "TouchscreenMove",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
