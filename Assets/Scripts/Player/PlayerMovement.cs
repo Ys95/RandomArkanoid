@@ -10,47 +10,6 @@ namespace Player
 {
     public class PlayerMovement : MonoBehaviour
     {
-        [Serializable]
-        abstract class MovementType
-        {
-            [SerializeField] float movementSpeed;
-            public float MovementSpeed => movementSpeed;
-            public abstract Vector2 GetMovementValue(float x, Rigidbody2D rb);
-        }
-
-        [Serializable]
-        class MouseMovement : MovementType
-        {
-            [SerializeField] float smoothing;
-
-            public override Vector2 GetMovementValue(float x, Rigidbody2D rb)
-            {
-                var velocityX = Mathf.Lerp(x * MovementSpeed, rb.velocity.x, smoothing);
-                return new Vector2(velocityX, 0f);
-            }
-        }
-        
-        [Serializable]
-        class KeyboardMovement : MovementType
-        {
-            public override Vector2 GetMovementValue(float x, Rigidbody2D rb)
-            {
-                return new Vector2(x * MovementSpeed, 0f);
-            }
-        }
-
-        [Serializable]
-        class TouchScreenMovement : MovementType
-        {
-            [SerializeField] float smoothing;
-
-            public override Vector2 GetMovementValue(float x, Rigidbody2D rb)
-            {
-                var velocityX = Mathf.Lerp(x * MovementSpeed, rb.velocity.x, smoothing);
-                return new Vector2(velocityX, 0f);
-            }
-        }
-        
         [Header("Components")]
         [SerializeField] Rigidbody2D playerRigidbody;
 
@@ -96,11 +55,49 @@ namespace Player
             x = Mathf.Clamp(x, -25f, 25f);
             _inputAxisX = x;
         }
-        
+
         public void SetTouchInputAxisX(InputAction.CallbackContext context)
         {
             _movementType = touchScreenMovement;
             _inputAxisX = context.ReadValue<float>();
+        }
+
+        [Serializable]
+        abstract class MovementType
+        {
+            [SerializeField] float movementSpeed;
+            public float MovementSpeed => movementSpeed;
+            public abstract Vector2 GetMovementValue(float x, Rigidbody2D rb);
+        }
+
+        [Serializable]
+        class MouseMovement : MovementType
+        {
+            [SerializeField] float smoothing;
+
+            public override Vector2 GetMovementValue(float x, Rigidbody2D rb)
+            {
+                var velocityX = Mathf.Lerp(x * MovementSpeed, rb.velocity.x, smoothing);
+                return new Vector2(velocityX, 0f);
+            }
+        }
+
+        [Serializable]
+        class KeyboardMovement : MovementType
+        {
+            public override Vector2 GetMovementValue(float x, Rigidbody2D rb) => new(x * MovementSpeed, 0f);
+        }
+
+        [Serializable]
+        class TouchScreenMovement : MovementType
+        {
+            [SerializeField] float smoothing;
+
+            public override Vector2 GetMovementValue(float x, Rigidbody2D rb)
+            {
+                var velocityX = Mathf.Lerp(x * MovementSpeed, rb.velocity.x, smoothing);
+                return new Vector2(velocityX, 0f);
+            }
         }
     }
 }

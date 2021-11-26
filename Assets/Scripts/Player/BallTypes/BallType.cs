@@ -24,10 +24,8 @@ namespace Player.BallTypes
             if (collider.CompareTag(Tags.Racket)) HandleRacketCollision(collider);
         }
 
-        float BounceAngle(Vector2 ballPos, Vector2 racketPos, float racketWidth)
-        {
-            return (ballPos.x - racketPos.x) / racketWidth;
-        }
+        float BounceAngle(Vector2 ballPos, Vector2 racketPos, float racketWidth) =>
+            (ballPos.x - racketPos.x) / racketWidth;
 
         protected virtual void HandleRacketCollision(Collider2D collider)
         {

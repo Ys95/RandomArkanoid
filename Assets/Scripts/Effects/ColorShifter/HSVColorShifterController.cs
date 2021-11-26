@@ -52,16 +52,16 @@ namespace Effects.ColorShifter
         {
             [SerializeField] bool shift;
             [SerializeField] bool pingPongMode;
-            
+
             [Space]
             [Range(0f, 1f)] [SerializeField] float amountPerTick;
-          
+
             [Space]
             [Range(0f, 1f)] [SerializeField] float min;
             [Range(0f, 1f)] [SerializeField] float max;
-            
+
             bool _pingPongReverse;
-            
+
             public bool IsShifted => shift;
 
             public float Shift(float hsv)

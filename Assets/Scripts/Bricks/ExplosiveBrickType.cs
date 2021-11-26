@@ -38,7 +38,8 @@ namespace Bricks
         {
             _exploded = true;
 
-            var targetsHit = Physics2D.OverlapBoxNonAlloc(BrickCollider.bounds.center, explosionRadius, 0f, _hitByExplosion,
+            var targetsHit = Physics2D.OverlapBoxNonAlloc(BrickCollider.bounds.center, explosionRadius, 0f,
+                _hitByExplosion,
                 explosionTargetsLayer);
             Mathf.Clamp(targetsHit, 0, maxExplosionTargets);
             Debug.Log("Explosive brick targets hit: " + targetsHit);

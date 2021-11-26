@@ -37,19 +37,19 @@ namespace UI
             _bgmPlaying = true;
             var index = 0;
             var maxIndex = bgm.Length;
-            float breakBetweenClips = 3f;
+            var breakBetweenClips = 3f;
 
             while (_bgmPlaying)
             {
                 audioSource.clip = bgm[index];
-                float clipLenght = bgm[index].length;
-                
+                var clipLenght = bgm[index].length;
+
                 audioSource.Play();
                 yield return new WaitForSeconds(clipLenght + 0.1f);
-                
+
                 audioSource.Stop();
                 yield return new WaitForSeconds(breakBetweenClips);
-               
+
                 index++;
                 if (index >= maxIndex) index = 0;
             }

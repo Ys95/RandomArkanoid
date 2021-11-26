@@ -49,9 +49,6 @@ namespace LevelGeneration
             return controller;
         }
 
-        public BrickController GetBrickController()
-        {
-            return GetControllerFromPool();
-        }
+        public BrickController GetBrickController() => GetControllerFromPool();
     }
 }

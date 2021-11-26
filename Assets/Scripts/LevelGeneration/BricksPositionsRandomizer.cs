@@ -22,10 +22,8 @@ namespace LevelGeneration
             return brickClustersAmount;
         }
 
-        bool ReachedGridCapacity(int totalAmountOfBricks, Vector2Int gridSize)
-        {
-            return totalAmountOfBricks > gridSize.x * gridSize.y;
-        }
+        bool ReachedGridCapacity(int totalAmountOfBricks, Vector2Int gridSize) =>
+            totalAmountOfBricks > gridSize.x * gridSize.y;
 
         public List<Vector2Int> GetBricksPositions(Vector2Int gridSize, LevelProperties properties, int difficultyLevel)
         {

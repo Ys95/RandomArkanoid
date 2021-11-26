@@ -47,10 +47,8 @@ namespace LevelGeneration
             [Range(0, 100)] [SerializeField] int maxSpawnRate;
             public BrickNames Name => name;
 
-            public int GetSpawnChance(int difficulty)
-            {
-                return Mathf.Clamp(baseSpawnRate + spawnRatePerDifficulty * difficulty, 0, maxSpawnRate);
-            }
+            public int GetSpawnChance(int difficulty) =>
+                Mathf.Clamp(baseSpawnRate + spawnRatePerDifficulty * difficulty, 0, maxSpawnRate);
         }
     }
 }

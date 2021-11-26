@@ -1,4 +1,3 @@
-using Bricks;
 using UnityEngine;
 
 namespace LevelGeneration
