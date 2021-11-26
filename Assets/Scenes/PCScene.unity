@@ -1612,11 +1612,11 @@ PrefabInstance:
       objectReference: {fileID: 305320051}
     - target: {fileID: 5124355908715658891, guid: ed29b7583e973504a880f6be41b1d932, type: 3}
       propertyPath: mouseMovement.smoothing
-      value: 0.05
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 5124355908715658891, guid: ed29b7583e973504a880f6be41b1d932, type: 3}
       propertyPath: mouseMovement.movementSpeed
-      value: 10
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 5124355908715658891, guid: ed29b7583e973504a880f6be41b1d932, type: 3}
       propertyPath: webglMouseMovement.movementSpeed
@@ -2273,7 +2273,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ebc86d11b86be64c9a4458bfd23877d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pickupDropChance: 15
+  pickupDropChance: 0
   pickupList:
   - {fileID: 8342712984425937918, guid: c6497b4cbd5a883409a657e5e5e6beec, type: 3}
   - {fileID: 8342712984425937918, guid: 6fbca844a8da7d64f94b42bcbfce822f, type: 3}

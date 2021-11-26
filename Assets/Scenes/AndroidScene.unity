@@ -974,6 +974,9 @@ MonoBehaviour:
   touchScreenMovement:
     movementSpeed: 2
     smoothing: 0
+  webglMouseMovement:
+    movementSpeed: 0
+    smoothing: 0
 --- !u!50 &209680896
 Rigidbody2D:
   serializedVersion: 4
@@ -14950,6 +14953,10 @@ PrefabInstance:
     - target: {fileID: 103155786758068744, guid: 8c840e20b7c86804bbfef58ab80ecf4c, type: 3}
       propertyPath: m_Name
       value: DifficultySystem
+      objectReference: {fileID: 0}
+    - target: {fileID: 103155786758068745, guid: 8c840e20b7c86804bbfef58ab80ecf4c, type: 3}
+      propertyPath: startingDifficulty
+      value: 20
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8c840e20b7c86804bbfef58ab80ecf4c, type: 3}

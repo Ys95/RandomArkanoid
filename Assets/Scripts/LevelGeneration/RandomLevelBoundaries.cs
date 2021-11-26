@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace GameSystems
+namespace LevelGeneration
 {
     public class RandomLevelBoundaries : MonoBehaviour
     {

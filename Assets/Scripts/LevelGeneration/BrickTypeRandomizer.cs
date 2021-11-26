@@ -1,9 +1,10 @@
 using System;
 using System.Collections.Generic;
+using Bricks;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-namespace Bricks
+namespace LevelGeneration
 {
     [Serializable]
     public class BrickTypeRandomizer
