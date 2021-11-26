@@ -1,10 +1,8 @@
-
-https://user-images.githubusercontent.com/80332947/143636900-633035a8-f48a-4e6b-824a-31ee512bd7e4.mp4
-
+https://user-images.githubusercontent.com/80332947/143651304-18eaa9c3-f69d-485a-86fa-38497c0ada2d.mp4
 
 # About
 
-Arkanoid clone made in Unity. Features random level generation and online scoreboard. Can be played on PC and Android.
+Arkanoid clone made in Unity. Features random level generation, online scoreboard and powerup system. Can be played on PC and Android.
 
 # Links
 
@@ -20,15 +18,14 @@ Levels are generated based on difficulty - game starts at 1 difficulty and this 
 Level can contain up to 256 bricks of various types. Bricks spawn in clusters of 8, for every difficulty level 1-2 clusters will spawn.
 What kind of brick will spawn is also based on difficulty - every brick type has a base spawn rate that rises by defined amount until it reaches its max spawn rate.
 
-![Screenshot_39](https://user-images.githubusercontent.com/80332947/143623554-cb0465af-4b0c-4de1-a9cf-75d5e0aa7bed.png)
+![Screenshot_46](https://user-images.githubusercontent.com/80332947/143654898-ed7a6808-75db-442a-9e64-c1a67e4fa587.png)
+
 
 ### Important classes
 
-[BricksPositionRandomizer](https://github.com/Ys95/RandomArkanoid/blob/main/Assets/Scripts/LevelGeneration/BricksPositionsRandomizer.cs) - Manages level layout and positions in which bricks are allowed to spawn.
-
-[BricksTypeRandomizer]() - Decides type of every brick that spawns.
-
-[LevelBuilder]() - Controls whole process of building a new level.
+* [BricksPositionRandomizer](https://github.com/Ys95/RandomArkanoid/blob/main/Assets/Scripts/LevelGeneration/BricksPositionsRandomizer.cs) - Manages level layout and positions in which bricks are allowed to spawn.
+* [BricksTypeRandomizer](https://github.com/Ys95/RandomArkanoid/blob/main/Assets/Scripts/LevelGeneration/BrickTypeRandomizer.cs) - Decides type of every brick that spawns.
+* [LevelBuilder](https://github.com/Ys95/RandomArkanoid/blob/main/Assets/Scripts/LevelGeneration/LevelBuilder.cs) - Controls whole process of building a new level.
 
 
 ## Online leaderboard
@@ -39,9 +36,8 @@ Leaderboards with www.lootlocker.io backend. Players are able to upload their be
 
 ### Important classes
 
-[OnlineLeaderboardSystem]() - Handles communication with backend - fectching scores, uploading them etc.
-
-[InLeaderboardMenuState]() - Handles displaying leaderboards in UI.
+* [OnlineLeaderboardSystem](https://github.com/Ys95/RandomArkanoid/blob/main/Assets/Scripts/GameSystems/OnlineLeaderboardSystem.cs) - Handles communication with backend - fectching scores, uploading them etc.
+* [InLeaderboardMenuState](https://github.com/Ys95/RandomArkanoid/blob/main/Assets/Scripts/GameStates/States/InLeaderboardMenuState.cs) - Handles displaying leaderboards in UI.
 
 
 ## Game states
@@ -54,23 +50,23 @@ Example of events when players clear level:
 
 ### Important classes
 
-[GameState]() - Abstract class, every game state derives from it.
+* [GameState](https://github.com/Ys95/RandomArkanoid/blob/main/Assets/Scripts/GameStates/States/GameState.cs) - Abstract class, every game state derives from it.
+* [GameStateController](https://github.com/Ys95/RandomArkanoid/blob/main/Assets/Scripts/GameStates/GameStateController.cs) - Controls game states. 
+* [InGameState](https://github.com/Ys95/RandomArkanoid/blob/main/Assets/Scripts/GameStates/States/InGameState.cs) - Example of state, handles what happens during gameplay - for examples, after destroying all bricks GameManager invokes OnLevelCleared event which switches to different state and displays UI.
+* [GameManager](https://github.com/Ys95/RandomArkanoid/blob/main/Assets/Scripts/GameManager.cs) - Singleton, contains important static events that controlls whole game.
 
-[GameStateController]() - Controls game states. 
-
-[InGameState]() - Example of state, handles what happens during gameplay - for examples, after destroying all bricks GameManager invokes OnLevelCleared event which switches to different state and displays UI.
-
-[GameManager]() - Singleton, contains important static events that controlls whole game.
-
-##Powerups
+## Powerups
 
 Player can pickup powerups that change how racket or ball behaves (how it handles collision etc). For example, fire ball will detroy not only the brick it hits but also all brick around. Powerups are dropped randomly.
 
+![Screenshot_44](https://user-images.githubusercontent.com/80332947/143655244-a1a90e41-443a-4c9e-9255-19a0a9941ddc.png)
+
 ### Important classes
 
-[BallType]() - Defines default behaviour od a ball, all other ball types derive from it and can override certain behaviours.
-[FireBallType]() - Defines behaviour of a fire ball.
-[BallModel]() - Handles ball gameobject - how it looks, what sounds and partciles it can use etc. Every ball type has ball model.
+* [BallType](https://github.com/Ys95/RandomArkanoid/blob/main/Assets/Scripts/Player/BallTypes/BallType.cs) - Defines default behaviour od a ball, all other ball types derive from it and can override certain behaviours.
+* [FireBallType](https://github.com/Ys95/RandomArkanoid/blob/main/Assets/Scripts/Player/BallTypes/FireBallType.cs) - Defines behaviour of a fire ball.
+* [BallModel](https://github.com/Ys95/RandomArkanoid/blob/main/Assets/Scripts/Player/BallTypes/Models/BallModel.cs) - Handles ball gameobject - how it looks, what sounds and particles it can play etc. Every ball type has ball model.
+* [PickupDropper](https://github.com/Ys95/RandomArkanoid/blob/main/Assets/Scripts/Pickups/PickupDropper.cs) - Handles dropping powerups(chances for drop etc).
 
 
 Powerups examples:
@@ -79,13 +75,6 @@ https://user-images.githubusercontent.com/80332947/143627979-5418d263-6696-41d4-
 
 
 https://user-images.githubusercontent.com/80332947/143630131-f8ea8c85-13f3-4264-b08c-26e6437b3bf8.mp4
-
-
-
-
-
-
-
 
 
 
