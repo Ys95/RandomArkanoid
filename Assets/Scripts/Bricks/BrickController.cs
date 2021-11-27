@@ -38,7 +38,7 @@ namespace Bricks
 
             foreach (Transform child in transform)
             {
-                var brickType = child.GetComponent<BrickType>();
+                BrickType brickType = child.GetComponent<BrickType>();
                 if (brickType == null) continue;
 
                 Debug.Log("Adding: " + brickType.BrickName);
@@ -59,7 +59,10 @@ namespace Bricks
         public void DisableBricks()
         {
             GetAttachedBrickTypes();
-            foreach (var brickType in _attachedBrickTypes) brickType.Value.gameObject.SetActive(false);
+            foreach (KeyValuePair<BrickNames, BrickType> brickType in _attachedBrickTypes)
+            {
+                brickType.Value.gameObject.SetActive(false);
+            }
         }
 
         public void InvokeBrickDestroyedEvent(Vector2 pos, int score)

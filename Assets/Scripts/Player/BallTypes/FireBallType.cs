@@ -19,10 +19,10 @@ namespace Player.BallTypes
 
         void DestroyBricksAround()
         {
-            var targetsAmount = Physics2D.OverlapCircleNonAlloc(Ball.Model.BallCollider.bounds.center, destroyRadius,
+            int targetsAmount = Physics2D.OverlapCircleNonAlloc(Ball.Model.BallCollider.bounds.center, destroyRadius,
                 _targetsHit, bricksLayer);
 
-            for (var i = 0; i < targetsAmount; i++)
+            for (int i = 0; i < targetsAmount; i++)
             {
                 if (!_targetsHit[i].CompareTag(Tags.Brick)) continue;
                 _targetsHit[i].attachedRigidbody.GetComponent<BrickController>().BrickHit(Ball.Model.BallCollider);

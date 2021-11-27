@@ -8,6 +8,7 @@ namespace GameStates
     public class GameStateController : MonoBehaviour
     {
         [SerializeField] GameState defaultState;
+
         Stack<GameState> _gameStates;
 
         void OnEnable()

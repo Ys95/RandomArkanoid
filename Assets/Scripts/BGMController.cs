@@ -9,10 +9,10 @@ namespace UI
 
         [Space]
         [SerializeField] AudioClip[] bgm;
-        bool _bgmPlaying;
-        IEnumerator _playingCoroutine;
 
-        bool mute;
+        bool _bgmPlaying;
+        bool _mute;
+        IEnumerator _playingCoroutine;
 
         public void StartPlaying()
         {
@@ -35,14 +35,14 @@ namespace UI
         IEnumerator Play()
         {
             _bgmPlaying = true;
-            var index = 0;
-            var maxIndex = bgm.Length;
-            var breakBetweenClips = 3f;
+            int index = 0;
+            int maxIndex = bgm.Length;
+            float breakBetweenClips = 3f;
 
             while (_bgmPlaying)
             {
                 audioSource.clip = bgm[index];
-                var clipLenght = bgm[index].length;
+                float clipLenght = bgm[index].length;
 
                 audioSource.Play();
                 yield return new WaitForSeconds(clipLenght + 0.1f);

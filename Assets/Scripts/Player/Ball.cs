@@ -57,7 +57,7 @@ namespace Player
         public void ApplySpeedMod(float speedMod)
         {
             MaxSpeed += speedMod;
-            var newRigidbodyVelocity = rigidbody.velocity.normalized * MaxSpeed;
+            Vector2 newRigidbodyVelocity = rigidbody.velocity.normalized * MaxSpeed;
             rigidbody.velocity = newRigidbodyVelocity;
         }
     }

@@ -15,29 +15,32 @@ namespace Powerups
         public void RollPickup(Vector2 pos, int score)
         {
             if (!ShouldPickupDrop) return;
-            var whichPickup = Random.Range(0, pickupList.Count);
+            int whichPickup = Random.Range(0, pickupList.Count);
 
             DropPickup(pickupList[whichPickup], pos);
         }
 
         void DropPickup(GameObject pickup, Vector2 pos)
         {
-            var drop = Instantiate(pickup, transform, true);
+            GameObject drop = Instantiate(pickup, transform, true);
             drop.transform.position = pos;
         }
 
         public void WipePickups()
         {
-            var pickups = new Transform[transform.childCount];
+            Transform[] pickups = new Transform[transform.childCount];
 
-            var i = 0;
+            int i = 0;
             foreach (Transform pickup in transform)
             {
                 pickups[i] = pickup;
                 i++;
             }
 
-            foreach (var pickup in pickups) Destroy(pickup.gameObject);
+            foreach (Transform pickup in pickups)
+            {
+                Destroy(pickup.gameObject);
+            }
         }
     }
 }

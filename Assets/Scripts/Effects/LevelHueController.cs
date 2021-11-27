@@ -26,7 +26,7 @@ namespace Effects
             volume.profile.TryGet(out colorAdjustments);
             if (colorAdjustments == null) return;
 
-            var color = colorAdjustments.colorFilter.value;
+            Color color = colorAdjustments.colorFilter.value;
             Color.RGBToHSV(color, out _defaultHue, out _defaultSaturation, out _defaultValue);
         }
 
@@ -35,8 +35,8 @@ namespace Effects
         {
             if (volume == null || colorAdjustments == null) return;
 
-            var hue = Random.Range(0f, 1f);
-            var color = Color.HSVToRGB(hue, _defaultSaturation, _defaultValue);
+            float hue = Random.Range(0f, 1f);
+            Color color = Color.HSVToRGB(hue, _defaultSaturation, _defaultValue);
             colorAdjustments.colorFilter.Override(color);
 
             if (affectedMaterials != null) ApplyToMaterials(hue);
@@ -44,7 +44,10 @@ namespace Effects
 
         void ApplyToMaterials(float hue)
         {
-            for (var i = 0; i < affectedMaterials.Length; i++) affectedMaterials[i].Apply(hue);
+            for (int i = 0; i < affectedMaterials.Length; i++)
+            {
+                affectedMaterials[i].Apply(hue);
+            }
         }
 
         [Serializable]

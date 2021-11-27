@@ -41,7 +41,7 @@ namespace Bricks
         {
             if (transform.parent == null) return;
 
-            var getController = transform.parent.GetComponent<BrickController>();
+            BrickController getController = transform.parent.GetComponent<BrickController>();
             if (getController != null) controller = getController;
         }
 
@@ -50,7 +50,7 @@ namespace Bricks
             _isDestroyed = false;
             if (onDestroyParticle != null)
             {
-                var particleTransform = onDestroyParticle.transform;
+                Transform particleTransform = onDestroyParticle.transform;
                 particleTransform.parent = brickTransform;
                 particleTransform.position = brickTransform.position;
             }

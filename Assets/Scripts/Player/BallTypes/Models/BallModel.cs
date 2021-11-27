@@ -33,12 +33,24 @@ namespace Player.BallTypes.Models
             particle.Play();
         }
 
-        public void PlayOnBrickHitSound() => Play(onBrickHitSound);
+        public void PlayOnBrickHitSound()
+        {
+            Play(onBrickHitSound);
+        }
 
-        public void PlayOnBounceSound() => Play(onBounceSound);
+        public void PlayOnBounceSound()
+        {
+            Play(onBounceSound);
+        }
 
-        public void PlayOnBounceParticle() => Play(onBounceParticle);
+        public void PlayOnBounceParticle()
+        {
+            Play(onBounceParticle);
+        }
 
-        public void PlayOnBrickHitParticle() => Play(onBrickHitParticle);
+        public void PlayOnBrickHitParticle()
+        {
+            Play(onBrickHitParticle);
+        }
     }
 }

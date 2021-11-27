@@ -39,16 +39,21 @@ namespace LevelGeneration
 
         BrickController GetControllerFromPool()
         {
-            foreach (var brickController in AllBricks)
+            foreach (BrickController brickController in AllBricks)
+            {
                 if (!brickController.IsBrickActive)
                     return brickController;
+            }
 
-            var newBrick = Instantiate(brickControllerPrefab, transform);
-            var controller = newBrick.GetComponent<BrickController>();
+            GameObject newBrick = Instantiate(brickControllerPrefab, transform);
+            BrickController controller = newBrick.GetComponent<BrickController>();
             AllBricks.Add(controller);
             return controller;
         }
 
-        public BrickController GetBrickController() => GetControllerFromPool();
+        public BrickController GetBrickController()
+        {
+            return GetControllerFromPool();
+        }
     }
 }

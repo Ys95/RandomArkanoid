@@ -8,7 +8,7 @@ namespace Effects.ColorShifter
 
         protected override void ColorShift(Color color)
         {
-            var particleMain = particle.main;
+            ParticleSystem.MainModule particleMain = particle.main;
             particleMain.startColor = color;
         }
     }

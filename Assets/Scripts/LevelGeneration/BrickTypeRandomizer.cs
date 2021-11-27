@@ -19,9 +19,9 @@ namespace LevelGeneration
         void GetSpawnCandidates(int difficulty)
         {
             _spawnCandidates.Clear();
-            foreach (var brickSpawn in possibleBricksSpawns)
+            foreach (BrickSpawn brickSpawn in possibleBricksSpawns)
             {
-                var roll = Random.Range(0, 101);
+                int roll = Random.Range(0, 101);
                 if (roll <= brickSpawn.GetSpawnChance(difficulty)) _spawnCandidates.Add(brickSpawn.Name);
             }
         }
@@ -33,7 +33,7 @@ namespace LevelGeneration
             GetSpawnCandidates(difficulty);
 
             if (_spawnCandidates.Count == 0) return defaultBrick;
-            var roll = Random.Range(0, _spawnCandidates.Count);
+            int roll = Random.Range(0, _spawnCandidates.Count);
 
             return _spawnCandidates[roll];
         }
@@ -47,8 +47,10 @@ namespace LevelGeneration
             [Range(0, 100)] [SerializeField] int maxSpawnRate;
             public BrickNames Name => name;
 
-            public int GetSpawnChance(int difficulty) =>
-                Mathf.Clamp(baseSpawnRate + spawnRatePerDifficulty * difficulty, 0, maxSpawnRate);
+            public int GetSpawnChance(int difficulty)
+            {
+                return Mathf.Clamp(baseSpawnRate + spawnRatePerDifficulty * difficulty, 0, maxSpawnRate);
+            }
         }
     }
 }

@@ -20,7 +20,7 @@ namespace Player.RacketTypes.Models
 
         public void PlayOnShootEffect()
         {
-            foreach (var effect in shootEffects)
+            foreach (ParticleSystem effect in shootEffects)
             {
                 effect.Play();
                 shootSound.Play(audioSource);

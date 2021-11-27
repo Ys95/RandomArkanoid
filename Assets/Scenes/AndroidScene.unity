@@ -2182,6 +2182,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5453652447601904829}
     m_Modifications:
+    - target: {fileID: 4268970587496870572, guid: f37ab030c0a44bc46918d1d841bcdaac, type: 3}
+      propertyPath: vidPlayer
+      value: 
+      objectReference: {fileID: 624979188}
     - target: {fileID: 6826727507418052932, guid: f37ab030c0a44bc46918d1d841bcdaac, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -2316,7 +2320,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6826727508261942634, guid: f37ab030c0a44bc46918d1d841bcdaac, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 51.42859
+      value: 51.42871
       objectReference: {fileID: 0}
     - target: {fileID: 6826727508261942634, guid: f37ab030c0a44bc46918d1d841bcdaac, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -2333,6 +2337,10 @@ PrefabInstance:
     - target: {fileID: 6826727508261942637, guid: f37ab030c0a44bc46918d1d841bcdaac, type: 3}
       propertyPath: m_UVRect.width
       value: 0.54
+      objectReference: {fileID: 0}
+    - target: {fileID: 6826727508261942639, guid: f37ab030c0a44bc46918d1d841bcdaac, type: 3}
+      propertyPath: m_VideoClip
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 6826727508476154643, guid: f37ab030c0a44bc46918d1d841bcdaac, type: 3}
       propertyPath: m_Name
@@ -2530,6 +2538,11 @@ MonoBehaviour:
 --- !u!1 &624979187 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6826727508476154643, guid: f37ab030c0a44bc46918d1d841bcdaac, type: 3}
+  m_PrefabInstance: {fileID: 624979183}
+  m_PrefabAsset: {fileID: 0}
+--- !u!328 &624979188 stripped
+VideoPlayer:
+  m_CorrespondingSourceObject: {fileID: 6826727508261942639, guid: f37ab030c0a44bc46918d1d841bcdaac, type: 3}
   m_PrefabInstance: {fileID: 624979183}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &665311472
@@ -14956,7 +14969,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 103155786758068745, guid: 8c840e20b7c86804bbfef58ab80ecf4c, type: 3}
       propertyPath: startingDifficulty
-      value: 20
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8c840e20b7c86804bbfef58ab80ecf4c, type: 3}

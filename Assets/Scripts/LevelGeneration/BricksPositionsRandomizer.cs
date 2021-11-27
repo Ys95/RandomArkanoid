@@ -15,20 +15,22 @@ namespace LevelGeneration
 
         int CalculateClustersAmount(LevelProperties properties, int difficultyLvl)
         {
-            var brickClustersAmount = Random.Range(properties.MINClustersPerDifficultyLvl,
+            int brickClustersAmount = Random.Range(properties.MINClustersPerDifficultyLvl,
                 properties.MAXClustersPerDifficultyLvl + 1);
             brickClustersAmount *= difficultyLvl;
 
             return brickClustersAmount;
         }
 
-        bool ReachedGridCapacity(int totalAmountOfBricks, Vector2Int gridSize) =>
-            totalAmountOfBricks > gridSize.x * gridSize.y;
+        bool ReachedGridCapacity(int totalAmountOfBricks, Vector2Int gridSize)
+        {
+            return totalAmountOfBricks > gridSize.x * gridSize.y;
+        }
 
         public List<Vector2Int> GetBricksPositions(Vector2Int gridSize, LevelProperties properties, int difficultyLevel)
         {
-            var brickClustersAmount = CalculateClustersAmount(properties, difficultyLevel);
-            var totalAmountOfBricks = brickClustersAmount * properties.BricksInCluster;
+            int brickClustersAmount = CalculateClustersAmount(properties, difficultyLevel);
+            int totalAmountOfBricks = brickClustersAmount * properties.BricksInCluster;
 
             if (ReachedGridCapacity(totalAmountOfBricks, gridSize))
             {
@@ -41,11 +43,14 @@ namespace LevelGeneration
 
             generatedBricks = new List<Vector2Int>();
 
-            for (var i = 0; i < brickClustersAmount; i++)
+            for (int i = 0; i < brickClustersAmount; i++)
             {
-                var cluster = PickClusterToFill(gridSize, properties.BricksInCluster);
+                Vector2Int[] cluster = PickClusterToFill(gridSize, properties.BricksInCluster);
 
-                foreach (var brick in cluster) generatedBricks.Add(brick);
+                foreach (Vector2Int brick in cluster)
+                {
+                    generatedBricks.Add(brick);
+                }
 
                 _emptyBrickClusters.Remove(cluster);
             }
@@ -55,8 +60,8 @@ namespace LevelGeneration
 
         Vector2Int[] PickClusterToFill(Vector2Int gridSize, int bricksInCluster)
         {
-            var pickRandomCluster = Random.Range(0, _emptyBrickClusters.Count);
-            var pickedCluster = _emptyBrickClusters[pickRandomCluster];
+            int pickRandomCluster = Random.Range(0, _emptyBrickClusters.Count);
+            Vector2Int[] pickedCluster = _emptyBrickClusters[pickRandomCluster];
 
             return pickedCluster;
         }
@@ -64,8 +69,8 @@ namespace LevelGeneration
         void CreateEmptyClusters(int bricksInCluster, Vector2Int gridSize)
         {
             _emptyBrickClusters.Clear();
-            var clustersAmount = gridSize.x * gridSize.y;
-            var emptyBricksSpots = new Vector2Int[gridSize.x * gridSize.y];
+            int clustersAmount = gridSize.x * gridSize.y;
+            Vector2Int[] emptyBricksSpots = new Vector2Int[gridSize.x * gridSize.y];
 
             GenerateEmptyBrickSpots(gridSize, emptyBricksSpots);
             SplitIntoClusters(bricksInCluster, emptyBricksSpots, gridSize);
@@ -74,20 +79,25 @@ namespace LevelGeneration
         void GenerateEmptyBrickSpots(Vector2Int gridSize, Vector2Int[] emptyBricksSpots)
         {
             for (int i = 0, y = 0; y < gridSize.y; y++)
-            for (var x = 0; x < gridSize.x; x++, i++)
-                emptyBricksSpots[i] = new Vector2Int(x, -y);
+            {
+                for (int x = 0; x < gridSize.x; x++, i++)
+                {
+                    emptyBricksSpots[i] = new Vector2Int(x, -y);
+                }
+            }
+
             _emptyBrickSpots = emptyBricksSpots;
         }
 
         void SplitIntoClusters(int bricksInCluster, Vector2Int[] bricks, Vector2Int gridSize)
         {
-            var xMod = gridSize.x;
-            var xCount = 0;
+            int xMod = gridSize.x;
+            int xCount = 0;
 
-            for (var i = 0; i < bricks.Length;)
+            for (int i = 0; i < bricks.Length;)
             {
-                var cluster = new Vector2Int[bricksInCluster];
-                for (var j = 0; j < cluster.Length; j += 2, i++, xCount++)
+                Vector2Int[] cluster = new Vector2Int[bricksInCluster];
+                for (int j = 0; j < cluster.Length; j += 2, i++, xCount++)
                 {
                     if (i >= bricks.Length) return;
 

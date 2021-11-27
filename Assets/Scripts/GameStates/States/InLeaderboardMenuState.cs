@@ -38,7 +38,7 @@ namespace GameStates.States
 
         void OnConnectedToScoreSystem(OnlineLeaderboardSystem.ConnectionReturnMessage msg)
         {
-            var connectionSucceeded = false;
+            bool connectionSucceeded = false;
 
             if (msg.ConnectionMSG == OnlineLeaderboardSystem.CONNECTION_FAILED)
             {

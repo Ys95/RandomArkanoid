@@ -18,7 +18,7 @@ namespace LevelGeneration
 
         public void ChooseRandomBoundary()
         {
-            var roll = Random.Range(0, _boundariesAmount);
+            int roll = Random.Range(0, _boundariesAmount);
 
             _currentlyActive.SetActive(false);
             _currentlyActive = boundaries.GetChild(roll).gameObject;

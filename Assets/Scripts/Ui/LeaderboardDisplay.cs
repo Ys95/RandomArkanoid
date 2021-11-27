@@ -2,6 +2,7 @@ using System;
 using LootLocker.Requests;
 using UnityEditor;
 using UnityEngine;
+using Object = UnityEngine.Object;
 
 namespace UI
 {
@@ -20,10 +21,10 @@ namespace UI
         void CreateDisplay()
         {
             displayedEntries = new LeaderboardEntry[maxEntries];
-            for (var i = 0; i < maxEntries; i++)
+            for (int i = 0; i < maxEntries; i++)
             {
-                var go = PrefabUtility.InstantiatePrefab(slotPrefab, entriesParent);
-                var go2 = (GameObject) go;
+                Object go = PrefabUtility.InstantiatePrefab(slotPrefab, entriesParent);
+                GameObject go2 = (GameObject) go;
                 displayedEntries[i] = go2.GetComponent<LeaderboardEntry>();
                 displayedEntries[i].SetEntryIndex(i + 1);
                 displayedEntries[i].FillWithDefaultValue();
@@ -33,7 +34,7 @@ namespace UI
 
         public void UpdateDisplay(LootLockerLeaderboardMember[] scores)
         {
-            for (var i = 0; i < scores.Length; i++)
+            for (int i = 0; i < scores.Length; i++)
             {
                 if (i >= displayedEntries.Length) return;
                 displayedEntries[i].UpdateEntry(scores[i].player.name, scores[i].score);

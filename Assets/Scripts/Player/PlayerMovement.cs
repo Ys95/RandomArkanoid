@@ -51,7 +51,7 @@ namespace Player
 #else
             _movementType = mouseMovement;
 #endif
-            var x = context.ReadValue<float>();
+            float x = context.ReadValue<float>();
             x = Mathf.Clamp(x, -25f, 25f);
             _inputAxisX = x;
         }
@@ -77,7 +77,7 @@ namespace Player
 
             public override Vector2 GetMovementValue(float x, Rigidbody2D rb)
             {
-                var velocityX = Mathf.Lerp(x * MovementSpeed, rb.velocity.x, smoothing);
+                float velocityX = Mathf.Lerp(x * MovementSpeed, rb.velocity.x, smoothing);
                 return new Vector2(velocityX, 0f);
             }
         }
@@ -85,7 +85,10 @@ namespace Player
         [Serializable]
         class KeyboardMovement : MovementType
         {
-            public override Vector2 GetMovementValue(float x, Rigidbody2D rb) => new(x * MovementSpeed, 0f);
+            public override Vector2 GetMovementValue(float x, Rigidbody2D rb)
+            {
+                return new Vector2(x * MovementSpeed, 0f);
+            }
         }
 
         [Serializable]
@@ -95,7 +98,7 @@ namespace Player
 
             public override Vector2 GetMovementValue(float x, Rigidbody2D rb)
             {
-                var velocityX = Mathf.Lerp(x * MovementSpeed, rb.velocity.x, smoothing);
+                float velocityX = Mathf.Lerp(x * MovementSpeed, rb.velocity.x, smoothing);
                 return new Vector2(velocityX, 0f);
             }
         }

@@ -54,8 +54,8 @@ namespace GameStates.States
 
         IEnumerator SumScoreEffect()
         {
-            var levelScore = scoreSystem.PreviousLevelScore;
-            var totalScore = scoreSystem.PreviousTotalScore;
+            int levelScore = scoreSystem.PreviousLevelScore;
+            int totalScore = scoreSystem.PreviousTotalScore;
 
             levelScoreDisplay.text = levelScore.ToString();
             totalScoreDisplay.text = totalScore.ToString();

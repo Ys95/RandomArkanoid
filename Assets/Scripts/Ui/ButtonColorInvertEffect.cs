@@ -40,8 +40,8 @@ namespace UI
         {
             if (btn.interactable == false) return;
 
-            var tempBgColor = buttonPart1.Background.color;
-            var tempTextColor = buttonPart1.Text.color;
+            Color tempBgColor = buttonPart1.Background.color;
+            Color tempTextColor = buttonPart1.Text.color;
 
             buttonPart1.Background.color = buttonPart2.Background.color;
             buttonPart1.Text.color = buttonPart2.Text.color;

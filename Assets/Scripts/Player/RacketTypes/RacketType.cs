@@ -30,7 +30,7 @@ namespace Player.RacketTypes
         {
             if (Model == null)
             {
-                var gameObject = Instantiate(modelPrefab, racket.Transform, true);
+                GameObject gameObject = Instantiate(modelPrefab, racket.Transform, true);
                 Model = gameObject.GetComponent<RacketModel>();
             }
 

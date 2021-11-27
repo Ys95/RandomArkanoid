@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using Bricks;
 using UnityEngine;
 
 namespace LevelGeneration
@@ -20,14 +22,14 @@ namespace LevelGeneration
         void Generate()
         {
             ClearGrid();
-            for (var y = 0; y < grid.y; y++)
-            for (var x = 0; x < grid.x; x++)
+            for (int y = 0; y < grid.y; y++)
+            for (int x = 0; x < grid.x; x++)
             {
-                var brickPos = new Vector2((brickWidth + spacing.x) * x, (brickHeight + spacing.y) * -(float) y);
+                Vector2 brickPos = new Vector2((brickWidth + spacing.x) * x, (brickHeight + spacing.y) * -(float) y);
 
-                var brickController = brickControllersManager.GetBrickController();
+                BrickController brickController = brickControllersManager.GetBrickController();
 
-                var brickTransform = brickController.transform;
+                Transform brickTransform = brickController.transform;
                 brickTransform.localScale = new Vector2(brickWidth, brickHeight);
                 brickTransform.parent = gameObject.transform;
                 brickTransform.localPosition = brickPos;
@@ -39,23 +41,23 @@ namespace LevelGeneration
         [ContextMenu("GenerateRandomly")]
         public int BuildRandomLevel(LevelProperties properties, int difficultyLevel)
         {
-            var bricksControllersPositions =
+            List<Vector2Int> bricksControllersPositions =
                 bricksPositionsRandomizer.GetBricksPositions(grid, properties, difficultyLevel);
             if (bricksControllersPositions == null) return 0;
 
-            var brickCount = 0;
+            int brickCount = 0;
 
             ClearGrid();
-            foreach (var brickPosition in bricksControllersPositions)
+            foreach (Vector2Int brickPosition in bricksControllersPositions)
             {
-                var brickController = brickControllersManager.GetBrickController();
+                BrickController brickController = brickControllersManager.GetBrickController();
                 brickController.ChangeBrickType(brickTypeRandomizer.RollBrick(difficultyLevel));
 
-                var brickControllerTransform = brickController.transform;
+                Transform brickControllerTransform = brickController.transform;
                 brickControllerTransform.localScale = new Vector2(brickWidth, brickHeight);
                 brickControllerTransform.parent = gameObject.transform;
 
-                var brickPos = new Vector2(brickPosition.x * (brickWidth + spacing.x),
+                Vector2 brickPos = new Vector2(brickPosition.x * (brickWidth + spacing.x),
                     brickPosition.y * (brickHeight + spacing.y));
                 brickControllerTransform.localPosition = brickPos;
 
@@ -68,15 +70,19 @@ namespace LevelGeneration
 
         public void ClearGrid()
         {
-            foreach (var brickController in brickControllersManager.AllBricks) brickController.DisableBricks();
+            foreach (BrickController brickController in brickControllersManager.AllBricks)
+            {
+                brickController.DisableBricks();
+            }
+
             brickControllersManager.AllBricks.Clear();
         }
 
         [ContextMenu("Wipe")]
         public void DestroyBricks()
         {
-            var children = new Transform[transform.childCount];
-            var i = 0;
+            Transform[] children = new Transform[transform.childCount];
+            int i = 0;
 
             foreach (Transform child in transform)
             {
@@ -84,7 +90,10 @@ namespace LevelGeneration
                 i++;
             }
 
-            for (var k = 0; k < children.Length; k++) DestroyImmediate(children[k].gameObject);
+            for (int k = 0; k < children.Length; k++)
+            {
+                DestroyImmediate(children[k].gameObject);
+            }
         }
     }
 }

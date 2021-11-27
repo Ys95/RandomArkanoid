@@ -13,7 +13,7 @@ namespace GameStates.States
 
         void OnValidate()
         {
-            var controller = transform.parent.GetComponent<GameStateController>();
+            GameStateController controller = transform.parent.GetComponent<GameStateController>();
             if (controller != null) gameStateController = controller;
         }
 

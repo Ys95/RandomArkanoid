@@ -35,7 +35,7 @@ namespace Player
             Debug.Log("Ball reattached");
             ball.GetBall.StopMoving();
 
-            var holderTransform = transform;
+            Transform holderTransform = transform;
 
             ballGameObject.transform.parent = holderTransform;
             ballGameObject.transform.position = holderTransform.position;

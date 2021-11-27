@@ -24,14 +24,16 @@ namespace Player.BallTypes
             if (collider.CompareTag(Tags.Racket)) HandleRacketCollision(collider);
         }
 
-        float BounceAngle(Vector2 ballPos, Vector2 racketPos, float racketWidth) =>
-            (ballPos.x - racketPos.x) / racketWidth;
+        float BounceAngle(Vector2 ballPos, Vector2 racketPos, float racketWidth)
+        {
+            return (ballPos.x - racketPos.x) / racketWidth;
+        }
 
         protected virtual void HandleRacketCollision(Collider2D collider)
         {
             Ball.IncreaseMaxSpeed();
-            var x = BounceAngle(Ball.Transform.position, collider.transform.position, collider.bounds.size.x);
-            var dir = new Vector2(3f * x, 1f);
+            float x = BounceAngle(Ball.Transform.position, collider.transform.position, collider.bounds.size.x);
+            Vector2 dir = new Vector2(3f * x, 1f);
             Ball.Rigidbody.velocity = Vector2.ClampMagnitude(dir * Ball.MaxSpeed, Ball.MaxSpeed);
 
             Ball.Model.PlayOnBounceParticle();
@@ -59,7 +61,7 @@ namespace Player.BallTypes
 
         void SwapModels()
         {
-            var gObject = Instantiate(modelPrefab, Ball.Transform, true);
+            GameObject gObject = Instantiate(modelPrefab, Ball.Transform, true);
 
             _model = gObject.GetComponent<BallModel>();
             Ball.Model = _model;

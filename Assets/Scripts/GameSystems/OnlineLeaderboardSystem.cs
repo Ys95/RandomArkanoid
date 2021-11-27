@@ -46,9 +46,11 @@ namespace GameSystems
                                     _playerBestScore = response.score;
                                     _playerLeaderboardPosition = response.rank;
 
-                                    var player = new ConnectedPlayer(_playerName, _memeberId, _playerBestScore,
+                                    ConnectedPlayer player = new ConnectedPlayer(_playerName, _memeberId,
+                                        _playerBestScore,
                                         _playerLeaderboardPosition);
-                                    var msg = new ConnectionReturnMessage(CONNECTION_SUCCESSFUL, player);
+                                    ConnectionReturnMessage msg =
+                                        new ConnectionReturnMessage(CONNECTION_SUCCESSFUL, player);
                                     onConnected?.Invoke(msg);
                                 });
                             });
@@ -56,7 +58,7 @@ namespace GameSystems
                     }
                     else
                     {
-                        var msg = new ConnectionReturnMessage(CONNECTION_FAILED, null);
+                        ConnectionReturnMessage msg = new ConnectionReturnMessage(CONNECTION_FAILED, null);
 
                         onConnected?.Invoke(msg);
 
